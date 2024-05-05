@@ -1,5 +1,7 @@
 import 'package:dropdown_button2/dropdown_button2.dart';
+
 import 'package:flutter/material.dart';
+
 import '../../globle/color/shared_color.dart';
 
 class BuildDropDownButtonField extends StatelessWidget {
@@ -35,7 +37,7 @@ class BuildDropDownButtonField extends StatelessWidget {
         ),
         focusedBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
-          borderSide: const BorderSide(color: AppColor.primaryColor, width: 2),
+          borderSide: BorderSide(color: AppColor.primaryColor, width: 2),
         ),
         enabledBorder: OutlineInputBorder(
           borderRadius: BorderRadius.circular(15),
@@ -46,36 +48,21 @@ class BuildDropDownButtonField extends StatelessWidget {
       hint: Text(
         hint,
       ),
-      iconStyleData: const IconStyleData(
-        icon: Icon(
-          Icons.arrow_drop_down,
-          color: Colors.grey,
-          textDirection: TextDirection.ltr,
-        ),
-        iconSize: 30,
-        iconEnabledColor: Colors.yellow,
-        iconDisabledColor: Colors.grey,
+      icon: const Icon(
+        Icons.arrow_drop_down,
+        color: Colors.grey,
+        textDirection: TextDirection.ltr,
       ),
-      buttonStyleData: ButtonStyleData(
-        height: height * 0.08,
-        width: 160,
-        padding: const EdgeInsets.only(left: 20, right: 10),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        elevation: 2,
+      iconSize: 30,
+      buttonHeight: height * 0.08,
+      buttonPadding: const EdgeInsets.only(left: 20, right: 10),
+      dropdownDecoration: BoxDecoration(
+        borderRadius: BorderRadius.circular(15),
       ),
-      dropdownStyleData: DropdownStyleData(
-        maxHeight: height * 0.75,
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(14),
-        ),
-        scrollbarTheme: ScrollbarThemeData(
-          radius: const Radius.circular(15),
-          thickness: MaterialStateProperty.all(10),
-          thumbVisibility: MaterialStateProperty.all(true),
-        ),
-      ),
+      dropdownMaxHeight: height * 0.75,
+      scrollbarThickness: 10,
+      scrollbarAlwaysShow: true,
+      scrollbarRadius: Radius.circular(15),
       items: item
           .map((item) => DropdownMenuItem<String>(
                 value: item,
@@ -85,6 +72,7 @@ class BuildDropDownButtonField extends StatelessWidget {
               ))
           .toList(),
       validator: valid,
+      dropdownElevation: 2,
       onChanged: onChanged,
       onSaved: (value) {},
     );

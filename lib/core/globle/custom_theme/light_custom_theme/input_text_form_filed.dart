@@ -21,6 +21,11 @@ class LightInputDecorationTheme {
       borderRadius: BorderRadius.circular(15),
 
     ),
+    errorBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.transparent),
+      borderRadius: BorderRadius.circular(15),
+
+    ),
     fillColor: LightAppColor.foreGroundColors,
     filled: true,
 

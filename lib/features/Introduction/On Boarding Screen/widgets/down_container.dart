@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:tricares_doctor_app/features/Authentication/screens/Login/login_screen.dart';
+import 'package:tricares_doctor_app/features/Authentication/screens/Register/register_screen.dart';
 
 import '../../../../core/component/ElevatedButton Widget/build_elevated_button.dart';
 import '../../../../core/functions/fucntions.dart';
@@ -49,9 +50,9 @@ class BuildDownContainer extends StatelessWidget {
               height: height * 0.04,
             ),
             BuildButton(
-              text: 'Login',
+              text: 'Become a partner',
               onPressed: () {
-                navigateTo(context, LoginScreen());
+                navigateTo(context, const RegisterScreen());
               },
             ),
             SizedBox(

@@ -17,6 +17,24 @@ class InputValidator{
 
   }
 
+  String?  subjectValidator(String? value){
+
+    if(value == null || value.isEmpty) {
+      return 'Please Enter Your Request Subject';
+    }
+
+    return null;
+
+  }
+  String?  subjectMessageValidator(String? value){
+
+    if(value == null || value.isEmpty) {
+      return 'Please Enter Your Message';
+    }
+
+    return null;
+
+  }
 
   String?  phoneValidator(String? value){
 

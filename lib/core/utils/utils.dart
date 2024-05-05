@@ -1,3 +1,5 @@
+import 'dart:ui';
+
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
@@ -14,6 +16,7 @@ class Utils {
      required DialogType dialogType,
      required widget,
      String? action,
+    required VoidCallback fn,
    }) => AwesomeDialog(
        dismissOnBackKeyPress: true,
        context: context,
@@ -21,16 +24,14 @@ class Utils {
       dialogBackgroundColor: AppColor.primaryColor,
        animType: AnimType.scale,
        btnOkText: 'okay',
-       title: 'Dialog Title',
+       title: "",
        body: widget,
        btnOkColor: dialogType == DialogType.success
            ? Colors.green
            : dialogType == DialogType.error
            ? const Color(0xffD03B42)
            : const Color(0xffFFB61C),
-       btnOkOnPress: () {
-
-       },
+       btnOkOnPress: fn,
      ).show();
 
 

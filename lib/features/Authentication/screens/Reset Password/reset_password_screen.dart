@@ -209,11 +209,11 @@ class ConfirmButton extends StatelessWidget {
             if (btnState == ButtonState.idle) {
               startLoading();
 
-              await context.read<AuthCubit>().postRestPassword(
+              /*await context.read<AuthCubit>().postRestPassword(
                     id: studentUniqueId,
                     code: otpController.text.trim(),
                     password: passwordController.text.trim(),
-                  );
+                  );*/
 
               stopLoading();
             }

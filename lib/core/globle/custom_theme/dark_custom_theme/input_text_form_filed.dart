@@ -20,6 +20,11 @@ class DarkInputDecorationTheme {
       borderRadius: BorderRadius.circular(15),
 
     ),
+    errorBorder: OutlineInputBorder(
+      borderSide: const BorderSide(color: Colors.transparent),
+      borderRadius: BorderRadius.circular(15),
+
+    ),
     fillColor: DarkAppColor.foreGroundColors,
     filled: true,
 

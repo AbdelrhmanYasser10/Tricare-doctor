@@ -3,19 +3,22 @@ import 'package:flutter/material.dart';
 
 import '../../component/SVG/svg.dart';
 import '../../globle/color/dark_app_color.dart';
+import '../../globle/color/shared_color.dart';
+
 
 
 class BuildListTitle extends StatelessWidget {
+
   final String text;
   final  String iconName;
-  final void Function()? function;
-  final double? size;
-  final Color? color;
-  final Color? textColor;
+  void Function()? function;
+  double? size;
+  Color? color;
+  Color? textColor;
 
 
 
-   const BuildListTitle({required this.text,required this.iconName,required this.function,this.size,this.color,this.textColor,super.key}) ;
+   BuildListTitle({required this.text,required this.iconName,required this.function,this.size,this.color,this.textColor}) ;
 
   @override
   Widget build(BuildContext context) {
@@ -27,13 +30,13 @@ class BuildListTitle extends StatelessWidget {
            color: textColor,
          ),
       ),
-      trailing:   Icon(Icons.arrow_forward_ios,color: color?? DarkAppColor.primaryColor,),
+      trailing:   Icon(Icons.arrow_forward_ios,color: color?? AppColor.primaryColor,),
       leading: CircleAvatar(
         backgroundColor: DarkAppColor.foreGroundColors,
           child: BuildIconSvg(
             name: iconName,
             size: size??20,
-            color: color??DarkAppColor.primaryColor,
+            color: color?? AppColor.primaryColor,
           ),
       ),
     );

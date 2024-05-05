@@ -27,22 +27,19 @@ class RegisterSuccess extends AuthState{
   final bool hasError;
   final List messages;
   final List errors;
-  String? code;
-  RegisterSuccess({required this.hasError,required this.messages,required this.errors,this.code});
+  RegisterSuccess({required this.hasError,required this.messages,required this.errors});
 
 }
 class RegisterError extends AuthState{}
 
 
-class OTPLoading extends AuthState{}
-class OTPSuccess extends AuthState{
-  final bool hasError;
-  final List messages;
-  final List errors;
-  final String? token;
-  OTPSuccess({required this.hasError,required this.messages,required this.errors,required this.token});
+class PickFilesLoading extends AuthState{}
+class PickFilesSuccessfully extends AuthState{
+
 }
-class OTPError extends AuthState{}
+class PickFilesError extends AuthState{}
+class RemoveFile extends AuthState{}
+
 
 
 
@@ -73,6 +70,8 @@ class ResendRegisterLoading extends AuthState{}
 class ResendRegisterSuccess extends AuthState{}
 class ResendRegisterError extends AuthState{}
 
-
+class AllCountriesLoading extends AuthState{}
+class AllCountriesSuccess extends AuthState{}
+class AllCountriesError extends AuthState{}
 
 

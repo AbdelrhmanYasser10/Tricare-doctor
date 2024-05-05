@@ -14,7 +14,7 @@ class EmailFiled extends StatelessWidget {
     return  BuildTextFormField(
       controller: controller,
       hintText: 'Email',
-      prefixIcon: Icon(Icons.email),
+      prefixIcon: const Icon(Icons.email),
       maxLines: 1,
       keyboardType: TextInputType.emailAddress,
       valid: InputValidator(context).emailValidator,

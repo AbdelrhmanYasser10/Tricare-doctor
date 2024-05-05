@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 
 class BuildTextFormField extends StatelessWidget {
@@ -43,6 +42,8 @@ class BuildTextFormField extends StatelessWidget {
         hintText: hintText,
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
+        border: InputBorder.none,
+        errorBorder: InputBorder.none,
         contentPadding: EdgeInsets.symmetric(
             vertical: height * 0.025, horizontal: width * 0.06),
       ),

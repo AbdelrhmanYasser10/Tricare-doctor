@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tricares_doctor_app/core/network/Remote/DioHelper.dart';
+import 'package:tricares_doctor_app/core/network/endPoind.dart';
 import 'package:tricares_doctor_app/features/examination/cubits/examination_cubit/examination_cubit.dart';
 import 'core/Global Cubit/global_cubit.dart';
 import 'core/globle/theme/dark_theme.dart';
@@ -13,6 +15,7 @@ void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
   await CashHelper.initialize();
+  DioHelper.initialize(EndPoints.baseUrl);
   runApp(const MyApp());
 }
 
