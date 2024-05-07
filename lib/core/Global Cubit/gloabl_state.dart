@@ -8,3 +8,6 @@ final class AppInitial extends GlobalState {}
 
 class ChangeTheme extends GlobalState{}
 class ChangeLocal extends GlobalState{}
+
+
+class ChangeCurrentIndexScreen extends GlobalState {}

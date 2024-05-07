@@ -1,6 +1,8 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter/material.dart';
 import 'package:meta/meta.dart';
-import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
+
+import '../network/Local/CashHelper.dart';
 
 part 'gloabl_state.dart';
 
@@ -10,6 +12,22 @@ class GlobalCubit extends Cubit<GlobalState> {
   bool isLight = true;
   int selectOption = CashHelper.getData(key: 'local') == null? 1: CashHelper.getData(key: 'local') == 'en'?1:2 ;
   String local = CashHelper.getData(key: 'local')??'en';
+
+
+  PageController homeLayoutController = PageController();
+  int currentIndexScreen = 0;
+  void changeSelectedIndexNav(int index){
+    currentIndexScreen = index;
+    emit(ChangeCurrentIndexScreen());
+  }
+
+  void goToScreenAtIndex(int index){
+    homeLayoutController.animateToPage(
+      index,
+      duration: const Duration(milliseconds: 250),
+      curve: Curves.linear,
+    );
+  }
 
 
    void changeTheme(){

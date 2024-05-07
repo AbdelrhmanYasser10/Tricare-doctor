@@ -100,7 +100,7 @@ class _InvestorApplicationFormState extends State<InvestorApplicationForm> {
                     "Male",
                     "Female",
                   ],
-                  num: 1,
+                  num: 2,
                   cubit: AuthCubit.get(context),
                 ),
               ),

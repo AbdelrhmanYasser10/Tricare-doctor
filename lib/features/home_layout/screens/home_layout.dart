@@ -3,10 +3,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tricares_doctor_app/features/examination/screens/examination_screen.dart';
-import 'package:tricares_doctor_app/features/profile/screens/profile_screen.dart';
+import 'package:tricares_doctor_app/features/profits/screens/profits_screen.dart';
 import '../../../core/component/SVG/svg.dart';
 import '../../../core/globle/color/shared_color.dart';
+import '../../Drawer/screen/drawer_screen.dart';
 import '../../home/screens/home_screen.dart';
+import '../../profile/screen/Main Profile/main_profile_screen.dart';
 import '../cubits/app_cubit/app_cubit.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
@@ -41,7 +43,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
         var cubit = context.read<AppCubit>();
         return Scaffold(
 
-          drawer: const Drawer(), // TODO :: DRAWER
+          drawer: const DrawerScreen(),
           appBar: PreferredSize(
             preferredSize: Size.fromHeight(height*0.08),
             child: AppBar(
@@ -73,8 +75,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               ExaminationsScreen(
                 fromHome: false,
               ),
-              ProfileScreen(),
-              ProfileScreen(),
+              ProfitsScreen(),
+              MainProfileScreen(),
             ],
             onPageChanged: (index){
               cubit.changeSelectedIndexNav(index);

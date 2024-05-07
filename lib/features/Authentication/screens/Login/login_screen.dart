@@ -14,7 +14,7 @@ import '../Forget Password/forget_passwrod_screen.dart';
 import '../Register/register_screen.dart';
 
 class LoginScreen extends StatefulWidget {
-  LoginScreen({super.key});
+  const LoginScreen({super.key});
 
   @override
   State<LoginScreen> createState() => _LoginScreenState();
@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       children: [
                         TextButton(
                             onPressed: () {
-                               navigateTo(context, ForgetPasswordScreen());
+                               navigateTo(context, const ForgetPasswordScreen());
                             },
                             child: Text(
                               'Forget Password?',

@@ -10,11 +10,15 @@ import 'core/network/Local/CashHelper.dart';
 import 'features/Authentication/cubit/auth_cubit.dart';
 import 'features/Introduction/On Boarding Screen/onboarding_screen.dart';
 import 'features/home_layout/cubits/app_cubit/app_cubit.dart';
+import 'features/profile/cubit/profile_cubit.dart';
 
 void main() async{
 
   WidgetsFlutterBinding.ensureInitialized();
   await CashHelper.initialize();
+  print(
+      CashHelper.prefs.get("token")
+  );
   DioHelper.initialize(EndPoints.baseUrl);
   runApp(const MyApp());
 }
@@ -30,6 +34,11 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context)=>GlobalCubit()),
         BlocProvider(create: (context)=>AppCubit()),
         BlocProvider(create: (context)=>ExaminationCubit()),
+        BlocProvider(
+            create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => GlobalCubit()),
+        BlocProvider(create: (context) => ProfileCubit()..postUserData()),
+
         BlocProvider(
             create: (context) => AuthCubit()),
       ],

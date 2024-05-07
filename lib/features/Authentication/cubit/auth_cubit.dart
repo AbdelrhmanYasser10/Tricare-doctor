@@ -63,7 +63,8 @@ class AuthCubit extends Cubit<AuthState> {
   Future<void> postLogin({required String email, required String password}) async {
     if (await _connectivity.isInternetConnected()) {
       emit(LoginLoading());
-
+      print(email);
+      print(password);
       await DioHelper.postData(
         data: {
           'login_email': email,
@@ -72,7 +73,8 @@ class AuthCubit extends Cubit<AuthState> {
         url: EndPoints.login_request,
       ).then((value) {
         loginModel = LoginModel.formJson(value.data);
-
+        print(loginModel);
+        print(value.data);
         emit(LoginSuccess(
           hasError: loginModel!.hasError,
           errors: loginModel!.errors,
@@ -126,7 +128,7 @@ class AuthCubit extends Cubit<AuthState> {
               'contact_phone': phone,
               'contact_subject': title,
               'contact_message': subTitle,
-              'attachment': xFiles,
+              'attachment': allFiles,
             }
         );
         await DioHelper.postDataFile(

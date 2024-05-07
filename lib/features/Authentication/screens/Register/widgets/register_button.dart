@@ -49,7 +49,7 @@ class RegisterButton extends StatelessWidget {
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
           } else {
             var snackBar = Utils.buildSnackBar2(
-                contentType: ContentType.failure,
+                contentType: ContentType.success,
                 context: context,
                 message: "Your request has been sent successfully");
             ScaffoldMessenger.of(context).showSnackBar(snackBar);

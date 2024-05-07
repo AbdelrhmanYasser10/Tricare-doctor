@@ -9,6 +9,8 @@ class EndPoints {
 
   static const String investor_apply = "apply_investor.php";
 
+  static const String verify_accessToken_request = "accesstoken_verify.php";
+
   static var countries = 'countries.php';
 
   static var home_request = 'home.php';
