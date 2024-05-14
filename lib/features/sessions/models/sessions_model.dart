@@ -42,7 +42,7 @@ class SessionsModel {
 class Data {
   String? resultsTotal;
   int? pageCurrent;
-  Null? pagePrev;
+  int? pagePrev;
   int? pageNext;
   int? pageMax;
   List<Sessions>? sessions;
@@ -147,8 +147,8 @@ class Sessions {
   String? patientProfilepicture;
   String? patientCoverpicture;
   String? patientWebsite;
-  Null? patientRememberMeKey;
-  Null? patientRememberMeTime;
+  int? patientRememberMeKey;
+  int? patientRememberMeTime;
   String? patientIp;
   String? patientLip;
   String? patientMylang;

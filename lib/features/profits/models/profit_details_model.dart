@@ -9,13 +9,13 @@ class ProfitDetailsModel {
   ProfitDetailsModel.fromJson(Map<String, dynamic> json) {
     hasError = json['hasError'];
     if (json['errors'] != null) {
-      errors = <Null>[];
+      errors = [];
       json['errors'].forEach((v) {
         errors!.add(v);
       });
     }
     if (json['messages'] != null) {
-      messages = <Null>[];
+      messages = [];
       json['messages'].forEach((v) {
         messages!.add(v);
       });

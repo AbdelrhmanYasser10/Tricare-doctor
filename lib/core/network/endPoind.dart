@@ -39,6 +39,8 @@ class EndPoints {
 
   static var profitsTable = 'partner_orders.php';
 
+  static var sessions = 'partner_sessions.php';
+
 
 
 }

@@ -80,6 +80,8 @@ dependencies:
   intl: ^0.18.1
   syncfusion_flutter_datagrid: ^24.2.9
   syncfusion_flutter_core: ^24.2.9
+  dotted_decoration: ^2.0.0
+  infinite_scroll_pagination: ^4.0.0
 
 dev_dependencies:
   flutter_test:

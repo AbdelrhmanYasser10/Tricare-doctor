@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_datagrid/datagrid.dart';
 import 'package:tricares_doctor_app/core/component/ElevatedButton%20Widget/build_elevated_button.dart';
+import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/core/globle/color/shared_color.dart';
 import 'package:tricares_doctor_app/features/profits/models/profits_model.dart';
+import 'package:tricares_doctor_app/features/profits/screens/profit_details_screen.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/profits_data_source.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
 
@@ -51,12 +53,15 @@ class _TableGridViewState extends State<TableGridView> {
               headerColor: AppColor.primaryColor,
               gridLineColor: Colors.blueGrey.shade400,
               indentColumnWidth: 4,
-
               rowHoverTextStyle: Theme.of(context).textTheme.titleSmall,
             ),
             child: SfDataGrid(
               source: profitsDataSource,
               allowColumnsResizing: true,
+              onCellTap: (details) {
+                var value = profitsDataSource[details.rowColumnIndex.rowIndex - 1];
+                navigateTo(context, ProfitsDetailsScreen(profitId: value.getCells().first.value));
+              },
               columns: [
                 gridColumnWidget(
                     title:'ID',
