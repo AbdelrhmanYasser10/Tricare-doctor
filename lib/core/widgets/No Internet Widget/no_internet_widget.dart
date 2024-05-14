@@ -19,7 +19,7 @@ class NoInternetWidget extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
 
-        Image.asset('assets/images/internet.png'),
+        Image.asset('assets/images/error.png'),
         SizedBox(height: height*0.02,),
         TextButton(
           onPressed: onPressed,

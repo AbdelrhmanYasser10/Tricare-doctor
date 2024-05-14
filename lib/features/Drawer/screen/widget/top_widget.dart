@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/globle/color/dark_app_color.dart';
 import '../../../../core/globle/color/shared_color.dart';
 
 
@@ -23,15 +22,15 @@ class TopWidget extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: height*0.25,
+      height: height*0.3,
       child: Stack(
         children: [
           SizedBox(
-              height: height*0.25,
+              height: height*0.3,
               width: width,
               child: Image.asset('assets/images/drawer5.jpg',fit: BoxFit.cover,)),
           Container(
-            height: height*0.25,
+            height: height*0.3,
             width: width,
             color: AppColor.primaryColor.withOpacity(0.6),
 
@@ -45,9 +44,13 @@ class TopWidget extends StatelessWidget {
               children: [
                 SizedBox(height: height*0.04,),
                 CircleAvatar(
-                  backgroundColor: Colors.transparent,
-                  radius: 50,
-                  backgroundImage: NetworkImage(image),
+                  radius: width*0.155,
+                  backgroundColor: Colors.white,
+                  child: CircleAvatar(
+                    backgroundColor: Colors.transparent,
+                    radius: width*0.15,
+                    backgroundImage: NetworkImage(image),
+                  ),
                 ),
                 SizedBox(height: height*0.01,),
                 Text(

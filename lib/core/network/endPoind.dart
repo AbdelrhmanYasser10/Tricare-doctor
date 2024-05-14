@@ -13,6 +13,10 @@ class EndPoints {
 
   static var countries = 'countries.php';
 
+  static var changePassword_request = 'partner_password.php';
+
+  static var deleteAccount_request = 'partner_password.php';
+
   static var home_request = 'home.php';
 
   static var category_request = 'doctors.php';
@@ -30,6 +34,10 @@ class EndPoints {
   static var page_request = 'pages.php';
 
   static var updateProfile_request = 'partner_account.php';
+
+  static var setSechdule_request = 'partner_sessions_schedule.php';
+
+  static var profitsTable = 'partner_orders.php';
 
 
 

@@ -590,7 +590,7 @@ packages:
     source: hosted
     version: "0.2.1+1"
   intl:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: intl
       sha256: "3bc132a9dbce73a7e4a21a17d06e1878839ffbf975568bc875c60537824b0c4d"
@@ -1027,10 +1027,18 @@ packages:
     source: hosted
     version: "24.2.9"
   syncfusion_flutter_core:
-    dependency: transitive
+    dependency: "direct main"
     description:
       name: syncfusion_flutter_core
       sha256: "7666506885ebc8f62bb928ad4588a73e20caaff2b2cf2b2b56f67d98f4113525"
+      url: "https://pub.dev"
+    source: hosted
+    version: "24.2.9"
+  syncfusion_flutter_datagrid:
+    dependency: "direct main"
+    description:
+      name: syncfusion_flutter_datagrid
+      sha256: "0ac1c54467ef2c1099943207dfd95748da94c900104e37fbaa346668a120c02d"
       url: "https://pub.dev"
     source: hosted
     version: "24.2.9"
@@ -1122,6 +1130,14 @@ packages:
       url: "https://pub.dev"
     source: hosted
     version: "0.6.1"
+  time_slot:
+    dependency: "direct main"
+    description:
+      name: time_slot
+      sha256: "7761103a924a3402cf22fa95165ac396126d927267d4fae8e5182c73c8f49613"
+      url: "https://pub.dev"
+    source: hosted
+    version: "0.0.3"
   typed_data:
     dependency: transitive
     description:

@@ -72,15 +72,25 @@ class AuthCubit extends Cubit<AuthState> {
         },
         url: EndPoints.login_request,
       ).then((value) {
-        loginModel = LoginModel.formJson(value.data);
-        print(loginModel);
-        print(value.data);
-        emit(LoginSuccess(
-          hasError: loginModel!.hasError,
-          errors: loginModel!.errors,
-          messages: loginModel!.messages,
-          token: "",
-        ));
+        loginModel = LoginModel.fromJson(value.data);
+        if(!loginModel!.hasError!){
+          print(loginModel!.data!.partner!.partnerAccesstoken!);
+          emit(LoginSuccess(
+            hasError: loginModel!.hasError!,
+            errors: loginModel!.errors,
+            messages: loginModel!.messages,
+            token:loginModel!.data!.partner != null ? loginModel!.data!.partner!.partnerAccesstoken! : "",
+          ));
+        }
+        else{
+          emit(LoginSuccess(
+            hasError: loginModel!.hasError!,
+            errors: loginModel!.errors,
+            messages: loginModel!.messages,
+            token:"",
+          ));
+        }
+
       }).catchError((error) {
         debugPrint(error.toString());
         emit(LoginError());

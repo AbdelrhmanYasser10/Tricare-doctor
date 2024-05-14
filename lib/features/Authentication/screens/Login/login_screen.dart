@@ -2,13 +2,16 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_btn/loading_btn.dart';
+import 'package:tricares_doctor_app/core/InputField/custom_input/name_input_field.dart';
+import 'package:tricares_doctor_app/features/home_layout/cubits/app_cubit/app_cubit.dart';
+import 'package:tricares_doctor_app/features/home_layout/screens/home_layout.dart';
 
-import '../../../../core/InputField/custom_input/email_input_field.dart';
 import '../../../../core/InputField/custom_input/password_input_field.dart';
 import '../../../../core/functions/fucntions.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/network/Local/CashHelper.dart';
 import '../../../../core/utils/utils.dart';
+import '../../../profile/cubit/profile_cubit.dart';
 import '../../cubit/auth_cubit.dart';
 import '../Forget Password/forget_passwrod_screen.dart';
 import '../Register/register_screen.dart';
@@ -21,14 +24,14 @@ class LoginScreen extends StatefulWidget {
 }
 
 class _LoginScreenState extends State<LoginScreen> {
-  late TextEditingController emailController;
+  late TextEditingController usernameController;
   late TextEditingController passwordController;
 
   @override
   void initState() {
     // TODO: implement initState
 
-    emailController = TextEditingController();
+    usernameController = TextEditingController();
     passwordController = TextEditingController();
 
     super.initState();
@@ -38,7 +41,7 @@ class _LoginScreenState extends State<LoginScreen> {
   void dispose() {
     // TODO: implement dispose
     super.dispose();
-    emailController.dispose();
+    usernameController.dispose();
     passwordController.dispose();
   }
 
@@ -92,7 +95,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: height * 0.05,
                     ),
-                    EmailFiled(controller: emailController),
+                    NameFiled(controller: usernameController),
                     SizedBox(
                       height: height * 0.02,
                     ),
@@ -120,7 +123,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     LoginButton(
                         formKey: formKey,
-                        emailController: emailController,
+                        usernameController: usernameController,
                         passwordController: passwordController),
                     SizedBox(
                       height: height * 0.08,
@@ -168,13 +171,13 @@ class _LoginScreenState extends State<LoginScreen> {
 
 class LoginButton extends StatelessWidget {
   final formKey;
-  final TextEditingController emailController;
+  final TextEditingController usernameController;
   final TextEditingController passwordController;
 
   const LoginButton(
       {super.key,
       required this.formKey,
-      required this.emailController,
+      required this.usernameController,
       required this.passwordController});
 
   @override
@@ -198,9 +201,10 @@ class LoginButton extends StatelessWidget {
 
             CashHelper.prefs.setBool('login', true);
 
-            //context.read<AppCubit>().postUserData();
-
-             Navigator.pop(context);
+            context.read<ProfileCubit>().postUserData();
+            context.read<AppCubit>().homeLayoutController.jumpToPage(0);
+            context.read<AppCubit>().currentIndexScreen = 0;
+             navigateToToFinish(context, const HomeLayoutScreen());
 
             var snackBar = Utils.buildSnackBar2(
                 contentType: ContentType.success,
@@ -232,7 +236,7 @@ class LoginButton extends StatelessWidget {
                 startLoading();
                 // call your network api
                 await context.read<AuthCubit>().postLogin(
-                  email: emailController.text.trim(),
+                  email: usernameController.text.trim(),
                   password: passwordController.text.trim(),
                 );
                 stopLoading();

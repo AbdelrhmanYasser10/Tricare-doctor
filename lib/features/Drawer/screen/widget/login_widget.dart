@@ -1,7 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-
+import 'package:tricares_doctor_app/features/home_layout/cubits/app_cubit/app_cubit.dart';
 
 import '../../../../core/Global Cubit/global_cubit.dart';
 import '../../../../core/utils/utils.dart';
@@ -22,31 +22,30 @@ class DrawerLoginWidget extends StatelessWidget {
         TopWidget(
           height: height,
           width: width,
-          image: context.read<ProfileCubit>().userModel!.data!.patient!.patientProfilepicture!,
+          image: context.read<ProfileCubit>().userModel!.data!.partner!.partnerPic!,
           email: context.read<ProfileCubit>().emailController.text,
           name: context.read<ProfileCubit>().nameController.text,
         ),
-        SizedBox(
-          height: height * 0.02,
-        ),
+
         BuildListTitle(
           text: 'Profile',
           iconName: 'person.svg',
           function: () {
             Navigator.pop(context);
-            context.read<GlobalCubit>().goToScreenAtIndex(2);
+            AppCubit.get(context).currentIndexScreen = 3;
+            context.read<AppCubit>().goToScreenAtIndex(3);
           },
         ),
         BuildListTitle(
-          text: 'Profits',
-          iconName: 'profits.svg',
+          text: 'Investment',
+          iconName: 'investor.svg',
           function: () {
 
           },
         ),
         BuildListTitle(
-          text: 'Investments',
-          iconName: 'investments.svg',
+          text: 'Appointments',
+          iconName: 'doctor.svg',
           function: () {
 
           },

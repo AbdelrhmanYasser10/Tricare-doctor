@@ -44,8 +44,36 @@ class GetUserDataError extends ProfileState{}
 
 
 class ImagePickerSuccess extends ProfileState{}
-
 class NoInternetConnection extends ProfileState{}
+
+
+class ChangeProfilePictureLoading extends ProfileState{}
+
+class ChangeProfilePictureSuccess extends ProfileState{
+  final bool hasError;
+  final List messages;
+  final List errors;
+
+  ChangeProfilePictureSuccess({required this.hasError,required this.messages,required this.errors,});
+}
+class ChangeProfilePictureError extends ProfileState{}
+
+
+
+class ChangePasswordLoading extends ProfileState {}
+class ChangePasswordSuccess extends ProfileState {
+
+  final bool hasError;
+  final List<dynamic> message;
+  final List<dynamic> error;
+
+  ChangePasswordSuccess({required this.hasError, required this.message, required this.error});
+
+}
+class ChangePasswordError extends ProfileState {}
+
+
+
 
 
 

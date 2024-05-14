@@ -1,5 +1,6 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../Global Cubit/global_cubit.dart';
@@ -32,17 +33,22 @@ class BuildProductItem extends StatelessWidget {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Card(
+      margin: EdgeInsets.zero,
+
+      // decoration: BoxDecoration(
+      //   color: context.read<GlobalCubit>().isLight? LightAppColor.foreGroundColors:
+      //   DarkAppColor.foreGroundColors,
+      //   borderRadius: BorderRadius.circular(5),
+      // ),
       child: Column(
         children: [
-          Container(
-            child: AspectRatio(
-              aspectRatio: 16/9,
-              child: BuildImage(
-                image: image,
-                fit: BoxFit.cover,
-                radius: 5.0,
-                borderAll: false,
-              ),
+          AspectRatio(
+            aspectRatio: 16/9,
+            child: BuildImage(
+              image: image,
+              fit: BoxFit.cover,
+              radius: 5.0,
+              borderAll: false,
             ),
           ),
           Expanded(
@@ -50,25 +56,29 @@ class BuildProductItem extends StatelessWidget {
               padding:  EdgeInsets.symmetric(vertical: height*0.01,horizontal: width*0.01),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
 
-                  SizedBox(
-                    width: width,
+                  Expanded(
+                   flex: 1,
                     child: Text(
-                       name,
-                      maxLines: 2,
+                      name,
+                      maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ),
 
-                  Text(
-                    cleanHtmlToPlainText(description,maxLength: 200),
-                    maxLines: 3,
-                    overflow: TextOverflow.ellipsis,
-                    style: Theme.of(context).textTheme.bodySmall!.copyWith(
-                      color: Colors.grey,
+                  SizedBox(height: height*0.01,),
+
+                  Expanded(
+                    flex: 3,
+                    child: Text(
+                      cleanHtmlToPlainText(description,maxLength: 200),
+                      maxLines: 3,
+                      overflow: TextOverflow.ellipsis,
+                      style: Theme.of(context).textTheme.bodySmall!.copyWith(
+                        color: Colors.grey,
+                      ),
                     ),
                   ),
 

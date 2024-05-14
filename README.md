@@ -1,15 +1,17 @@
 # TRICARE Doctor App
 
 # Under work
-• profile ui
-• profits ui
-• investments details ui
-• APIs Fetching to all features
-
+• Add profits screen
+• Profits Details Screen
+• Sessions Details Screen ==> Back-end
+• Session Screen --> Back-end
 
 # Finished 
-• Auth (Like Patient app there's some edits to do)
+• profile ui
+• Auth --> Apply & Login
+• profits ui
+• investments details ui --> still conflict in back-end process
 • Home Layout UI
-• Make appointment UI
+• Make appointment UI ===> still conflict in back-end process
 • Examinations UI
 • Investments Cards

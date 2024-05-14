@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/features/appointments/screens/appointments_screen.dart';
-import 'package:tricares_doctor_app/features/examination/screens/examination_screen.dart';
+import 'package:tricares_doctor_app/features/sessions/screens/sessions_screen.dart';
 import 'package:tricares_doctor_app/features/investments/screens/investments_screen.dart';
 import 'package:tricares_doctor_app/features/profits/screens/profits_screen.dart';
 
@@ -29,7 +29,7 @@ class InsideIconWidget extends StatelessWidget {
 
     List<Widget> screens = const [
       AppointmentsScreen(),
-      ExaminationsScreen(
+      SessionsScreen(
         fromHome: true,
       ),
       InvestmentsScreen(),

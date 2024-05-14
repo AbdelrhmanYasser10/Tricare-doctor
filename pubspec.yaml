@@ -76,6 +76,10 @@ dependencies:
   connectivity_plus: ^6.0.3
   rate: ^0.0.2
   syncfusion_flutter_charts: ^24.2.9
+  time_slot: ^0.0.3
+  intl: ^0.18.1
+  syncfusion_flutter_datagrid: ^24.2.9
+  syncfusion_flutter_core: ^24.2.9
 
 dev_dependencies:
   flutter_test:

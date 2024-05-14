@@ -2,7 +2,10 @@ import 'package:animated_bottom_navigation_bar/animated_bottom_navigation_bar.da
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:tricares_doctor_app/features/examination/screens/examination_screen.dart';
+import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
+import 'package:tricares_doctor_app/features/sessions/screens/sessions_screen.dart';
+import 'package:tricares_doctor_app/features/profits/cubits/paginator_cubit/paginator_cubit.dart';
+import 'package:tricares_doctor_app/features/profits/cubits/profits_cubit/profits_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/screens/profits_screen.dart';
 import '../../../core/component/SVG/svg.dart';
 import '../../../core/globle/color/shared_color.dart';
@@ -72,7 +75,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
             controller: cubit.homeLayoutController,
             children: const [
               HomeScreen(),
-              ExaminationsScreen(
+              SessionsScreen(
                 fromHome: false,
               ),
               ProfitsScreen(),
@@ -115,6 +118,16 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
             rightCornerRadius: 32,
             height: 70,
             onTap: (index) {
+              if(index == 2){
+                if(CashHelper.prefs.getBool('login')!=null){
+                  if(CashHelper.prefs.getBool('login')!) {
+                    ProfitsCubit.get(context).getProfitsTable(
+                        token: CashHelper.prefs.getString('token')!,
+                    );
+                    PaginatorCubit.get(context).getMaximumPage();
+                  }
+                }
+              }
               cubit.changeSelectedIndexNav(index);
               cubit.homeLayoutController.animateToPage(
                 index,

@@ -1,8 +1,11 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_spinkit/flutter_spinkit.dart';
 import 'package:loader_overlay/loader_overlay.dart';
 
-
+import 'package:shimmer/shimmer.dart';
+import '../Global Cubit/global_cubit.dart';
+import '../globle/color/dark_app_color.dart';
 import '../globle/color/shared_color.dart';
 
 Center buildOverlayLoading(double height,{required BuildContext context}) {
@@ -41,24 +44,25 @@ LoaderOverlay buildGlobOverLay({required Widget widget}) {
   );
 }
 
-// class BuildShimmer extends StatelessWidget {
-//   final Widget widget;
-//
-//   BuildShimmer({
-//     super.key,
-//     required this.widget,
-//
-//   });
-//
-//   @override
-//   Widget build(BuildContext context) {
-//     return Shimmer.fromColors(
-//       child: widget,
-//       baseColor: context.read<GlobalCubit>().isDark? DarkAppColor.foreGroundColors:Colors.grey.shade300,
-//       highlightColor: context.read<GlobalCubit>().isDark?Colors.white12 :Colors.grey.shade600,
-//     );
-//   }
-// }
+class BuildShimmer extends StatelessWidget {
+  final Widget child;
+
+  BuildShimmer({
+    super.key,
+    required this.child,
+
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Shimmer.fromColors(
+      child: child,
+      baseColor: !context.read<GlobalCubit>().isLight? DarkAppColor.foreGroundColors: Color(0xfff5f5f5),
+      highlightColor: !context.read<GlobalCubit>().isLight?Colors.white12 : Color(0xffadd8e6),
+    );
+  }
+}
+
 
 
 
