@@ -48,7 +48,7 @@ class BuildProfileButton extends StatelessWidget {
                   child: AlertDialog(
 
                     surfaceTintColor: DarkAppColor.foreGroundColors,
-                    title:  Padding(
+                    title:  const Padding(
                       padding: EdgeInsets.all(8.0),
                       child: Text(
                         "Your Password",
@@ -70,6 +70,7 @@ class BuildProfileButton extends StatelessWidget {
                                 if (btnState == ButtonState.idle) {
                                   startLoading();
                                   FocusScope.of(context).unfocus();
+                                  Navigator.pop(context);
                                   await futureFunction();
 
                                   stopLoading();

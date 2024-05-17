@@ -9,8 +9,8 @@ import 'package:tricares_doctor_app/core/Global%20Cubit/global_cubit.dart';
 import 'package:tricares_doctor_app/core/component/Loading%20Widget/loading_widget.dart';
 import 'package:tricares_doctor_app/core/component/SVG/svg.dart';
 import 'package:tricares_doctor_app/features/profits/cubits/profits_details_cubit/profits_details_cubit.dart';
-import 'package:tricares_doctor_app/features/profits/screens/widgets/message_widget.dart';
 
+import '../../../core/component/MessageWidget/message_widget.dart';
 import '../../../core/globle/color/shared_color.dart';
 import '../../../core/utils/utils.dart';
 
@@ -259,7 +259,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                             style: Theme.of(context).textTheme.titleLarge,
                           ),
                         ),
-                        if(cubit.profitDetails!.data!.payments!.length > 0)
+                        if(cubit.profitDetails!.data!.payments!.isNotEmpty)
                           ListView.separated(
                               physics: const NeverScrollableScrollPhysics(),
                               shrinkWrap: true,

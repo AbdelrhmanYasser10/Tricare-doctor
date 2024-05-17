@@ -3,6 +3,7 @@ import 'package:dio/dio.dart';
 import 'package:bloc/bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_cropper/image_cropper.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:meta/meta.dart';
@@ -22,7 +23,7 @@ part 'profile_state.dart';
 
 class ProfileCubit extends Cubit<ProfileState> {
   ProfileCubit() : super(ProfileInitial());
-
+  static ProfileCubit get(context)=>BlocProvider.of(context);
   File? image;
   ProfileModel? profileModel;
   UserModel? userModel;
@@ -118,13 +119,13 @@ class ProfileCubit extends Cubit<ProfileState> {
     required String password,
   }) async {
     FormData formData = FormData.fromMap({
-      'patient_fullname': name,
+      'partner_name': name,
       'partner_email': email,
       'partner_phone': phone,
       'password': password,
-      'patient_timezone': timeZone,
-      'patient_gender': type,
-      'patient_profilepicture_file': image == null
+      'partner_timezone': timeZone,
+      'partner_gender': type,
+      'partner_profilepicture_file': image == null
           ? ''
           : await MultipartFile.fromFile(
               image!.path,

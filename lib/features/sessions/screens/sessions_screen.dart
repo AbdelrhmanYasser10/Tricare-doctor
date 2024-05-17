@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_localization/flutter_localization.dart';
 import 'package:tricares_doctor_app/core/widgets/Login%20First/login_first_widget.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/widgets/page_view_shape.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/widgets/tab_shape.dart';

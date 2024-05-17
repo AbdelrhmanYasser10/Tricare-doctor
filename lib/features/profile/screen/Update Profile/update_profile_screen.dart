@@ -175,6 +175,7 @@ class UpdateProfile extends StatelessWidget {
                     await context.read<ProfileCubit>().updateProfile(
                           name: context.read<ProfileCubit>().nameController.text.trim(),
                           email: context.read<ProfileCubit>().emailController.text.trim(),
+
                           timeZone: '+02:00',
                           type: context.read<ProfileCubit>().typeGender.toString(),
                           phone: context.read<ProfileCubit>().phoneController.text.trim(),

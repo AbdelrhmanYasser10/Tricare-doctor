@@ -26,6 +26,15 @@ class InputValidator{
     return null;
 
   }
+  String?  amount(String? value){
+
+    if(value == null || value.isEmpty) {
+      return 'Please Enter Your Request Amount';
+    }
+
+    return null;
+
+  }
   String?  subjectMessageValidator(String? value){
 
     if(value == null || value.isEmpty) {

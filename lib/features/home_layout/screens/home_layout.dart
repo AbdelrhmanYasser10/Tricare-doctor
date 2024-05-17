@@ -121,10 +121,10 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               if(index == 2){
                 if(CashHelper.prefs.getBool('login')!=null){
                   if(CashHelper.prefs.getBool('login')!) {
-                    ProfitsCubit.get(context).getProfitsTable(
+                    /*ProfitsCubit.get(context).getProfitsTable(
                         token: CashHelper.prefs.getString('token')!,
                     );
-                    PaginatorCubit.get(context).getMaximumPage();
+                    PaginatorCubit.get(context).getMaximumPage();*/
                   }
                 }
               }

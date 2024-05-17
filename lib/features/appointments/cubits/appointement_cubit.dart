@@ -1,107 +1,50 @@
 import 'package:bloc/bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
-import 'package:tricares_doctor_app/features/appointments/models/my_available_appointements_model.dart';
+import 'package:tricares_doctor_app/core/connection/internet_connection.dart';
+import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
+import 'package:tricares_doctor_app/core/network/Remote/DioHelper.dart';
+import 'package:tricares_doctor_app/core/network/endPoind.dart';
 
-import '../models/schedule_appointements_model.dart';
-
+import '../models/schedule_model.dart';
 part 'appointement_state.dart';
 
 class AppointementCubit extends Cubit<AppointementState> {
   AppointementCubit() : super(AppointementInitial());
 
-  MyAppointementModel? myAppointementModel;
-  ScheculeAppointementsModel scheculeAppointementsModel = ScheculeAppointementsModel(schedule_sec: '1');
+
+  static AppointementCubit get(context)=>BlocProvider.of(context);
+  ScheduleModel? scheduleModel;
+  ConnectionService _connectionService = ConnectionService();
 
 
-  void addNewTimeOrDay({required int dayIndex , required String time}){
-    switch(dayIndex){
-      case 0:
-        scheculeAppointementsModel.satDayTimes.add(time);
-        break;
-      case 1:
-        scheculeAppointementsModel.sunDayTimes.add(time);
-        break;
-      case 2:
-        scheculeAppointementsModel.monDayTimes.add(time);
-        break;
-      case 3:
-        scheculeAppointementsModel.tueDayTimes.add(time);
-        break;
-      case 4:
-        scheculeAppointementsModel.wedDayTimes.add(time);
-        break;
-      case 5:
-        scheculeAppointementsModel.thursDayTimes.add(time);
-        break;
-      case 6:
-        scheculeAppointementsModel.friDayTimes.add(time);
-        break;
+  void getSchedule()async{
+    emit(AppointementLoading());
+    if(await _connectionService.isInternetConnected()) {
+      DioHelper.postData(
+          data: {},
+          url: EndPoints.schedule,
+          token: CashHelper.prefs.getString('token') ?? ""
+      ).then((value) {
+        if (value.statusCode == 200) {
+          scheduleModel = ScheduleModel.fromJson(value.data);
+          if (!scheduleModel!.hasError!) {
+            emit(AppointementSuccess());
+          }
+          else {
+            emit(AppointementError(message: scheduleModel!.errors!.join(' ')));
+          }
+        }
+        else {
+          emit(AppointementError(message: 'server'));
+        }
+      }).catchError((error) {
+        emit(AppointementError(message: 'server'));
+      });
     }
-    emit(AddNewTimeOrDay());
-  }
-  void removeTimeOrDay({required bool removeAll , required String time , required int dayIndex}){
-    switch(dayIndex){
-      case 0:
-        if(removeAll) {
-          scheculeAppointementsModel.satDayTimes.clear();
-        } else {
-          scheculeAppointementsModel.satDayTimes.firstWhere((element) => element == time);
-        }
-        break;
-      case 1:
-        if(removeAll) {
-          scheculeAppointementsModel.satDayTimes.clear();
-        } else {
-          scheculeAppointementsModel.satDayTimes.firstWhere((element) => element == time);
-        }
-        break;
-      case 2:
-        if(removeAll) {
-          scheculeAppointementsModel.satDayTimes.clear();
-        } else {
-          scheculeAppointementsModel.satDayTimes.firstWhere((element) => element == time);
-        }
-        break;
-      case 3:
-        if(removeAll) {
-          scheculeAppointementsModel.satDayTimes.clear();
-        } else {
-          scheculeAppointementsModel.satDayTimes.firstWhere((element) => element == time);
-        }
-        break;
-      case 4:
-        if(removeAll) {
-          scheculeAppointementsModel.satDayTimes.clear();
-        } else {
-          scheculeAppointementsModel.satDayTimes.firstWhere((element) => element == time);
-        }
-        break;
-      case 5:
-        if(removeAll) {
-          scheculeAppointementsModel.satDayTimes.clear();
-        } else {
-          scheculeAppointementsModel.satDayTimes.firstWhere((element) => element == time);
-        }
-        break;
-      case 6:
-        if(removeAll) {
-          scheculeAppointementsModel.satDayTimes.clear();
-        } else {
-          scheculeAppointementsModel.satDayTimes.firstWhere((element) => element == time);
-        }
-        break;
+    else{
+      emit(NoInternetConnection());
     }
-    emit(AddNewTimeOrDay());
-
-  }
-  void getDoctorAppointments(){
-
-
-
-
   }
 
-  void updateDoctorAppointments(){
-
-  }
 }

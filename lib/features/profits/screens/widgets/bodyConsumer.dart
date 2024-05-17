@@ -1,16 +1,13 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:number_paginator/number_paginator.dart';
-import 'package:tricares_doctor_app/core/globle/color/shared_color.dart';
+
 import 'package:tricares_doctor_app/features/profits/cubits/paginator_cubit/paginator_cubit.dart';
-import 'package:tricares_doctor_app/features/profits/screens/widgets/message_widget.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/pagination_consumer.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/table_view.dart';
 
 import '../../../../core/component/Loading Widget/loading_widget.dart';
+import '../../../../core/component/MessageWidget/message_widget.dart';
 import '../../../../core/network/Local/CashHelper.dart';
 import '../../../../core/utils/utils.dart';
 import '../../cubits/profits_cubit/profits_cubit.dart';
@@ -29,7 +26,9 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
   Widget build(BuildContext context) {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
-    return Column(
+    return BlocProvider(
+  create: (context) => ProfitsCubit()..getProfitsTable(token: token),
+  child: Column(
       children: [
         Expanded(
           child: BlocConsumer<ProfitsCubit, ProfitsState>(
@@ -103,6 +102,7 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
         ),
         PaginationConsumer(),
       ],
-    );
+    ),
+);
   }
 }

@@ -41,6 +41,10 @@ class EndPoints {
 
   static var sessions = 'partner_sessions.php';
 
+  static var schedule = 'partner_slots.php';
+
+  static var add_new_profit = 'partner_orders_add.php';
+
 
 
 }

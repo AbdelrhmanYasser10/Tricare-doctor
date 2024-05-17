@@ -6,9 +6,9 @@ sealed class AppointementState {}
 final class AppointementInitial extends AppointementState {}
 final class AppointementLoading extends AppointementState {}
 final class AppointementError extends AppointementState {
-  final List<String> message;
+  final String message;
   AppointementError({required this.message});
 }
 final class AppointementSuccess extends AppointementState {}
-final class AddNewTimeOrDay extends AppointementState {}
-final class RemoveTimeOrDay extends AppointementState {}
+final class NoInternetConnection extends AppointementState {}
+

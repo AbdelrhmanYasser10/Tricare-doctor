@@ -4,6 +4,7 @@ import 'package:tricares_doctor_app/core/component/ElevatedButton%20Widget/build
 import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/core/globle/color/shared_color.dart';
 import 'package:tricares_doctor_app/features/profits/models/profits_model.dart';
+import 'package:tricares_doctor_app/features/profits/screens/add_new_profit_screen.dart';
 import 'package:tricares_doctor_app/features/profits/screens/profit_details_screen.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/profits_data_source.dart';
 import 'package:syncfusion_flutter_core/theme.dart';
@@ -39,7 +40,9 @@ class _TableGridViewState extends State<TableGridView> {
         floatingActionButton: Tooltip(
           message: "Add new order",
           child: FloatingActionButton(
-            onPressed: () {},
+            onPressed: () {
+              navigateTo(context, AddNewProfitScreen());
+            },
             backgroundColor: AppColor.primaryColor,
             child: const Icon(
               Icons.add,

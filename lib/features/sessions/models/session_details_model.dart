@@ -122,8 +122,8 @@ class Session {
   String? patientProfilepicture;
   String? patientCoverpicture;
   String? patientWebsite;
-  Null? patientRememberMeKey;
-  Null? patientRememberMeTime;
+  String? patientRememberMeKey;
+  String? patientRememberMeTime;
   String? patientIp;
   String? patientLip;
   String? patientMylang;
