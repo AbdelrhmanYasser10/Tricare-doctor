@@ -7,22 +7,18 @@ import 'package:flutter_svg/svg.dart';
 import 'package:tricares_doctor_app/core/globle/color/light_app_color.dart';
 import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
-import 'package:tricares_doctor_app/features/sessions/screens/sessions_screen.dart';
-import 'package:tricares_doctor_app/features/profits/cubits/paginator_cubit/paginator_cubit.dart';
-import 'package:tricares_doctor_app/features/profits/cubits/profits_cubit/profits_cubit.dart';
+
 import 'package:badges/badges.dart' as badges;
 
 import 'package:tricares_doctor_app/features/profits/screens/profits_screen.dart';
 import '../../../core/Global Cubit/global_cubit.dart';
 import '../../../core/Notification/cubit/notification_cubit.dart';
 import '../../../core/Notification/screens/notification.dart';
-import '../../../core/component/SVG/svg.dart';
 import '../../../core/functions/fucntions.dart';
 import '../../../core/globle/color/shared_color.dart';
 import '../../Drawer/screen/drawer_screen.dart';
 import '../../home/screens/home_screen.dart';
 import '../../profile/screen/Main Profile/main_profile_screen.dart';
-import '../cubits/app_cubit/app_cubit.dart';
 
 class HomeLayoutScreen extends StatefulWidget {
   const HomeLayoutScreen({Key? key}) : super(key: key);
@@ -52,9 +48,8 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     return BlocBuilder<GlobalCubit, GlobalState>(
       builder: (context, state) {
         var cubit = context.read<GlobalCubit>();
-        return PopScope(
-          canPop: false,
-          onPopInvoked: (value){
+        return WillPopScope(
+          onWillPop: ()async{
             if(context.read<GlobalCubit>().currentIndexScreen==0) {
               showDialog(
                   context: context,
@@ -111,6 +106,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               context.read<GlobalCubit>().goToScreenAtIndex(0);
 
             }
+            return false;
           },
           child: Scaffold(
 
@@ -163,6 +159,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                         context.read<ProfileCubit>().userModel!.data!.newNotifications!,
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                           fontSize: 10,
+                          color: Colors.white
                         ),
                       ),
                       child:Icon(FontAwesomeIcons.solidBell),

@@ -100,7 +100,7 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
             },
           ),
         ),
-        PaginationConsumer(),
+        const PaginationConsumer(),
       ],
     ),
 );

@@ -2,9 +2,18 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:tricares_doctor_app/core/globle/color/shared_color.dart';
+import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
+import 'package:tricares_doctor_app/features/Rooms/screens/room_details_screen.dart';
+import 'package:tricares_doctor_app/features/Rooms/screens/rooms_screen.dart';
+import 'package:tricares_doctor_app/features/profits/cubits/profits_cubit/profits_cubit.dart';
+import 'package:tricares_doctor_app/features/profits/screens/profit_details_screen.dart';
+import 'package:tricares_doctor_app/features/profits/screens/profits_screen.dart';
+import 'package:tricares_doctor_app/features/sessions/screens/session_details_screen.dart';
+import 'package:tricares_doctor_app/features/sessions/screens/sessions_screen.dart';
 
 import '../../../../core/functions/fucntions.dart';
-import '../../../globle/color/dark_app_color.dart';
+import '../../../../features/appointments/cubits/appointement_cubit.dart';
+import '../../../../features/appointments/screens/appointments_screen.dart';
 import '../../cubit/notification_cubit.dart';
 
 class BuildNotificationWidget extends StatelessWidget {
@@ -32,7 +41,6 @@ class BuildNotificationWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return GestureDetector(
       onTap: () async {
@@ -44,21 +52,39 @@ class BuildNotificationWidget extends StatelessWidget {
 
 
         switch (action) {
-          case "products_subscriptions_assignments":
-
+          case "partners_orders":
+            if(int.parse(actionId) > 0){
+              navigateTo(context,  ProfitsDetailsScreen(profitId: int.parse(actionId)));
+            }
+            else{
+              context.read<ProfitsCubit>().getProfitsTable(token: CashHelper.prefs.getString('token')!);
+              navigateTo(context, const ProfitsScreen());
+            }
             break;
 
-          case "student_subscriptions_chapter":
-
+          case "partners_rooms":
+            if(int.parse(actionId) > 0){
+              navigateTo(context,  RoomDetailsScreen(roomId: int.parse(actionId)));
+            }
+            else{
+              navigateTo(context, const RoomsScreen());
+            }
             break;
 
-          case "student_products_subscription":
-
+          case "partners_slots":
+            context.read<AppointementCubit>().getSchedule();
+            navigateTo(context, const AppointmentsScreen());
             break;
 
-          case "my_profile":
+          case "partners_sessions":
 
-
+            if(int.parse(actionId) > 0){
+              navigateTo(context,   SessionDetailsScreen(sessionId: int.parse(actionId)));
+            }
+            else{
+              
+              navigateTo(context, const SessionsScreen(fromHome: false));
+            }
             break;
         }
       },
@@ -67,8 +93,8 @@ class BuildNotificationWidget extends StatelessWidget {
           color: read == "0" ? AppColor.primaryColor : null,
           borderRadius: BorderRadius.circular(8),
         ),
-        margin: EdgeInsets.all(5),
-        padding: EdgeInsets.all(10),
+        margin: const EdgeInsets.all(5),
+        padding: const EdgeInsets.all(10),
         child: SizedBox(
           child: Row(
             children: [

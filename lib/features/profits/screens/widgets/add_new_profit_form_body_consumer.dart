@@ -9,9 +9,12 @@ import 'package:tricares_doctor_app/features/profits/cubits/profits_cubit/profit
 import 'package:tricares_doctor_app/features/profits/screens/widgets/text_fields.dart';
 
 import '../../../../core/component/Loading Widget/loading_widget.dart';
+import '../../../../core/functions/fucntions.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Build Password First/build_password_first.dart';
+import '../../../Drawer Screen/Tos Screen/tos_screen.dart';
+import '../../../Drawer/cubit/drawer_cubit.dart';
 
 class AddNewProfitFormBodyConsumer extends StatefulWidget {
   const AddNewProfitFormBodyConsumer({Key? key}) : super(key: key);
@@ -147,8 +150,8 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
                     ),
                         recognizer: TapGestureRecognizer()
                           ..onTap = () {
-                            // code to open / launch terms of service link here
-                          }
+                            context.read<DrawerCubit>().getTosData();
+                            navigateTo(context, const TosScreen());                          }
                     ),
                     TextSpan(
                         text: ' and ', style: Theme.of(context).textTheme.titleMedium,
@@ -159,8 +162,9 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
                           ),
                               recognizer: TapGestureRecognizer()
                                 ..onTap = () {
-                                  // code to open / launch privacy policy link here
-                                }
+                                  context.read<DrawerCubit>().getTosData();
+                                  navigateTo(context, const TosScreen());
+                              }
                           )
                         ]
                     )

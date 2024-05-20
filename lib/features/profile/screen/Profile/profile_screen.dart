@@ -97,7 +97,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                     navigateTo(context, UpdateProfile());
                                   },
                                 ),
-                                SizedBox(
+                                /*SizedBox(
                                   height: height * 0.02,
                                 ),
                                 BlocListener<ProfileCubit, ProfileState>(
@@ -138,7 +138,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
 
                                     },
                                   ),
-                                ),
+                                ),*/
                                 SizedBox(
                                   height: height * 0.02,
                                 ),

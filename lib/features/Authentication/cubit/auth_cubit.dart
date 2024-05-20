@@ -235,7 +235,7 @@ class AuthCubit extends Cubit<AuthState> {
      await DioHelper.postData(
        url: EndPoints.forgetPassword_request,
        data: {
-         'patient_email': email,
+         'partner_email': email,
        },
      ).then((value){
 
@@ -271,7 +271,7 @@ class AuthCubit extends Cubit<AuthState> {
     await DioHelper.postData(
       url: EndPoints.forgetPassword_request,
       data: {
-        'patient_email': email,
+        'partner_email': email,
       },
     ).then((value){
 

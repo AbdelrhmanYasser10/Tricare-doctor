@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../color/dark_app_color.dart';
 import '../../color/light_app_color.dart';
+import '../../color/shared_color.dart';
 
 class LightInputDecorationTheme {
 
@@ -12,7 +13,7 @@ class LightInputDecorationTheme {
 
 
     focusedBorder: OutlineInputBorder(
-      borderSide: const BorderSide(color: DarkAppColor.primaryColor, width: 1),
+      borderSide: const BorderSide(color: AppColor.primaryColor, width: 1),
       borderRadius: BorderRadius.circular(15),
 
     ),

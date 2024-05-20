@@ -11,14 +11,14 @@ class BuildListTitle extends StatelessWidget {
 
   final String text;
   final  String iconName;
-  void Function()? function;
-  double? size;
-  Color? color;
-  Color? textColor;
+  final void Function()? function;
+  final double? size;
+  final Color? color;
+  final Color? textColor;
 
 
 
-   BuildListTitle({required this.text,required this.iconName,required this.function,this.size,this.color,this.textColor}) ;
+   const BuildListTitle({super.key, required this.text,required this.iconName,required this.function,this.size,this.color,this.textColor}) ;
 
   @override
   Widget build(BuildContext context) {

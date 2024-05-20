@@ -22,7 +22,9 @@ class BalanceCardConsumer extends StatelessWidget {
       builder: (context, state) {
         if (state is GetUserDataLoading) {
           return const Center(
-            child: BuildLoadingWidget(),
+            child: LinearProgressIndicator(
+              color: AppColor.primaryColor,
+            ),
           );
         }
         return Padding(

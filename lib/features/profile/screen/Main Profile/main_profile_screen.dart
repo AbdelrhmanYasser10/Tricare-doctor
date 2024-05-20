@@ -29,7 +29,7 @@ class MainProfileScreen extends StatelessWidget {
             ),
             BuildListTitle(
               text: 'About Us',
-              iconName: 'review.svg',
+              iconName: 'about_us.svg',
               function: () {
                 context.read<DrawerCubit>().getAboutUsData();
                 navigateTo(context, AboutUsScreen());

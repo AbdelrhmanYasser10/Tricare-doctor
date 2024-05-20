@@ -2,6 +2,8 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_btn/loading_btn.dart';
+import 'package:tricares_doctor_app/core/functions/fucntions.dart';
+import 'package:tricares_doctor_app/features/home_layout/screens/home_layout.dart';
 
 import '../../../../../core/globle/color/shared_color.dart';
 import '../../../../../core/utils/utils.dart';
@@ -53,6 +55,7 @@ class RegisterButton extends StatelessWidget {
                 context: context,
                 message: "Your request has been sent successfully");
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
+            navigateToToFinish(context,const HomeLayoutScreen());
           }
         } else if (state is RegisterError) {
           var snackBar = Utils.buildSnackBar2(

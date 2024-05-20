@@ -36,8 +36,8 @@ class DrawerLoginWidget extends StatelessWidget {
           iconName: 'person.svg',
           function: () {
             Navigator.pop(context);
-            GlobalCubit.get(context).currentIndexScreen = 3;
-            context.read<GlobalCubit>().goToScreenAtIndex(3);
+            GlobalCubit.get(context).currentIndexScreen = 2;
+            context.read<GlobalCubit>().goToScreenAtIndex(2);
           },
         ),
         BuildListTitle(
@@ -50,7 +50,7 @@ class DrawerLoginWidget extends StatelessWidget {
         ),
         BuildListTitle(
           text: 'About Us',
-          iconName: 'review.svg',
+          iconName: 'about_us.svg',
           function: () {
             context.read<DrawerCubit>().getAboutUsData();
             navigateTo(context, const AboutUsScreen());
@@ -75,7 +75,9 @@ class DrawerLoginWidget extends StatelessWidget {
           text: 'Log Out',
           iconName: 'logout.svg',
           function: () {
+
             Navigator.pop(context);
+
             var snackBar = Utils.buildSnackBar2(
               context: context,
               contentType: ContentType.success,
@@ -83,7 +85,6 @@ class DrawerLoginWidget extends StatelessWidget {
               message: 'Logout Successfully',
             );
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
-
             context.read<ProfileCubit>().logOut();
 
           },
