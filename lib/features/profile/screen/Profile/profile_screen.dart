@@ -134,7 +134,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   child: BuildChangeProfilePicture(
                                     passwordController: passwordController,
                                     futureFunction: () async {
-                                     /*await context.read<ProfileCubit>().changeProfilePicture(password: passwordController.text.trim());*/
+                                     await context.read<ProfileCubit>().changeProfilePicture(password: passwordController.text.trim());
 
                                     },
                                   ),

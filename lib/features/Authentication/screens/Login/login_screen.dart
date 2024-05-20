@@ -6,6 +6,7 @@ import 'package:tricares_doctor_app/core/InputField/custom_input/name_input_fiel
 import 'package:tricares_doctor_app/features/home_layout/cubits/app_cubit/app_cubit.dart';
 import 'package:tricares_doctor_app/features/home_layout/screens/home_layout.dart';
 
+import '../../../../core/Global Cubit/global_cubit.dart';
 import '../../../../core/InputField/custom_input/password_input_field.dart';
 import '../../../../core/functions/fucntions.dart';
 import '../../../../core/globle/color/shared_color.dart';
@@ -202,8 +203,8 @@ class LoginButton extends StatelessWidget {
             CashHelper.prefs.setBool('login', true);
 
             context.read<ProfileCubit>().postUserData();
-            context.read<AppCubit>().homeLayoutController.jumpToPage(0);
-            context.read<AppCubit>().currentIndexScreen = 0;
+            context.read<GlobalCubit>().homeLayoutController.jumpToPage(0);
+            context.read<GlobalCubit>().currentIndexScreen = 0;
              navigateToToFinish(context, const HomeLayoutScreen());
 
             var snackBar = Utils.buildSnackBar2(

@@ -82,6 +82,12 @@ dependencies:
   syncfusion_flutter_core: ^24.2.9
   dotted_decoration: ^2.0.0
   infinite_scroll_pagination: ^4.0.0
+  change_app_package_name: ^1.1.0
+  rename: ^3.0.2
+  firebase_core: ^2.31.0
+  firebase_messaging: ^14.9.2
+  permission_handler: ^11.3.1
+  animated_text_kit: ^4.2.2
 
 dev_dependencies:
   flutter_test:

@@ -30,11 +30,11 @@ class ScheduleCard extends StatelessWidget {
             children: [
               Text(
                 daysSlots.roomName!,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
               Text(
                 daysSlots.branchName!,
-                style: Theme.of(context).textTheme.headlineSmall,
+                style: Theme.of(context).textTheme.titleLarge,
               ),
             ],
           ),
@@ -95,14 +95,14 @@ class ScheduleCard extends StatelessWidget {
                     Icon(
                       Icons.access_time_outlined,
                       color: Colors.white,
-                      size: width * 0.07,
+                      size: width * 0.05,
                     ),
                     SizedBox(
                       width: width * 0.02,
                     ),
                     Text(
                       daysSlots.roomtimeName!,
-                      style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                      style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: Colors.white,
                       ),
 

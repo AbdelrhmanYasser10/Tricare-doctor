@@ -5,6 +5,9 @@ import '../../../../core/functions/fucntions.dart';
 import '../../../../core/network/Local/CashHelper.dart';
 import '../../../../core/widgets/Carousel Widget/build_list_title.dart';
 import '../../../Authentication/screens/Login/login_screen.dart';
+import '../../../Drawer Screen/About Us Screen/about_us_screen.dart';
+import '../../../Drawer Screen/Tos Screen/tos_screen.dart';
+import '../../../Drawer/cubit/drawer_cubit.dart';
 import '../../cubit/profile_cubit.dart';
 import '../Profile/profile_screen.dart';
 
@@ -25,14 +28,20 @@ class MainProfileScreen extends StatelessWidget {
               },
             ),
             BuildListTitle(
-              text: 'Setting',
-              iconName: 'setting.svg',
-              function: () {},
+              text: 'About Us',
+              iconName: 'review.svg',
+              function: () {
+                context.read<DrawerCubit>().getAboutUsData();
+                navigateTo(context, AboutUsScreen());
+              },
             ),
             BuildListTitle(
               text: 'Terms & Conditions',
-              iconName: 'review.svg',
-              function: () {},
+              iconName: 'term.svg',
+              function: () {
+                context.read<DrawerCubit>().getTosData();
+                navigateTo(context, TosScreen());
+              },
             ),
 
             BlocBuilder<ProfileCubit, ProfileState>(

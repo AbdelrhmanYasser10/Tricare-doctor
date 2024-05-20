@@ -76,5 +76,8 @@ class ChangePasswordError extends ProfileState {}
 
 
 
+class GetUpdateTokenFcmLoading extends ProfileState{}
+class GetUpdateTokenFcmSuccess extends ProfileState{}
+class GetUpdateTokenFcmError extends ProfileState{}
 
 

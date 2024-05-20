@@ -1,4 +1,4 @@
-package com.tricares.tricares_doctor_app
+package com.shoman.tricare_partners
 
 import io.flutter.embedding.android.FlutterActivity
 

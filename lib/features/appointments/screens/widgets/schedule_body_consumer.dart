@@ -1,16 +1,11 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tricares_doctor_app/core/Global%20Cubit/global_cubit.dart';
-import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/features/appointments/cubits/appointement_cubit.dart';
 import 'package:tricares_doctor_app/features/appointments/screens/widgets/schedule_card.dart';
 
 import '../../../../core/component/Loading Widget/loading_widget.dart';
 import '../../../../core/component/MessageWidget/message_widget.dart';
-import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/utils/utils.dart';
 
 

@@ -1,12 +1,16 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tricares_doctor_app/features/home_layout/cubits/app_cubit/app_cubit.dart';
-
+import 'package:tricares_doctor_app/features/Rooms/screens/rooms_screen.dart';
+import 'package:tricares_doctor_app/features/appointments/screens/appointments_screen.dart';
 import '../../../../core/Global Cubit/global_cubit.dart';
+import '../../../../core/functions/fucntions.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Carousel Widget/build_list_title.dart';
+import '../../../Drawer Screen/About Us Screen/about_us_screen.dart';
+import '../../../Drawer Screen/Tos Screen/tos_screen.dart';
 import '../../../profile/cubit/profile_cubit.dart';
+import '../../cubit/drawer_cubit.dart';
 import 'top_widget.dart';
 
 
@@ -32,24 +36,41 @@ class DrawerLoginWidget extends StatelessWidget {
           iconName: 'person.svg',
           function: () {
             Navigator.pop(context);
-            AppCubit.get(context).currentIndexScreen = 3;
-            context.read<AppCubit>().goToScreenAtIndex(3);
+            GlobalCubit.get(context).currentIndexScreen = 3;
+            context.read<GlobalCubit>().goToScreenAtIndex(3);
           },
         ),
         BuildListTitle(
-          text: 'Investment',
+          text: 'Terms and Conditions',
+          iconName: 'term.svg',
+          function: () {
+            context.read<DrawerCubit>().getTosData();
+            navigateTo(context, const TosScreen());
+          },
+        ),
+        BuildListTitle(
+          text: 'About Us',
+          iconName: 'review.svg',
+          function: () {
+            context.read<DrawerCubit>().getAboutUsData();
+            navigateTo(context, const AboutUsScreen());
+          },
+        ),
+        ProfileCubit.get(context).userModel!.data!.partner!.partnerInvestor == "1" ? BuildListTitle(
+          text: 'Rooms',
           iconName: 'investor.svg',
           function: () {
-
+            navigateTo(context, const RoomsScreen());
           },
-        ),
-        BuildListTitle(
-          text: 'Appointments',
+        ):const SizedBox.shrink(),
+        ProfileCubit.get(context).userModel!.data!.partner!.partnerDoctor == "1" ?BuildListTitle(
+          text: 'Schedule',
           iconName: 'doctor.svg',
           function: () {
-
+              //context.read<AppointementCubit>().getSchedule();
+              navigateTo(context, const AppointmentsScreen());
           },
-        ),
+        ):const SizedBox.shrink(),
         BuildListTitle(
           text: 'Log Out',
           iconName: 'logout.svg',

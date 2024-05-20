@@ -1,4 +1,4 @@
-import 'package:flutter/cupertino.dart';
+/*
 import 'package:flutter/material.dart';
 import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/features/investments/screens/widgets/investment_card.dart';
@@ -15,7 +15,7 @@ class InvestmentsScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: const Text(
-          "Investments",
+          "Your Rooms",
         ),
         centerTitle: true,
       ),
@@ -62,3 +62,4 @@ class InvestmentsScreen extends StatelessWidget {
     );
   }
 }
+*/

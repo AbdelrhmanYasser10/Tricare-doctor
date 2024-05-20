@@ -11,6 +11,8 @@ class EndPoints {
 
   static const String verify_accessToken_request = "accesstoken_verify.php";
 
+  static const String changeProfilePicture_request ='partner_avatar.php';
+
   static var countries = 'countries.php';
 
   static var changePassword_request = 'partner_password.php';
@@ -44,6 +46,12 @@ class EndPoints {
   static var schedule = 'partner_slots.php';
 
   static var add_new_profit = 'partner_orders_add.php';
+
+  static var notification_request = 'partner_notifications.php';
+
+  static var notification_read_request = 'partner_notifications.php';
+
+  static var rooms = 'partner_rooms.php';
 
 
 

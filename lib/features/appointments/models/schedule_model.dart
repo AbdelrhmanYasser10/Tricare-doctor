@@ -71,10 +71,10 @@ class PartnersDaysSlots {
 
   PartnersDaysSlots.fromJson(Map<String, dynamic> json) {
     name = json['name'];
-    if (json['partners_rooms'] != null) {
+    if (json['partners_slots'] != null) {
       partnersRooms = <PartnersRooms>[];
-      json['partners_rooms'].forEach((v) {
-        partnersRooms!.add(new PartnersRooms.fromJson(v));
+      json['partners_slots'].forEach((v) {
+        partnersRooms!.add( PartnersRooms.fromJson(v));
       });
     }
   }
@@ -83,7 +83,7 @@ class PartnersDaysSlots {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['name'] = this.name;
     if (this.partnersRooms != null) {
-      data['partners_rooms'] =
+      data['partners_slots'] =
           this.partnersRooms!.map((v) => v.toJson()).toList();
     }
     return data;

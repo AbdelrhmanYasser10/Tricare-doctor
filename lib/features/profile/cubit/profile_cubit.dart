@@ -14,6 +14,10 @@ import '../../../core/connection/internet_connection.dart';
 import '../../../core/network/Local/CashHelper.dart';
 import '../../../core/network/Remote/DioHelper.dart';
 import '../../../core/network/endPoind.dart';
+import '../../Rooms/screens/rooms_screen.dart';
+import '../../appointments/screens/appointments_screen.dart';
+import '../../profits/screens/profits_screen.dart';
+import '../../sessions/screens/sessions_screen.dart';
 import '../model/change_password_model.dart';
 import '../model/delete_profile_model.dart';
 import '../model/profile_model.dart';
@@ -30,6 +34,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   ChangePasswordModel? changePasswordModel;
   DeleteModel? deleteModel;
 
+
+  late List<String> categoriesName;
+
+  late List<Widget> screens;
+
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
@@ -38,8 +47,32 @@ class ProfileCubit extends Cubit<ProfileState> {
 
   final _connect = ConnectionService();
 
-  Future<void> postUserData() async {
-    userModel = null;
+
+  Future<void> postUpdateTokenFcm({required String tokenFcm})async{
+    emit(GetUpdateTokenFcmLoading());
+
+    DioHelper.postData(
+      data: {
+
+        'partner_firebase_accesstoken' : tokenFcm,
+
+      },
+      url: 'partner_firebase_token.php',
+      token: CashHelper.getData(key: 'token'),
+    ).then((value){
+
+      emit(GetUpdateTokenFcmSuccess());
+
+    }).catchError((error){
+      emit(GetUpdateTokenFcmError());
+
+    });
+  }
+
+  Future<void> postUserData({bool notification = false}) async {
+    if(notification == false) {
+      userModel = null;
+    }
 
     emit(GetUserDataLoading());
 
@@ -63,6 +96,39 @@ class ProfileCubit extends Cubit<ProfileState> {
       }
 
       image = null;
+      categoriesName =  [
+        userModel!.data!.partner!.partnerDoctor == "1"
+            ? 'Schedule'
+            : '',
+        userModel!.data!.partner!.partnerDoctor == "1"
+            ? 'Sessions'
+            : '',
+        userModel!.data!.partner!.partnerInvestor == "1"
+            ? 'Rooms'
+            : '',
+        'Profits',
+      ];
+      screens =  const[
+        AppointmentsScreen(),
+        SessionsScreen(
+          fromHome: true,
+        ),
+        RoomsScreen(),
+        ProfitsScreen(),
+      ];
+      print("I am here");
+      if( await CashHelper.getData(key: 'tokenNotification') == null){
+        print("Save token");
+        postUpdateTokenFcm(tokenFcm: await CashHelper.getData(key: 'tokenNotification'));
+
+      }
+      else if(await CashHelper.getData(key: 'tokenNotification')  != null){
+        if(await CashHelper.getData(key: 'tokenNotification')  != userModel!.data!.partner!.partnerAccesstoken) {
+          postUpdateTokenFcm(
+              tokenFcm: await CashHelper.getData(key: 'tokenNotification'));
+        }
+      }
+
       emit(GetUserDataSuccess(
         hasError: userModel!.hasError,
         errors: userModel!.errors,
@@ -159,7 +225,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     }
   }
 
-/*  Future<void> changeProfilePicture({required String password}) async {
+  Future<void> changeProfilePicture({required String password}) async {
     emit(ChangeProfilePictureLoading());
     await   Future.delayed(const Duration(seconds: 1));
 
@@ -198,7 +264,7 @@ class ProfileCubit extends Cubit<ProfileState> {
     });
 
 
-  }*/
+  }
 
 
   Future<void> changePassword({

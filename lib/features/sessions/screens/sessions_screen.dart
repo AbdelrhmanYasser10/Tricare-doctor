@@ -17,7 +17,7 @@ class SessionsScreen extends StatelessWidget {
     return Scaffold(
       appBar: fromHome ? AppBar(
         title: const Text(
-          "Your Examinations",
+          "Your Sessions",
         ),
         centerTitle: true,
       ):null,

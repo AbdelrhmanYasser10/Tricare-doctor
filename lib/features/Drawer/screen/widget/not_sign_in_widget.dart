@@ -5,9 +5,13 @@ import 'package:tricares_doctor_app/features/Authentication/screens/Login/login_
 import 'package:tricares_doctor_app/features/Authentication/screens/Register/register_screen.dart';
 
 import '../../../../core/Global Cubit/global_cubit.dart';
+import '../../../../core/functions/fucntions.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Carousel Widget/build_list_title.dart';
+import '../../../Drawer Screen/About Us Screen/about_us_screen.dart';
+import '../../../Drawer Screen/Tos Screen/tos_screen.dart';
 import '../../../profile/cubit/profile_cubit.dart';
+import '../../cubit/drawer_cubit.dart';
 
 class NotSignInWidget extends StatelessWidget {
   const NotSignInWidget({Key? key}) : super(key: key);
@@ -28,17 +32,19 @@ class NotSignInWidget extends StatelessWidget {
         ),
         ),
         BuildListTitle(
-          text: 'Settings',
-          iconName: 'setting.svg',
+          text: 'Terms and Conditions',
+          iconName: 'term.svg',
           function: () {
-            
+            context.read<DrawerCubit>().getTosData();
+            navigateTo(context, TosScreen());
           },
         ),
         BuildListTitle(
           text: 'About Us',
           iconName: 'review.svg',
           function: () {
-
+            context.read<DrawerCubit>().getAboutUsData();
+            navigateTo(context, AboutUsScreen());
           },
         ),
         BuildListTitle(

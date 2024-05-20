@@ -24,7 +24,7 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
           ),
           centerTitle: true,
         ),
-        body: ScheduleBodyConsumer(),
+        body: const ScheduleBodyConsumer(),
       ),
     );
   }

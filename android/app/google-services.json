@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "370300836470",
+    "project_id": "tricare-partners",
+    "storage_bucket": "tricare-partners.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:370300836470:android:0002437c74bebebc19dd57",
+        "android_client_info": {
+          "package_name": "com.shoman.tricare_partners"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCu_Jcgt6jOxYXJoIFjTB62gTQngcpxbOs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
