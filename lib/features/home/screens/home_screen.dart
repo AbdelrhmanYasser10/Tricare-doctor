@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/features/home/screens/widget/great_perosn.dart';
 import 'package:tricares_doctor_app/features/home/screens/widget/inside_icon_widgets.dart';
 import 'package:tricares_doctor_app/features/home/screens/widget/my_tab_container.dart';
@@ -51,13 +50,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: height,
                                 images: cubit.homeModel!.data!.images,
                               ),
-                              CashHelper.prefs.getBool('login') != null
-                                  ? TitleWidget(
-                                      title: 'Check Your',
-                                      onTap: () {},
-                                      showSeeAll: false,
-                                    )
-                                  : const SizedBox.shrink(),
+
                               const InsideIconWidget(),
                               TitleWidget(
                                 title: 'About us',

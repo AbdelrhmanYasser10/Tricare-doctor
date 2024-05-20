@@ -4,6 +4,7 @@ import 'package:tricares_doctor_app/core/component/Loading%20Widget/loading_widg
 import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/features/appointments/screens/appointments_screen.dart';
+import 'package:tricares_doctor_app/features/home/screens/widget/title_widget.dart';
 import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/sessions_screen.dart';
 import 'package:tricares_doctor_app/features/investments/screens/investments_screen.dart';
@@ -43,46 +44,59 @@ class InsideIconWidget extends StatelessWidget {
             );
           } else {
             var cubit = ProfileCubit.get(context);
-            return GridView.builder(
-                physics: const NeverScrollableScrollPhysics(),
-                shrinkWrap: true,
-                gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                  crossAxisCount: 4, // number of items in each row
-                  mainAxisSpacing: 8.0, // spacing between rows
-                  crossAxisSpacing: 8.0, // spacing between columns
-                ),
-                itemCount: 4,
-                itemBuilder: (context, index) {
-                  if (cubit.categoriesName[index] != '') {
-                    return InkWell(
-                      onTap: () {
-                        navigateTo(context, cubit.screens[index]);
-                      },
-                      child: Column(
-                        children: [
-                          Expanded(
-                            child: SizedBox(
-                              width: width,
-                              child: Card(
-                                child: Padding(
-                                  padding: const EdgeInsets.all(10),
-                                  child: Image.asset(categoriesIcon[index]),
-                                ),
-                              ),
-                            ),
-                          ),
-                          Text(
-                            cubit.categoriesName[index],
-                            maxLines: 1,
-                            overflow: TextOverflow.ellipsis,
-                          )
-                        ],
+            return Column(
+              children: [
+                CashHelper.prefs.getBool('login') != null
+                    ? TitleWidget(
+                  title: 'Check Your',
+                  onTap: () {},
+                  showSeeAll: false,
+                )
+                    : const SizedBox.shrink(),
+                Expanded(
+                  child: GridView.builder(
+                      physics: const NeverScrollableScrollPhysics(),
+                      shrinkWrap: true,
+                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 4, // number of items in each row
+                        mainAxisSpacing: 8.0, // spacing between rows
+                        crossAxisSpacing: 8.0, // spacing between columns
                       ),
-                    );
-                  } else {
-                    return const SizedBox.shrink();
-                  }
-                });
+                      itemCount: 4,
+                      itemBuilder: (context, index) {
+                        if (cubit.categoriesName[index] != '') {
+                          return InkWell(
+                            onTap: () {
+                              navigateTo(context, cubit.screens[index]);
+                            },
+                            child: Column(
+                              children: [
+                                Expanded(
+                                  child: SizedBox(
+                                    width: width,
+                                    child: Card(
+                                      child: Padding(
+                                        padding: const EdgeInsets.all(10),
+                                        child: Image.asset(categoriesIcon[index]),
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                Text(
+                                  cubit.categoriesName[index],
+                                  maxLines: 1,
+                                  overflow: TextOverflow.ellipsis,
+                                )
+                              ],
+                            ),
+                          );
+                        } else {
+                          return const SizedBox.shrink();
+                        }
+                      }),
+                ),
+              ],
+            );
           }
         }
         else{
