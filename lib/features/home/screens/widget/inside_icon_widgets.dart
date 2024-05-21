@@ -53,48 +53,46 @@ class InsideIconWidget extends StatelessWidget {
                   showSeeAll: false,
                 )
                     : const SizedBox.shrink(),
-                Expanded(
-                  child: GridView.builder(
-                      physics: const NeverScrollableScrollPhysics(),
-                      shrinkWrap: true,
-                      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
-                        crossAxisCount: 4, // number of items in each row
-                        mainAxisSpacing: 8.0, // spacing between rows
-                        crossAxisSpacing: 8.0, // spacing between columns
-                      ),
-                      itemCount: 4,
-                      itemBuilder: (context, index) {
-                        if (cubit.categoriesName[index] != '') {
-                          return InkWell(
-                            onTap: () {
-                              navigateTo(context, cubit.screens[index]);
-                            },
-                            child: Column(
-                              children: [
-                                Expanded(
-                                  child: SizedBox(
-                                    width: width,
-                                    child: Card(
-                                      child: Padding(
-                                        padding: const EdgeInsets.all(10),
-                                        child: Image.asset(categoriesIcon[index]),
-                                      ),
+                GridView.builder(
+                    physics: const NeverScrollableScrollPhysics(),
+                    shrinkWrap: true,
+                    gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                      crossAxisCount: 4, // number of items in each row
+                      mainAxisSpacing: 8.0, // spacing between rows
+                      crossAxisSpacing: 8.0, // spacing between columns
+                    ),
+                    itemCount: 4,
+                    itemBuilder: (context, index) {
+                      if (cubit.categoriesName[index] != '') {
+                        return InkWell(
+                          onTap: () {
+                            navigateTo(context, cubit.screens[index]);
+                          },
+                          child: Column(
+                            children: [
+                              Expanded(
+                                child: SizedBox(
+                                  width: width,
+                                  child: Card(
+                                    child: Padding(
+                                      padding: const EdgeInsets.all(10),
+                                      child: Image.asset(categoriesIcon[index]),
                                     ),
                                   ),
                                 ),
-                                Text(
-                                  cubit.categoriesName[index],
-                                  maxLines: 1,
-                                  overflow: TextOverflow.ellipsis,
-                                )
-                              ],
-                            ),
-                          );
-                        } else {
-                          return const SizedBox.shrink();
-                        }
-                      }),
-                ),
+                              ),
+                              Text(
+                                cubit.categoriesName[index],
+                                maxLines: 1,
+                                overflow: TextOverflow.ellipsis,
+                              )
+                            ],
+                          ),
+                        );
+                      } else {
+                        return const SizedBox.shrink();
+                      }
+                    }),
               ],
             );
           }
