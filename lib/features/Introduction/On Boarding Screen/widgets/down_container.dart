@@ -4,6 +4,7 @@ import 'package:tricares_doctor_app/features/Authentication/screens/Register/reg
 
 import '../../../../core/component/ElevatedButton Widget/build_elevated_button.dart';
 import '../../../../core/functions/fucntions.dart';
+import '../../../../core/network/Local/CashHelper.dart';
 import '../../../home_layout/screens/home_layout.dart';
 
 class BuildDownContainer extends StatelessWidget {
@@ -52,6 +53,7 @@ class BuildDownContainer extends StatelessWidget {
             BuildButton(
               text: 'Become a partner',
               onPressed: () {
+                CashHelper.prefs.setBool('passOnBoarding', true);
                 navigateTo(context, const RegisterScreen());
               },
             ),
@@ -62,6 +64,7 @@ class BuildDownContainer extends StatelessWidget {
               width: width,
               child: OutlinedButton(
                 onPressed: () {
+                  CashHelper.prefs.setBool('passOnBoarding', true);
                   navigateToToFinish(context, const HomeLayoutScreen());
                 },
                 style: OutlinedButton.styleFrom(

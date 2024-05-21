@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_animate/flutter_animate.dart';
-import 'package:animated_text_kit/animated_text_kit.dart';
 import 'package:tricares_doctor_app/core/globle/color/light_app_color.dart';
 import '../../../../core/functions/fucntions.dart';
 import '../../../core/globle/color/shared_color.dart';
@@ -39,7 +38,7 @@ class _SplashScreenState extends State<SplashScreen>
     _animationController!.addListener(() {
       if (_animationController!.isCompleted) {
         //    navigateToToFinish(context, widget.FirstScreen);
-        Widget w  = CashHelper.prefs.getBool('login') == null ? OnBoardingScreen() :HomeLayoutScreen();
+        Widget w  = CashHelper.prefs.getBool('passOnBoarding') == null ? const OnBoardingScreen() : const HomeLayoutScreen();
         navigateToToFinish(context, w);
       }
     });
