@@ -17,7 +17,7 @@ class SessionDetailsCubit extends Cubit<SessionDetailsState> {
 
   SessionDetailsModel? sessionDetailsModel;
 
-  ConnectionService _connectionService = ConnectionService();
+  final ConnectionService _connectionService = ConnectionService();
 
   void getSessionDetails({required int sessionId})async{
     emit(SessionDetailsLoading());

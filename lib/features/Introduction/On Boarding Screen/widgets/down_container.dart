@@ -51,7 +51,7 @@ class BuildDownContainer extends StatelessWidget {
               height: height * 0.04,
             ),
             BuildButton(
-              text: 'Become a partner',
+              text: 'Apply for a partnership',
               onPressed: () {
                 CashHelper.prefs.setBool('passOnBoarding', true);
                 navigateTo(context, const RegisterScreen());

@@ -54,7 +54,6 @@ class _SplashScreenState extends State<SplashScreen>
 
   @override
   Widget build(BuildContext context) {
-    var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       backgroundColor: LightAppColor.backgroundColor,
@@ -75,7 +74,7 @@ class _SplashScreenState extends State<SplashScreen>
                 ),
 
                 Text(
-                  'TRICARE',
+                  'TriCare Partners',
                   style: Theme.of(context)
                       .textTheme
                       .headlineLarge!

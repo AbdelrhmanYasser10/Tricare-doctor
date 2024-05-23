@@ -14,6 +14,7 @@ import '../../../core/connection/internet_connection.dart';
 import '../../../core/network/Local/CashHelper.dart';
 import '../../../core/network/Remote/DioHelper.dart';
 import '../../../core/network/endPoind.dart';
+import '../../Authentication/models/countries_model.dart';
 import '../../Rooms/screens/rooms_screen.dart';
 import '../../appointments/screens/appointments_screen.dart';
 import '../../profits/screens/profits_screen.dart';
@@ -33,8 +34,11 @@ class ProfileCubit extends Cubit<ProfileState> {
   UserModel? userModel;
   ChangePasswordModel? changePasswordModel;
   DeleteModel? deleteModel;
+  final ConnectionService _connectivity = ConnectionService();
 
-
+  List<CountriesModel> allCounties = [
+    CountriesModel(label: "N/A", value: "N/A"),
+  ];
   late List<String> categoriesName;
 
   late List<Widget> screens;
@@ -42,8 +46,10 @@ class ProfileCubit extends Cubit<ProfileState> {
   var nameController = TextEditingController();
   var emailController = TextEditingController();
   var phoneController = TextEditingController();
+  var whatsappPhoneController = TextEditingController();
+  String country = "N/A";
+  String whatsappEnabled = "0";
 
-  int typeGender = 0;
 
   final _connect = ConnectionService();
 
@@ -84,13 +90,16 @@ class ProfileCubit extends Cubit<ProfileState> {
       token: CashHelper.getData(key: 'token') ?? '',
     ).then((value) async {
       userModel = UserModel.formJson(value.data);
-      print("herreee!!!");
       print(userModel!.hasError);
       if (!userModel!.hasError) {
         nameController.text = userModel!.data!.partner!.partnerFullname!;
         emailController.text = userModel!.data!.partner!.partnerEmail!;
         phoneController.text = userModel!.data!.partner!.partnerPhone!;
-        typeGender = int.parse("1");
+        whatsappPhoneController.text = userModel!.data!.partner!.partnerWhatsappNumber!;
+        whatsappEnabled = userModel!.data!.partner!.partnerWhatsappEnabled!;
+        await getAllCountries();
+        country = userModel!.data!.partner!.partnerCountry!;
+
       } else {
         logOut();
       }
@@ -179,34 +188,30 @@ class ProfileCubit extends Cubit<ProfileState> {
   Future<void> updateProfile({
     required String name,
     required String email,
-    required String timeZone,
-    required String type,
     required String phone,
+    required String country,
+    required String whatsapp,
+    required int whatsappEnabled,
     required String password,
   }) async {
-    FormData formData = FormData.fromMap({
-      'partner_name': name,
-      'partner_email': email,
-      'partner_phone': phone,
-      'password': password,
-      'partner_timezone': timeZone,
-      'partner_gender': type,
-      'partner_profilepicture_file': image == null
-          ? ''
-          : await MultipartFile.fromFile(
-              image!.path,
-              filename: image!.path.split('/').last,
-              contentType: MediaType.parse('multipart/form-data'),
-            ),
-    });
+    // FormData formData = FormData.fromMap();
 
     if (await _connect.isInternetConnected()) {
       emit(ChangeProfileLoading());
 
       await Future.delayed(const Duration(seconds: 1));
 
-      await DioHelper.postDataFile(
-        data: formData,
+      await DioHelper.postData(
+        data: {
+          'partner_name': name,
+          'partner_email': email,
+          'partner_phone': phone,
+          'password': password,
+          'partner_whatsapp_number': whatsapp,
+          'partner_timezone': '+02:00',
+          'partner_country': country,
+          'partner_whatsapp_enabled': whatsappEnabled,
+        },
         url: EndPoints.updateProfile_request,
       ).then((value) {
         profileModel = ProfileModel.formJson(value.data);
@@ -332,6 +337,44 @@ class ProfileCubit extends Cubit<ProfileState> {
     });
   }
 
+  Future<void> getAllCountries() async{
+    if(await _connectivity.isInternetConnected()){
+      emit(AllCountriesLoading());
+
+      await DioHelper.getData(
+        url: EndPoints.countries,
+      ).then((value) {
+
+        if(!value.data["hasError"]){
+          allCounties = [];
+          value.data["data"]["countries"].forEach(
+                  (element){
+                allCounties.add(CountriesModel.fromJson(element));
+              }
+          );
+          emit(AllCountriesSuccess());
+        }
+        else{
+          allCounties = [
+            CountriesModel(label: "N/A", value: "N/A"),
+
+          ];
+          emit(AllCountriesError());
+        }
+      }).catchError((error) {
+        allCounties = [
+          CountriesModel(label: "N/A", value: "N/A"),
+
+        ];
+        print(error.toString());
+        emit(AllCountriesError());
+      });
+    }
+    else
+    {
+      emit(NoInterNetConnection());
+    }
+  }
 
 
 

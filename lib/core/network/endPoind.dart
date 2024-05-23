@@ -53,6 +53,8 @@ class EndPoints {
 
   static var rooms = 'partner_rooms.php';
 
+  static var service = 'services.php';
+
 
 
 }

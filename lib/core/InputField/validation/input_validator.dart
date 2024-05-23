@@ -48,7 +48,19 @@ class InputValidator{
   String?  phoneValidator(String? value){
 
     if(value == null || value.isEmpty) {
-      return 'Please Enter Password';
+      return null;
+    } else if(value.length < 11 || value.length > 11) {
+      return 'Phone Must Be 11 Number';
+    }
+
+    return null;
+
+  }
+
+  String? whatsPhoneValidator(String? value){
+
+    if(value == null || value.isEmpty) {
+      return null;
     } else if(value.length < 11 || value.length > 11) {
       return 'Phone Must Be 11 Number';
     }

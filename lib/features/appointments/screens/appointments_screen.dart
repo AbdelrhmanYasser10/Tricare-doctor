@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/features/appointments/cubits/appointement_cubit.dart';
 import 'package:tricares_doctor_app/features/appointments/screens/widgets/schedule_body_consumer.dart';
 
+import '../../Drawer/screen/drawer_screen.dart';
+
 class AppointmentsScreen extends StatefulWidget {
   const AppointmentsScreen({Key? key}) : super(key: key);
 
@@ -18,6 +20,9 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
     return BlocProvider(
       create: (context) => AppointementCubit()..getSchedule(),
       child: Scaffold(
+        drawer: const DrawerScreen(
+          isFromHome: false,
+        ),
         appBar: AppBar(
           title: const Text(
             "Your Schedule",

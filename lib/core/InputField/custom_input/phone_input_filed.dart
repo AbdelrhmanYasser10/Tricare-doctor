@@ -24,3 +24,24 @@ class PhoneFiled extends StatelessWidget {
     );
   }
 }
+
+class WhatsappPhoneField extends StatelessWidget {
+  final TextEditingController controller;
+  final bool edit;
+
+  const WhatsappPhoneField({super.key, required this.controller, this.edit = false});
+
+
+  @override
+  Widget build(BuildContext context) {
+    return  BuildTextFormField(
+      controller: controller,
+      hintText: 'Whatsapp',
+      prefixIcon: const Icon(FontAwesomeIcons.whatsapp),
+      suffixIcon: edit? const Icon(FontAwesomeIcons.edit):null,
+      maxLines: 1,
+      keyboardType: TextInputType.phone,
+      valid: InputValidator(context).whatsPhoneValidator,
+    );
+  }
+}

@@ -1,11 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/network/Remote/DioHelper.dart';
 import 'package:tricares_doctor_app/core/network/endPoind.dart';
 import 'package:tricares_doctor_app/features/Drawer/cubit/drawer_cubit.dart';
 import 'package:tricares_doctor_app/features/appointments/cubits/appointement_cubit.dart';
-import 'package:tricares_doctor_app/features/home_layout/screens/home_layout.dart';
+import 'package:tricares_doctor_app/features/home/cubits/home_cubit.dart';
 import 'package:tricares_doctor_app/features/sessions/cubits/sessions_cubit/sessions_cubit.dart';
 import 'core/Global Cubit/global_cubit.dart';
 import 'core/Notification/cubit/notification_cubit.dart';
@@ -15,7 +16,6 @@ import 'core/globle/theme/light_theme.dart';
 import 'core/network/Firebase/notification.dart';
 import 'core/network/Local/CashHelper.dart';
 import 'features/Authentication/cubit/auth_cubit.dart';
-import 'features/Introduction/On Boarding Screen/onboarding_screen.dart';
 import 'features/home_layout/cubits/app_cubit/app_cubit.dart';
 import 'features/home_layout/screens/splash_screen.dart';
 import 'features/profile/cubit/profile_cubit.dart';
@@ -34,9 +34,11 @@ Future<void> main() async{
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
-  print(
+  if (kDebugMode) {
+    print(
       CashHelper.prefs.get("token")
   );
+  }
   DioHelper.initialize(EndPoints.baseUrl);
   await FirebaseNotification().init();
   runApp(const MyApp());
@@ -60,6 +62,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => ProfileCubit()..postUserData()),
         BlocProvider(create: (context) => PaginatorCubit()),
         BlocProvider(create: (context) => DrawerCubit()),
+        BlocProvider(create: (context) => HomeCubit()..getTabs()),
         BlocProvider(
           create: (context) => NotificationCubit()..getNotification(),
         ),
@@ -70,7 +73,7 @@ class MyApp extends StatelessWidget {
       child: BlocBuilder<GlobalCubit, GlobalState>(
         builder: (context, state) {
           return MaterialApp(
-            title: 'TriCare Doctors',
+            title: 'TriCare Partners',
             debugShowCheckedModeBanner: false,
             theme: AppLightTheme.lightThemeData,
             darkTheme: AppDarkTheme.darkThemeData,

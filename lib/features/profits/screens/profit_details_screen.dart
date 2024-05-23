@@ -90,7 +90,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
 
                       Padding(
                         padding: EdgeInsets.symmetric(
-                          vertical: height * 0.016,
+                          vertical: height * 0.012,
                           horizontal: width * 0.02,
                         ),
                         child: Container(
@@ -100,7 +100,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                             color: AppColor.primaryColor,
                             borderRadius: BorderRadius.circular(15.0),
                             shape: Shape.box,
-                            strokeWidth: 1.5,
+                            strokeWidth: 2,
                           ),
                           child: Container(
                             decoration: BoxDecoration(
@@ -109,8 +109,8 @@ class ProfitsDetailsScreen extends StatelessWidget {
                             ),
                             child: Padding(
                               padding: EdgeInsets.symmetric(
-                                vertical: height * 0.016,
-                                horizontal: width * 0.02,
+                                vertical: height * 0.012,
+                                horizontal: width * 0.009,
                               ),
                               child: Column(
                                 children: [
@@ -126,13 +126,13 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   'Date',
-                                                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
                                                 ),
                                                 Text(
                                                   cubit.profitDetails!.data!.partnersOrder!.partordDate!,
-                                                  style: Theme.of(context).textTheme.titleSmall,
+                                                  style: Theme.of(context).textTheme.labelMedium,
                                                 ),
                                               ],
                                             ),
@@ -143,14 +143,14 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Taxes',
-                                                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                                  'Status',
+                                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
                                                 ),
                                                 Text(
-                                                  cubit.profitDetails!.data!.partnersOrder!.partordTaxes!,
-                                                  style: Theme.of(context).textTheme.titleSmall,
+                                                  cubit.profitDetails!.data!.partnersOrder!.status!,
+                                                  style: Theme.of(context).textTheme.labelMedium,
                                                 ),
                                               ],
                                             ),
@@ -161,14 +161,14 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Total Taxes',
-                                                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                                  'Amount',
+                                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
                                                 ),
                                                 Text(
-                                                  cubit.profitDetails!.data!.partnersOrder!.partordTaxesTotal!,
-                                                  style: Theme.of(context).textTheme.titleSmall,
+                                                  cubit.profitDetails!.data!.partnersOrder!.partordAmount!,
+                                                  style: Theme.of(context).textTheme.labelMedium,
                                                 ),
                                               ],
                                             ),
@@ -177,7 +177,55 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                       ),
                                     ),
                                   ),
-                                  Divider(),
+                                  const Divider(),
+                                  cubit.profitDetails!.data!.partnersOrder!.partordTaxes != "0"?
+                                  Expanded(
+                                    child: IntrinsicHeight(
+                                      child: Row(
+                                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                                        children: [
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Taxes',
+                                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                                    color: AppColor.primaryColor,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '${cubit.profitDetails!.data!.partnersOrder!.partordTaxes!}%',
+                                                  style: Theme.of(context).textTheme.labelMedium,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                          Expanded(
+                                            child: Column(
+                                              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                              crossAxisAlignment: CrossAxisAlignment.center,
+                                              children: [
+                                                Text(
+                                                  'Taxes Total',
+                                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
+                                                    color: AppColor.primaryColor,
+                                                  ),
+                                                ),
+                                                Text(
+                                                  '${cubit.profitDetails!.data!.partnersOrder!.partordTaxesTotal!} ${cubit.profitDetails!.data!.partnersOrder!.currencyName!}',
+                                                  style: Theme.of(context).textTheme.labelMedium,
+                                                ),
+                                              ],
+                                            ),
+                                          ),
+                                        ],
+                                      ),
+                                    ),
+                                  ):const SizedBox(),
+                                  cubit.profitDetails!.data!.partnersOrder!.partordTaxes != "0"?
+                                  const Divider():const SizedBox(),
                                   Expanded(
                                     child: IntrinsicHeight(
                                       child: Row(
@@ -190,13 +238,13 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   'Paid',
-                                                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
                                                 ),
                                                 Text(
                                                   '${cubit.profitDetails!.data!.partnersOrder!.partordPaid!} ${cubit.profitDetails!.data!.partnersOrder!.currencyName!}',
-                                                  style: Theme.of(context).textTheme.titleSmall,
+                                                  style: Theme.of(context).textTheme.labelMedium,
                                                 ),
                                               ],
                                             ),
@@ -208,13 +256,13 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   'Remaining',
-                                                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
                                                 ),
                                                 Text(
                                                   '${cubit.profitDetails!.data!.partnersOrder!.partordRemaining!} ${cubit.profitDetails!.data!.partnersOrder!.currencyName!}',
-                                                  style: Theme.of(context).textTheme.titleSmall,
+                                                  style: Theme.of(context).textTheme.labelMedium,
                                                 ),
                                               ],
                                             ),
@@ -226,13 +274,13 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               children: [
                                                 Text(
                                                   'Total',
-                                                  style: Theme.of(context).textTheme.headlineSmall!.copyWith(
+                                                  style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
                                                 ),
                                                 Text(
                                                   '${cubit.profitDetails!.data!.partnersOrder!.partordTotal!} ${cubit.profitDetails!.data!.partnersOrder!.currencyName!}',
-                                                  style: Theme.of(context).textTheme.titleSmall,
+                                                  style: Theme.of(context).textTheme.labelMedium,
                                                 ),
                                               ],
                                             ),
@@ -362,7 +410,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                 height: height,
                 heightImage: height,
                 widthImage: width,
-                imagePath: 'assets/images/error.png',
+                imagePath: 'assets/icons/error.svg',
                 message: 'Error while get data',
                 clickBtn: () {
                   cubit.getDetails(profitId: profitId,fromPayment: fromPayment);

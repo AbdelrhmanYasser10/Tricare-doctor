@@ -12,7 +12,6 @@ class GreatPerson extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
 
     return Padding(
       padding: EdgeInsets.symmetric(vertical: height * 0.01),
@@ -28,12 +27,8 @@ class GreatPerson extends StatelessWidget {
               );
             },
           ),
-          Text(
-            'Welcome To TriCare',
-            style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-              color: Colors.grey,
-            ),
-          ),
+
+
         ],
       ),
     );

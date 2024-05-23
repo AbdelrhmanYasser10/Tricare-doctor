@@ -6,11 +6,11 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:tricares_doctor_app/core/globle/color/light_app_color.dart';
 import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
+import 'package:tricares_doctor_app/features/Services/screens/services_screen.dart';
 import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 
 import 'package:badges/badges.dart' as badges;
 
-import 'package:tricares_doctor_app/features/profits/screens/profits_screen.dart';
 import '../../../core/Global Cubit/global_cubit.dart';
 import '../../../core/Notification/cubit/notification_cubit.dart';
 import '../../../core/Notification/screens/notification.dart';
@@ -30,14 +30,14 @@ class HomeLayoutScreen extends StatefulWidget {
 class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
   List<String> icons = [
     'assets/icons/home.svg',
-    'assets/icons/profits.svg',
+    'assets/icons/services.svg',
     'assets/icons/person.svg',
 
   ];
 
   List<String> textNavigationBar =[
     'Home',
-    'Profits',
+    'Services',
     'Profile',
   ];
 
@@ -174,7 +174,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
               controller: cubit.homeLayoutController,
               children: const [
                 HomeScreen(),
-                ProfitsScreen(),
+                ServiceScreen(),
                 MainProfileScreen(),
               ],
               onPageChanged: (index){

@@ -75,6 +75,7 @@ class Room {
   String? rOOMSLOTID;
   String? bRANCHID;
   String? roomName;
+  String? roomPics;
   String? roomStatus;
   String? roomDescription;
   String? roomOccupied;
@@ -120,6 +121,7 @@ class Room {
     roomStatus = json['room_status'];
     roomDescription = json['room_description'];
     roomOccupied = json['room_occupied'];
+    roomPics = json['room_pic'];
     roomType = json['room_type'];
     branchName = json['branch_name'];
     branchPhone = json['branch_phone'];
@@ -164,7 +166,7 @@ class PartnersDaysRooms {
   PartnersDaysRooms({this.name, this.partnersRooms});
 
   PartnersDaysRooms.fromJson(Map<String, dynamic> json) {
-    name = json['name'];
+    name = json['day_name'];
     if (json['partners_rooms'] != null) {
       partnersRooms = <PartnersRooms>[];
       json['partners_rooms'].forEach((v) {
@@ -175,7 +177,7 @@ class PartnersDaysRooms {
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
-    data['name'] = this.name;
+    data['day_name'] = this.name;
     if (this.partnersRooms != null) {
       data['partners_rooms'] =
           this.partnersRooms!.map((v) => v.toJson()).toList();

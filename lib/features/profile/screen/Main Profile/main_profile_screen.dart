@@ -1,14 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 
-import '../../../../core/functions/fucntions.dart';
-import '../../../../core/network/Local/CashHelper.dart';
-import '../../../../core/widgets/Carousel Widget/build_list_title.dart';
-import '../../../Authentication/screens/Login/login_screen.dart';
-import '../../../Drawer Screen/About Us Screen/about_us_screen.dart';
-import '../../../Drawer Screen/Tos Screen/tos_screen.dart';
-import '../../../Drawer/cubit/drawer_cubit.dart';
-import '../../cubit/profile_cubit.dart';
 import '../Profile/profile_screen.dart';
 
 
@@ -17,7 +8,13 @@ class MainProfileScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const ProfileScreen();
+  }
+}
+
+
+// old main profile code
+/*Scaffold(
         body: Column(
           children: [
             BuildListTitle(
@@ -65,6 +62,5 @@ class MainProfileScreen extends StatelessWidget {
               },
             ),
           ],
-        ));
-  }
-}
+        ),
+    )*/

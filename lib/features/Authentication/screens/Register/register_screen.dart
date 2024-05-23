@@ -33,15 +33,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                   Image.asset(
                     'assets/images/logo.png',
                     width: width * 0.6,
-                    height: height * 0.1,
+                    height: height * 0.16,
                   ),
-                  Text(
-                    'Welcome Again To TriCare',
-                    style: Theme.of(context)
-                        .textTheme
-                        .titleMedium!
-                        .copyWith(color: Colors.grey),
-                  ),
+
                   SizedBox(
                     height: height * 0.05,
                   ),

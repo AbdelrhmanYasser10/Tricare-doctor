@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/widgets/Login%20First/login_first_widget.dart';
+import 'package:tricares_doctor_app/features/Drawer/screen/drawer_screen.dart';
 import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/bodyConsumer.dart';
 
@@ -19,6 +20,14 @@ class _ProfitsScreenState extends State<ProfitsScreen> {
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return Scaffold(
+      drawer: const DrawerScreen(
+        isFromHome: false,
+      ),
+      appBar: AppBar(
+        title: Text(
+            "Profits requests"
+        ),
+      ),
       body: CashHelper.getData(key: 'login') == null
           ? BuildLoginFirst(
               width: width,

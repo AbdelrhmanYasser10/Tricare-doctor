@@ -36,17 +36,20 @@ class ScheduleBodyConsumer extends StatelessWidget {
         }
         else if(state is AppointementSuccess) {
           return Padding(
-            padding:  EdgeInsets.symmetric(horizontal: width * 0.02 , vertical: height * 0.01),
+            padding:  EdgeInsets.symmetric(
+                horizontal: width * 0.02 ,
+                vertical: height * 0.01,
+            ),
             child: ListView.separated(
               physics: const BouncingScrollPhysics(),
                 itemBuilder:(context, index) {
-                  if(cubit.scheduleModel!.data!.partnersDaysSlots![index].partnersRooms!.isNotEmpty){
-                    var daySlot = cubit.scheduleModel!.data!.partnersDaysSlots![index];
+                  if(cubit.scheduleModel!.data!.partnersDaysRoomsSlots![index].dayRooms!.isNotEmpty){
+                    var daySlot = cubit.scheduleModel!.data!.partnersDaysRoomsSlots![index];
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          daySlot.name!,
+                          daySlot.dayName!,
                           style: Theme.of(context).textTheme.headlineMedium,
                         ),
                         SizedBox(
@@ -56,16 +59,15 @@ class ScheduleBodyConsumer extends StatelessWidget {
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
                             itemBuilder: (context, index) {
-                              return ScheduleCard(daysSlots: daySlot.partnersRooms![index]);
+                              return ScheduleCard(daysSlots: daySlot.dayRooms![index]);
                             },
                             separatorBuilder: (context, index) {
                               return SizedBox(
                                 height: height * 0.01,
                               );
                             },
-                            itemCount: daySlot.partnersRooms!.length,
+                            itemCount: daySlot.dayRooms!.length,
                         ),
-                        const Divider(),
                       ],
                     );
                   }
@@ -78,7 +80,7 @@ class ScheduleBodyConsumer extends StatelessWidget {
                     height: height * 0.01,
                   );
                 },
-                itemCount: cubit.scheduleModel!.data!.partnersDaysSlots!.length,
+                itemCount: cubit.scheduleModel!.data!.partnersDaysRoomsSlots!.length,
             ),
           );
         }

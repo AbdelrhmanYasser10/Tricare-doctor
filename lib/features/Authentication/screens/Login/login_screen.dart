@@ -60,20 +60,10 @@ class _LoginScreenState extends State<LoginScreen> {
           padding: EdgeInsets.symmetric(horizontal: width * 0.05),
           child: Column(
             children: [
-              SizedBox(
-                height: height * 0.02,
-              ),
               Image.asset(
                 'assets/images/logo.png',
-                width: width * 0.6,
-                height: height * 0.1,
-              ),
-              Text(
-                'Welcome Again To TriCare',
-                style: Theme.of(context)
-                    .textTheme
-                    .titleMedium!
-                    .copyWith(color: Colors.grey),
+                width: width * 0.9,
+                height: height * 0.18,
               ),
               SizedBox(
                 height: height * 0.1,
@@ -100,13 +90,16 @@ class _LoginScreenState extends State<LoginScreen> {
                     SizedBox(
                       height: height * 0.02,
                     ),
-                    PasswordFiled(controller: passwordController,hint: 'Password',),
+                    PasswordFiled(
+                      controller: passwordController,
+                      hint: 'Password',
+                    ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
                       children: [
                         TextButton(
                             onPressed: () {
-                               navigateTo(context, const ForgetPasswordScreen());
+                              navigateTo(context, const ForgetPasswordScreen());
                             },
                             child: Text(
                               'Forget Password?',
@@ -148,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           result: (route) => false);
                     },
                     child: Text(
-                      'Register',
+                      'Apply for a partnership',
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             decoration: TextDecoration.underline,
                             decorationColor: AppColor.primaryColor,
@@ -160,7 +153,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 ],
               ),
               SizedBox(
-                height: height * 0.01,
+                height: height * 0.06,
               ),
             ],
           ),
@@ -205,7 +198,7 @@ class LoginButton extends StatelessWidget {
             context.read<ProfileCubit>().postUserData();
             context.read<GlobalCubit>().homeLayoutController.jumpToPage(0);
             context.read<GlobalCubit>().currentIndexScreen = 0;
-             navigateToToFinish(context, const HomeLayoutScreen());
+            navigateToToFinish(context, const HomeLayoutScreen());
 
             var snackBar = Utils.buildSnackBar2(
                 contentType: ContentType.success,
@@ -237,9 +230,9 @@ class LoginButton extends StatelessWidget {
                 startLoading();
                 // call your network api
                 await context.read<AuthCubit>().postLogin(
-                  email: usernameController.text.trim(),
-                  password: passwordController.text.trim(),
-                );
+                      email: usernameController.text.trim(),
+                      password: passwordController.text.trim(),
+                    );
                 stopLoading();
               }
             }

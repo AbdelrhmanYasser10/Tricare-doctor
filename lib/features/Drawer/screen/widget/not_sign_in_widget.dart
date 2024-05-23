@@ -32,6 +32,27 @@ class NotSignInWidget extends StatelessWidget {
         ),
         ),
         BuildListTitle(
+          text: 'Sign In',
+          iconName: 'login.svg',
+          function: () {
+
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_)=>const LoginScreen()),
+            );
+          },
+        ),
+        BuildListTitle(
+          text: 'Apply for a partnership',
+          iconName: 'person.svg',
+          function: () {
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (_)=>const RegisterScreen()),
+            );
+          },
+        ),
+        BuildListTitle(
           text: 'Terms and Conditions',
           iconName: 'term.svg',
           function: () {
@@ -47,27 +68,7 @@ class NotSignInWidget extends StatelessWidget {
             navigateTo(context, AboutUsScreen());
           },
         ),
-        BuildListTitle(
-          text: 'Become Partner',
-          iconName: 'person.svg',
-          function: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(builder: (_)=>const RegisterScreen()),
-            );
-          },
-        ),
-        BuildListTitle(
-          text: 'Sign In',
-          iconName: 'login.svg',
-          function: () {
 
-            Navigator.push(
-              context,
-              MaterialPageRoute(builder: (_)=>const LoginScreen()),
-            );
-          },
-        ),
 
 
       ],

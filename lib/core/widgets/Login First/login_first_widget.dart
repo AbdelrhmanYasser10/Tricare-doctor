@@ -31,7 +31,7 @@ class BuildLoginFirst extends StatelessWidget {
 
 
             Text(
-              'Login or Create An Account First',
+              'Login to your account first',
               style: Theme.of(context).textTheme.titleMedium,
 
             ),

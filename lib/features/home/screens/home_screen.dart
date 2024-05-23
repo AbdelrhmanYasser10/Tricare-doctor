@@ -1,13 +1,19 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tricares_doctor_app/features/Authentication/screens/Login/login_screen.dart';
 import 'package:tricares_doctor_app/features/home/screens/widget/great_perosn.dart';
-import 'package:tricares_doctor_app/features/home/screens/widget/inside_icon_widgets.dart';
 import 'package:tricares_doctor_app/features/home/screens/widget/my_tab_container.dart';
 import 'package:tricares_doctor_app/features/home_layout/cubits/app_cubit/app_cubit.dart';
+import '../../../core/component/ElevatedButton Widget/build_elevated_button.dart';
 import '../../../core/component/Loading Widget/loading_widget.dart';
+import '../../../core/functions/fucntions.dart';
+import '../../../core/network/Local/CashHelper.dart';
 import '../../../core/widgets/Carousel Widget/carsousel_widget_screen.dart';
 import '../../../core/widgets/Error Widget/error_widget.dart';
 import '../../../core/widgets/No Internet Widget/no_internet_widget.dart';
+import '../../Authentication/screens/Register/register_screen.dart';
+import '../../profile/cubit/profile_cubit.dart' as pc;
 import 'widget/title_widget.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -51,7 +57,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                 images: cubit.homeModel!.data!.images,
                               ),
 
-                              const InsideIconWidget(),
+
                               TitleWidget(
                                 title: 'About us',
                                 onTap: () {},
@@ -61,6 +67,35 @@ class _HomeScreenState extends State<HomeScreen> {
                                 height: height,
                                 width: width,
                                 cubit: AppCubit.get(context),
+                              ),
+                              SizedBox(
+                                height: height * 0.02,
+                              ),
+                              BlocBuilder<pc.ProfileCubit, pc.ProfileState>(
+                                builder: (context, state) {
+                                  if(CashHelper.prefs.get('login') ==null) {
+                                    return Column(
+                                      children: [
+                                        BuildButton(
+                                          text: "Apply for partnership",
+                                          onPressed: () {
+                                            navigateTo(context,const RegisterScreen());
+                                          },
+                                        ),
+                                        BuildButton(
+                                          text: "Login",
+                                          onPressed: () {
+                                            navigateTo(context,const LoginScreen());
+                                          },
+                                        ),
+
+                                      ],
+                                    );
+                                  }
+                                  else{
+                                    return const SizedBox.shrink();
+                                  }
+                                },
                               ),
                               SizedBox(
                                 height: height * 0.03,

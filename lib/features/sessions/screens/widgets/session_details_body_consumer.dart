@@ -1,9 +1,6 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:tricares_doctor_app/features/sessions/cubits/session_details_cubit/session_details_cubit.dart';
 
 import '../../../../core/component/Loading Widget/loading_widget.dart';

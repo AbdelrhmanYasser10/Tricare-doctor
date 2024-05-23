@@ -1,14 +1,12 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/buid_delete_accout.dart';
-import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/build_changeProfilePicture_with_password.dart';
+import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/inside_icon_widgets.dart';
 import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/loading_shimmer.dart';
 import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/top_widget.dart';
 
 import '../../../../core/functions/fucntions.dart';
 import '../../../../core/network/Local/CashHelper.dart';
-import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Carousel Widget/build_list_title.dart';
 import '../../../../core/widgets/Login First/login_first_widget.dart';
 import '../../cubit/profile_cubit.dart';
@@ -30,9 +28,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
-      appBar: AppBar(
-        title: Text('Profile'),
-      ),
+
       body: BlocBuilder<ProfileCubit, ProfileState>(
         builder: (context, state) {
           var cubit = context.read<ProfileCubit>();
@@ -47,6 +43,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                   ? const LoadingShimmerWidget()
                   : SingleChildScrollView(
                       child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.center,
                         children: [
                           TopWidget(height: height, width: width),
                           Padding(
@@ -54,7 +51,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                 horizontal: width * 0.04,
                                 vertical: height * 0.02),
                             child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
+                              crossAxisAlignment: CrossAxisAlignment.center,
                               children: [
                                 const SizedBox(
                                   width: double.infinity,
@@ -68,7 +65,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       .partnerFullname!,
                                   style: Theme.of(context).textTheme.titleLarge,
                                 ),
-                                Text(
+                                /*Text(
                                   context
                                       .read<ProfileCubit>()
                                       .userModel!
@@ -79,7 +76,7 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                       .textTheme
                                       .titleMedium!
                                       .copyWith(color: Colors.grey),
-                                ),
+                                ),*/
                               ],
                             ),
                           ),
@@ -90,6 +87,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
                             child: Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
                               children: [
+                                Padding(
+                                  padding:  EdgeInsets.symmetric(
+                                      horizontal: width * 0.0275,
+                                  ),
+                                  child: const InsideIconWidget(),
+                                ),
+                                SizedBox(
+                                  height: height * 0.02,
+                                ),
                                 BuildListTitle(
                                   text: 'Update Profile',
                                   iconName: 'edit.svg',
@@ -153,10 +159,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height: height * 0.02,
                                 ),
 
-                                BuildDeleteAccountWidget(
+                               /* BuildDeleteAccountWidget(
 
                                 ),
-
+*/
                               ],
                             ),
                           ),

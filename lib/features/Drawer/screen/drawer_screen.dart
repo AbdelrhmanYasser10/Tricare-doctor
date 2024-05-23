@@ -9,7 +9,8 @@ import '../../profile/cubit/profile_cubit.dart';
 
 
 class DrawerScreen extends StatelessWidget {
-  const DrawerScreen({super.key});
+  final bool isFromHome;
+  const DrawerScreen({super.key ,  this.isFromHome = true});
 
   @override
   Widget build(BuildContext context) {
@@ -21,7 +22,9 @@ class DrawerScreen extends StatelessWidget {
           child: CashHelper.getData(key: 'login') == true?
           cubit.userModel == null ?
           const BuildLoadingWidget() :
-          const DrawerLoginWidget() :
+           DrawerLoginWidget(
+            isFromHome: isFromHome,
+          ) :
          const NotSignInWidget(),
 
         );

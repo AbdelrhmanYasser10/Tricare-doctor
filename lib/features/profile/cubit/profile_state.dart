@@ -81,3 +81,8 @@ class GetUpdateTokenFcmSuccess extends ProfileState{}
 class GetUpdateTokenFcmError extends ProfileState{}
 
 
+class AllCountriesLoading extends ProfileState{}
+class AllCountriesSuccess extends ProfileState{}
+class AllCountriesError extends ProfileState{}
+
+class NoInterNetConnection extends ProfileState{}

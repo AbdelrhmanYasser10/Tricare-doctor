@@ -2,10 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/component/Loading%20Widget/loading_widget.dart';
 import 'package:tricares_doctor_app/core/component/SVG/svg.dart';
+import 'package:tricares_doctor_app/core/widgets/Build%20Circle%20Image/build_circle_image.dart';
 import 'package:tricares_doctor_app/features/Rooms/cubits/room_details_cubit/room_details_cubit.dart';
 import 'package:tricares_doctor_app/features/Rooms/screens/widgets/name_position_top_Widget.dart';
 
 import '../../../core/component/MessageWidget/message_widget.dart';
+import '../../../core/component/Network Image/network_image.dart';
 import '../../../core/functions/fucntions.dart';
 import '../../../core/globle/color/light_app_color.dart';
 import '../../../core/globle/color/shared_color.dart';
@@ -193,7 +195,7 @@ class RoomDetailsScreen extends StatelessWidget {
                         ),
                       ),
                     ),
-                    buildContainerImage(width),
+                    buildContainerImage(width , cubit.roomsDetailsModel!.data!.room!.roomPics!),
                   ],
                 ),
               ),
@@ -206,7 +208,7 @@ class RoomDetailsScreen extends StatelessWidget {
                 height: height,
                 heightImage: height,
                 widthImage: width,
-                imagePath: 'assets/images/error.png',
+                imagePath: 'assets/icons/error.svg',
                 message: 'Error while get data',
                 clickBtn: () {
                   cubit.getRoomDetails(roomId: roomId);
@@ -240,7 +242,7 @@ class RoomDetailsScreen extends StatelessWidget {
     );
   }
 
-  Padding buildContainerImage(double width) {
+  Padding buildContainerImage(double width , String image) {
     return Padding(
       padding:  EdgeInsets.all(width * 0.04),
       child: Container(
@@ -252,10 +254,15 @@ class RoomDetailsScreen extends StatelessWidget {
         child: CircleAvatar(
           backgroundColor: AppColor.primaryColor.withOpacity(0.6),
           radius: width * 0.2,
-          child: BuildIconSvg(
-            name:'room.svg',
-            size: width * 0.3,
-            color: AppColor.primaryColor,
+          child: BuildImage(
+            image: image,
+            radius: width * 0.02,
+            fit: BoxFit.cover,
+            errorWidget: BuildIconSvg(
+              color: AppColor.primaryColor,
+              name: "room.svg",
+              size: width * 0.3,
+            ),
           ),
         ),
       ),

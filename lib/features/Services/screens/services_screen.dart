@@ -1,22 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
-import 'package:tricares_doctor_app/core/component/Loading%20Widget/loading_widget.dart';
-import 'package:tricares_doctor_app/features/profits/screens/widgets/profit_card.dart';
-import '../../../../core/network/Local/CashHelper.dart';
-import '../../../../core/network/Remote/DioHelper.dart';
-import '../../../../core/network/endPoind.dart';
-import '../../models/profits_model.dart';
+import 'package:tricares_doctor_app/features/Services/screens/widgets/service_card.dart';
+
+import '../../../core/component/Loading Widget/loading_widget.dart';
+import '../../../core/network/Remote/DioHelper.dart';
+import '../../../core/network/endPoind.dart';
+import '../models/services_model.dart';
 
 
-class ProfitsBodyConsumer extends StatefulWidget {
-  const ProfitsBodyConsumer({Key? key}) : super(key: key);
+class ServiceScreen extends StatefulWidget {
+  const ServiceScreen({Key? key}) : super(key: key);
 
   @override
-  State<ProfitsBodyConsumer> createState() => _ProfitsBodyConsumerState();
+  State<ServiceScreen> createState() => _ServiceScreenState();
 }
 
-class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
-  final PagingController<int, PartnersOrders> _pagingController =
+class _ServiceScreenState extends State<ServiceScreen> {
+
+  final PagingController<int, Services> _pagingController =
   PagingController(firstPageKey: 0);
   int pageNumber = 1;
 
@@ -30,22 +31,25 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
 
   Future<void> _fetchPage(int pageKey) async {
     try {
-      final newItems = await DioHelper.postData(
-          data: {
+      final newItems = await DioHelper.getData(
+          query: {
             'page':pageNumber,
           },
-          url: EndPoints.profitsTable,
-          token: CashHelper.prefs.getString('token')??""
+          url: EndPoints.service,
       );
-      final ProfitsModel proftiModel = ProfitsModel.fromJson(newItems.data);
-      if(!proftiModel.hasError!) {
-        final isLastPage = proftiModel.data!.pageCurrent ==  proftiModel.data!.pageMax;
+      final ServicesModel servicesModel = ServicesModel.fromJson(newItems.data);
+      if(!servicesModel.hasError!) {
+        final isLastPage = servicesModel.data!.pageCurrent ==  servicesModel.data!.pageMax;
+
         if (isLastPage) {
-          _pagingController.appendLastPage(proftiModel.data!.partnersOrders!);
+
+          _pagingController.appendLastPage(servicesModel.data!.services!);
+
         } else {
-          final nextPageKey = pageKey + proftiModel.data!.partnersOrders!.length;
+
+          final nextPageKey = pageKey + servicesModel.data!.services!.length;
           pageNumber++;
-          _pagingController.appendPage(proftiModel.data!.partnersOrders!, nextPageKey);
+          _pagingController.appendPage(servicesModel.data!.services!, nextPageKey);
         }
       }
       else{
@@ -67,16 +71,17 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
           left: width * 0.02,
           top: height *0.02
       ),
-      child: PagedListView<int, PartnersOrders>(
+      child: PagedListView<int, Services>(
+
         pagingController: _pagingController,
         physics: const BouncingScrollPhysics(),
-        builderDelegate: PagedChildBuilderDelegate<PartnersOrders>(
+        builderDelegate: PagedChildBuilderDelegate<Services>(
           itemBuilder: (context, item, index) => Padding(
             padding:  EdgeInsets.symmetric(
-                vertical: height * 0.009
+                vertical: height * 0.01,
             ),
-            child: ProfitCard(
-              profit: item,
+            child: ServiceCard(
+              service: item,
             ),
           ),
           transitionDuration: const Duration(milliseconds: 900),
@@ -92,3 +97,4 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
     );
   }
 }
+

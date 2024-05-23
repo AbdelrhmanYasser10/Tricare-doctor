@@ -5,6 +5,7 @@ import 'package:tricares_doctor_app/core/network/Remote/DioHelper.dart';
 import 'package:tricares_doctor_app/features/sessions/models/sessions_model.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/widgets/session_card.dart';
 
+import '../../../../core/component/Loading Widget/loading_widget.dart';
 import '../../../../core/component/SVG/svg.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/network/endPoind.dart';
@@ -83,7 +84,12 @@ class _CurrentSessionsWidgetState extends State<CurrentSessionsWidget> {
           ),
           transitionDuration: const Duration(milliseconds: 900),
           animateTransitions: true,
-
+          firstPageProgressIndicatorBuilder: (context) {
+            return const BuildLoadingWidget();
+          },
+          newPageProgressIndicatorBuilder: (context) {
+            return const BuildLoadingWidget();
+          },
         ),
       ),
     );
