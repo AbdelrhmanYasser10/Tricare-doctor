@@ -5,8 +5,8 @@ import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/features/sessions/models/sessions_model.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/session_details_screen.dart';
 
-import '../../../../core/component/SVG/svg.dart';
 import '../../../../core/globle/color/shared_color.dart';
+import '../../../../generated/l10n.dart';
 
 class SessionCard extends StatelessWidget {
   final Sessions session;
@@ -69,7 +69,7 @@ class SessionCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: Text(
-                    session.sessionPatientAttended == "0" ? "Not Attended" : "Attended",
+                    session.sessionPatientAttended == "0" ? S.of(context).notAttended : S.of(context).attended,
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: AppColor.primaryColor,
                     ),

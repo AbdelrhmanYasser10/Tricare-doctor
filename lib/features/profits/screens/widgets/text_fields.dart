@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/InputField/validation/input_validator.dart';
 import '../../../../../../core/component/TextField/text_form_field.dart';
+import '../../../../generated/l10n.dart';
 
 
 class NotesField extends StatelessWidget {
@@ -15,7 +16,7 @@ class NotesField extends StatelessWidget {
   Widget build(BuildContext context) {
     return  BuildTextFormField(
       controller: controller,
-      hintText: 'Notes',
+      hintText: S.of(context).notes,
       prefixIcon: const Icon(FontAwesomeIcons.alignCenter),
       maxLines: 1,
       keyboardType: TextInputType.text,

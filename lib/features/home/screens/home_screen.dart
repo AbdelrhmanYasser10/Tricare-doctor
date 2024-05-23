@@ -12,6 +12,7 @@ import '../../../core/network/Local/CashHelper.dart';
 import '../../../core/widgets/Carousel Widget/carsousel_widget_screen.dart';
 import '../../../core/widgets/Error Widget/error_widget.dart';
 import '../../../core/widgets/No Internet Widget/no_internet_widget.dart';
+import '../../../generated/l10n.dart';
 import '../../Authentication/screens/Register/register_screen.dart';
 import '../../profile/cubit/profile_cubit.dart' as pc;
 import 'widget/title_widget.dart';
@@ -59,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
 
                               TitleWidget(
-                                title: 'About us',
+                                title: S.of(context).about,
                                 onTap: () {},
                                 showSeeAll: false,
                               ),
@@ -77,13 +78,13 @@ class _HomeScreenState extends State<HomeScreen> {
                                     return Column(
                                       children: [
                                         BuildButton(
-                                          text: "Apply for partnership",
+                                          text: S.of(context).apply,
                                           onPressed: () {
                                             navigateTo(context,const RegisterScreen());
                                           },
                                         ),
                                         BuildButton(
-                                          text: "Login",
+                                          text:S.of(context).login,
                                           onPressed: () {
                                             navigateTo(context,const LoginScreen());
                                           },

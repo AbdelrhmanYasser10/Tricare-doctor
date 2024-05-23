@@ -16,6 +16,7 @@ import '../../../core/Notification/cubit/notification_cubit.dart';
 import '../../../core/Notification/screens/notification.dart';
 import '../../../core/functions/fucntions.dart';
 import '../../../core/globle/color/shared_color.dart';
+import '../../../generated/l10n.dart';
 import '../../Drawer/screen/drawer_screen.dart';
 import '../../home/screens/home_screen.dart';
 import '../../profile/screen/Main Profile/main_profile_screen.dart';
@@ -35,11 +36,9 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
 
   ];
 
-  List<String> textNavigationBar =[
-    'Home',
-    'Services',
-    'Profile',
-  ];
+  List<String> textNavigationBar = [];
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -48,6 +47,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
     return BlocBuilder<GlobalCubit, GlobalState>(
       builder: (context, state) {
         var cubit = context.read<GlobalCubit>();
+        textNavigationBar =[
+          S.of(context).home,
+          S.of(context).services,
+          S.of(context).profile,
+        ];
         return WillPopScope(
           onWillPop: ()async{
             if(context.read<GlobalCubit>().currentIndexScreen==0) {
@@ -58,11 +62,11 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                       shape: const RoundedRectangleBorder(
                           borderRadius: BorderRadius.all(Radius.circular(20))),
                       title: Text(
-                        'Exit From Application',
+                        S.of(context).exit,
 
                       ),
                       content: Text(
-                        'Do you Want to Exit',
+                        S.of(context).exitQuestion,
                         style: Theme
                             .of(context)
                             .textTheme
@@ -79,7 +83,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                               backgroundColor: LightAppColor.backgroundColor
                           ),
                           child: Text(
-                            'Yes',
+                            S.of(context).yes,
                           ),
                         ),
                         SizedBox(width: width * 0.01,),
@@ -91,7 +95,7 @@ class _HomeLayoutScreenState extends State<HomeLayoutScreen> {
                             backgroundColor: LightAppColor.backgroundColor,
                           ),
                           child: Text(
-                            'No',
+                            S.of(context).no,
                           ),
                         ),
                         SizedBox(width: width * 0.02,),

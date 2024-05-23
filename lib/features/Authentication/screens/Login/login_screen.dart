@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:loading_btn/loading_btn.dart';
 import 'package:tricares_doctor_app/core/InputField/custom_input/name_input_field.dart';
-import 'package:tricares_doctor_app/features/home_layout/cubits/app_cubit/app_cubit.dart';
 import 'package:tricares_doctor_app/features/home_layout/screens/home_layout.dart';
 
 import '../../../../core/Global Cubit/global_cubit.dart';
@@ -12,6 +11,7 @@ import '../../../../core/functions/fucntions.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/network/Local/CashHelper.dart';
 import '../../../../core/utils/utils.dart';
+import '../../../../generated/l10n.dart';
 import '../../../profile/cubit/profile_cubit.dart';
 import '../../cubit/auth_cubit.dart';
 import '../Forget Password/forget_passwrod_screen.dart';
@@ -74,11 +74,11 @@ class _LoginScreenState extends State<LoginScreen> {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      'Login',
+                      S.of(context).login,
                       style: Theme.of(context).textTheme.headlineLarge,
                     ),
                     Text(
-                      'Login to continue using the app',
+                      S.of(context).loginMessage,
                       style: Theme.of(context).textTheme.titleMedium!.copyWith(
                             color: Colors.grey,
                           ),
@@ -92,7 +92,7 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     PasswordFiled(
                       controller: passwordController,
-                      hint: 'Password',
+                      hint: S.of(context).password,
                     ),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.end,
@@ -102,7 +102,7 @@ class _LoginScreenState extends State<LoginScreen> {
                               navigateTo(context, const ForgetPasswordScreen());
                             },
                             child: Text(
-                              'Forget Password?',
+                              S.of(context).forgetPassword,
                               style: Theme.of(context)
                                   .textTheme
                                   .titleMedium!
@@ -129,7 +129,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'Do not have an account?',
+                    S.of(context).dontHaveAnAccount,
                     style: Theme.of(context).textTheme.titleMedium!,
                   ),
                   TextButton(
@@ -141,7 +141,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           result: (route) => false);
                     },
                     child: Text(
-                      'Apply for a partnership',
+                      S.of(context).apply,
                       style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                             decoration: TextDecoration.underline,
                             decorationColor: AppColor.primaryColor,
@@ -223,7 +223,7 @@ class LoginButton extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
           ),
-          child: const Text("Login"),
+          child:  Text(S.of(context).login),
           onTap: (startLoading, stopLoading, btnState) async {
             if (formKey.currentState!.validate()) {
               if (btnState == ButtonState.idle) {

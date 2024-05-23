@@ -13,6 +13,7 @@ import 'package:tricares_doctor_app/features/profits/cubits/profits_details_cubi
 import '../../../core/component/MessageWidget/message_widget.dart';
 import '../../../core/globle/color/shared_color.dart';
 import '../../../core/utils/utils.dart';
+import '../../../generated/l10n.dart';
 
 
 class ProfitsDetailsScreen extends StatelessWidget {
@@ -33,8 +34,8 @@ class ProfitsDetailsScreen extends StatelessWidget {
         ..getDetails(profitId: profitId, fromPayment: fromPayment),
       child: Scaffold(
         appBar: AppBar(
-          title: const Text(
-            'Profit Details',
+          title:  Text(
+            S.of(context).profitDetails,
           ),
           centerTitle: true,
         ),
@@ -74,12 +75,12 @@ class ProfitsDetailsScreen extends StatelessWidget {
                               height: height * 0.0167,
                             ),
                             Text(
-                              "Profit Order# ${cubit.profitDetails!.data!.partnersOrder!.pARTORDID!}",
+                              "${S.of(context).profitOrder}# ${cubit.profitDetails!.data!.partnersOrder!.pARTORDID!}",
                               style: Theme.of(context).textTheme.titleMedium,
 
                             ),
                             cubit.profitDetails!.data!.partnersOrder!.partordNotes != '' ?Text(
-                              'Notes : ${cubit.profitDetails!.data!.partnersOrder!.partordNotes}',
+                              '${S.of(context).notes} : ${cubit.profitDetails!.data!.partnersOrder!.partordNotes}',
                               style: Theme.of(context).textTheme.bodySmall,
                               maxLines: 6,
                               overflow: TextOverflow.ellipsis,
@@ -125,7 +126,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Date',
+                                                  S.of(context).date,
                                                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
@@ -143,7 +144,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Status',
+                                                  S.of(context).status,
                                                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
@@ -161,7 +162,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Amount',
+                                                  S.of(context).amount,
                                                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
@@ -190,7 +191,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Taxes',
+                                                  S.of(context).taxes,
                                                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
@@ -208,7 +209,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Taxes Total',
+                                                  S.of(context).totalTaxes,
                                                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
@@ -237,7 +238,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Paid',
+                                                  S.of(context).paid,
                                                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
@@ -255,7 +256,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Remaining',
+                                                  S.of(context).remaining,
                                                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
@@ -273,7 +274,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                               crossAxisAlignment: CrossAxisAlignment.center,
                                               children: [
                                                 Text(
-                                                  'Total',
+                                                  S.of(context).total,
                                                   style: Theme.of(context).textTheme.titleLarge!.copyWith(
                                                     color: AppColor.primaryColor,
                                                   ),
@@ -302,7 +303,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                           horizontal: width * 0.02,
                         ),
                         child: Text(
-                          'Payments',
+                          S.of(context).payments,
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                       ),
@@ -392,7 +393,7 @@ class ProfitsDetailsScreen extends StatelessWidget {
                                   'assets/icons/empty.svg'
                                 ),
                                 Text(
-                                  'No Payments yet',
+                                  S.of(context).noPayment,
                                   style: Theme.of(context).textTheme.titleSmall,
                                 ),
                               ],
@@ -411,11 +412,11 @@ class ProfitsDetailsScreen extends StatelessWidget {
                 heightImage: height,
                 widthImage: width,
                 imagePath: 'assets/icons/error.svg',
-                message: 'Error while get data',
+                message: S.of(context).errorHappenedUnExpected,
                 clickBtn: () {
                   cubit.getDetails(profitId: profitId,fromPayment: fromPayment);
                 },
-                btnText: 'Reload',
+                btnText: S.of(context).reload,
               );
             }
             else if(state is NoInternetConnection){
@@ -425,11 +426,11 @@ class ProfitsDetailsScreen extends StatelessWidget {
                 heightImage: height,
                 widthImage: width,
                 imagePath: 'assets/images/connection_error.svg',
-                message: 'Check your internet connection',
+                message: S.of(context).checkInternet,
                 clickBtn: () {
                   cubit.getDetails(profitId: profitId,fromPayment: fromPayment);
                 },
-                btnText: 'Reload',
+                btnText: S.of(context).reload,
               );
             }
             else{

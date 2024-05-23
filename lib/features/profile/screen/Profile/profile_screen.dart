@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/buid_delete_accout.dart';
 import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/inside_icon_widgets.dart';
 import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/loading_shimmer.dart';
 import 'package:tricares_doctor_app/features/profile/screen/Profile/widget/top_widget.dart';
@@ -9,6 +8,7 @@ import '../../../../core/functions/fucntions.dart';
 import '../../../../core/network/Local/CashHelper.dart';
 import '../../../../core/widgets/Carousel Widget/build_list_title.dart';
 import '../../../../core/widgets/Login First/login_first_widget.dart';
+import '../../../../generated/l10n.dart';
 import '../../cubit/profile_cubit.dart';
 import '../Change Password/change_password_screen.dart';
 import '../Update Profile/update_profile_screen.dart';
@@ -97,10 +97,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height: height * 0.02,
                                 ),
                                 BuildListTitle(
-                                  text: 'Update Profile',
+                                  text: S.of(context).updateProfile,
                                   iconName: 'edit.svg',
                                   function: () {
-                                    navigateTo(context, UpdateProfile());
+                                    navigateTo(context, const UpdateProfile());
                                   },
                                 ),
                                 /*SizedBox(
@@ -149,10 +149,10 @@ class _ProfileScreenState extends State<ProfileScreen> {
                                   height: height * 0.02,
                                 ),
                                 BuildListTitle(
-                                  text: 'Change Password',
+                                  text: S.of(context).changePassword,
                                   iconName: 'change_password.svg',
                                   function: () {
-                                    navigateTo(context, ChangePasswordScreen());
+                                    navigateTo(context, const ChangePasswordScreen());
                                   },
                                 ),
                                 SizedBox(

@@ -12,6 +12,7 @@ import '../../../../../core/InputField/custom_input/email_input_field.dart';
 import '../../../../../core/InputField/custom_input/name_input_field.dart';
 import '../../../../../core/InputField/custom_input/phone_input_field.dart';
 import '../../../../../core/component/DropDownButtonField/drop_down_button_filed.dart';
+import '../../../../../generated/l10n.dart';
 
 class InvestorApplicationForm extends StatefulWidget {
   const InvestorApplicationForm({Key? key}) : super(key: key);
@@ -73,7 +74,7 @@ class _InvestorApplicationFormState extends State<InvestorApplicationForm> {
                         country = p0!;
                         setState(() {});
                       },
-                      hint: "Country",
+                      hint: S.of(context).country,
                       item: AuthCubit.get(context).allCounties.map((e) {
                         return e.label;
                       }).toList(),
@@ -95,10 +96,10 @@ class _InvestorApplicationFormState extends State<InvestorApplicationForm> {
                     gender = p0!;
                     setState(() {});
                   },
-                  hint: "Gender",
-                  item: const [
-                    "Male",
-                    "Female",
+                  hint: S.of(context).gender,
+                  item:  [
+                    S.of(context).male,
+                    S.of(context).female,
                   ],
                   num: 2,
                   cubit: AuthCubit.get(context),

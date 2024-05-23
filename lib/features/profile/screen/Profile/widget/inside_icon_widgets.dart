@@ -6,6 +6,8 @@ import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/features/home/screens/widget/title_widget.dart';
 import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 
+import '../../../../../generated/l10n.dart';
+
 
 class InsideIconWidget extends StatelessWidget {
   const InsideIconWidget({Key? key}) : super(key: key);
@@ -44,7 +46,7 @@ class InsideIconWidget extends StatelessWidget {
               children: [
                 CashHelper.prefs.getBool('login') != null
                     ? TitleWidget(
-                  title: 'Check Your',
+                  title: S.of(context).check,
                   onTap: () {},
                   showSeeAll: false,
                 )

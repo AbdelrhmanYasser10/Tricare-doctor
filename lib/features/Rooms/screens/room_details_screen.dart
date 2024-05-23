@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/component/Loading%20Widget/loading_widget.dart';
 import 'package:tricares_doctor_app/core/component/SVG/svg.dart';
-import 'package:tricares_doctor_app/core/widgets/Build%20Circle%20Image/build_circle_image.dart';
 import 'package:tricares_doctor_app/features/Rooms/cubits/room_details_cubit/room_details_cubit.dart';
 import 'package:tricares_doctor_app/features/Rooms/screens/widgets/name_position_top_Widget.dart';
 
@@ -11,6 +10,7 @@ import '../../../core/component/Network Image/network_image.dart';
 import '../../../core/functions/fucntions.dart';
 import '../../../core/globle/color/light_app_color.dart';
 import '../../../core/globle/color/shared_color.dart';
+import '../../../generated/l10n.dart';
 
 class RoomDetailsScreen extends StatelessWidget {
   final int roomId;
@@ -76,7 +76,7 @@ class RoomDetailsScreen extends StatelessWidget {
                                 height: width * 0.06,
                               ),
                               Text(
-                                'Description',
+                                S.of(context).description,
                                 style: Theme
                                     .of(context)
                                     .textTheme
@@ -104,7 +104,7 @@ class RoomDetailsScreen extends StatelessWidget {
                                 height: width * 0.02,
                               ),
                               Text(
-                                "Time Slot",
+                                S.of(context).timeSlot,
                                 style: Theme
                                     .of(context)
                                     .textTheme
@@ -209,11 +209,11 @@ class RoomDetailsScreen extends StatelessWidget {
                 heightImage: height,
                 widthImage: width,
                 imagePath: 'assets/icons/error.svg',
-                message: 'Error while get data',
+                message: S.of(context).errorHappenedUnExpected,
                 clickBtn: () {
                   cubit.getRoomDetails(roomId: roomId);
                 },
-                btnText: 'Reload',
+                btnText: S.of(context).reload,
               ),
             );
           }
@@ -225,12 +225,12 @@ class RoomDetailsScreen extends StatelessWidget {
                 heightImage: height,
                 widthImage: width,
                 imagePath: 'assets/images/connection_error.svg',
-                message: 'Check your internet connection',
+                message: S.of(context).checkInternet,
                 clickBtn: () {
                   cubit.getRoomDetails(roomId: roomId);
 
                 },
-                btnText: 'Reload',
+                btnText: S.of(context).reload,
               ),
             );
           }

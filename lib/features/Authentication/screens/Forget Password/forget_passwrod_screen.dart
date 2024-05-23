@@ -7,6 +7,7 @@ import 'package:tricares_doctor_app/core/InputField/custom_input/email_input_fie
 import '../../../../core/functions/fucntions.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/utils/utils.dart';
+import '../../../../generated/l10n.dart';
 import '../../cubit/auth_cubit.dart';
 import '../Reset Password/reset_password_screen.dart';
 
@@ -56,14 +57,14 @@ class _ForgetPasswordScreenState extends State<ForgetPasswordScreen> {
                 ),
               ),
               Text(
-                'Forget Password?',
+                S.of(context).forgetPassword,
                 style: Theme.of(context).textTheme.headlineLarge,
               ),
               SizedBox(
                 height: height * 0.01,
               ),
               Text(
-                'Do not t worry ! It happens. Please enter the phone number we will send the OTP in this email address.',
+                S.of(context).forgetPasswordMessage,
                 style: Theme.of(context).textTheme.titleMedium!.copyWith(
                       color: Colors.grey,
                     ),
@@ -152,7 +153,7 @@ class ForgetPasswordButton extends StatelessWidget {
             valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
           ),
         ),
-        child: const Text("Send"),
+        child: Text(S.of(context).send),
         onTap: (startLoading, stopLoading, btnState) async {
           if (formKey.currentState!.validate()) {
             if (btnState == ButtonState.idle) {

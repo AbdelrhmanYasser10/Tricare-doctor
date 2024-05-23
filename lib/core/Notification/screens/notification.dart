@@ -1,12 +1,9 @@
-import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:intl/intl.dart';
 import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 
-import '../../../core/functions/fucntions.dart';
 
-import '../../../features/home_layout/cubits/app_cubit/app_cubit.dart';
+import '../../../generated/l10n.dart';
 import '../../network/Local/CashHelper.dart';
 import '../../widgets/Empty Data Widget/empty_data_widget.dart';
 import '../../widgets/Error Widget/error_widget.dart';
@@ -38,7 +35,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Notifications'),
+        title: Text(S.of(context).notifications),
       ),
       body: PopScope(
         canPop: true,
@@ -62,7 +59,7 @@ class _NotificationScreenState extends State<NotificationScreen> {
                             error: cubit.notificationModel!.errors.join(' '))
                         : cubit.notificationModel!.data!.notification!.isEmpty
                             ? BuildEmptyDataWidget(
-                                text: "Don't have any notifications",
+                                text: S.of(context).dontHaveNotifications,
                               )
                             : ListView.builder(
                                 itemCount: cubit.notificationModel!.data!

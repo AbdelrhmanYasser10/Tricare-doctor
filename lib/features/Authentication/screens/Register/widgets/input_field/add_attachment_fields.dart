@@ -11,6 +11,7 @@ import 'package:tricares_doctor_app/core/globle/color/light_app_color.dart';
 import 'package:tricares_doctor_app/features/Authentication/cubit/auth_cubit.dart';
 
 import '../../../../../../core/utils/utils.dart';
+import '../../../../../../generated/l10n.dart';
 
 class AddAttachmentField extends StatelessWidget {
   const AddAttachmentField({Key? key}) : super(key: key);
@@ -23,7 +24,7 @@ class AddAttachmentField extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          "Your attachments",
+          S.of(context).yourAttachments,
           style: Theme.of(context).textTheme.titleMedium!,
         ),
         SizedBox(
@@ -35,7 +36,7 @@ class AddAttachmentField extends StatelessWidget {
               var snackBar = Utils.buildSnackBar2(
                 contentType: ContentType.failure,
                 context: context,
-                message: "please select at least one file",
+                message: S.of(context).addFile,
               );
               ScaffoldMessenger.of(context).showSnackBar(snackBar);
             }
@@ -74,7 +75,7 @@ class AddAttachmentField extends StatelessWidget {
                                       context: context,
                                       dialogType: DialogType.error,
                                       widget:Text(
-                                          "Want to remove this file?",
+                                          S.of(context).removeFile,
                                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
                                           color: Colors.white
                                         ),
@@ -120,7 +121,7 @@ class AddAttachmentField extends StatelessWidget {
                                       size: height * 0.075,
                                     ),
                                     Text(
-                                      'Add',
+                                      S.of(context).add,
                                       style: Theme.of(context)
                                           .textTheme
                                           .titleMedium!,
@@ -151,7 +152,7 @@ class AddAttachmentField extends StatelessWidget {
         ),
         Center(
           child: Text(
-            "Make sure each file has a unique name",
+            S.of(context).makeSure,
             style: Theme.of(context).textTheme.titleSmall!,
           ),
         ),
@@ -193,7 +194,7 @@ class AddAttachmentField extends StatelessWidget {
                     size: 64,
                   ),
                   Text(
-                    "Allowed Extensions [pdf,doc,jpg,jpeg,png]\n maximum 5MB"
+                    S.of(context).allowedExtensions
                      ,
                     style: Theme.of(context).textTheme.bodySmall!.copyWith(
                       color: Colors.grey.shade900

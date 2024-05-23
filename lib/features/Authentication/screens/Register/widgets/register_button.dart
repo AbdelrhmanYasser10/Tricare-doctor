@@ -7,6 +7,7 @@ import 'package:tricares_doctor_app/features/home_layout/screens/home_layout.dar
 
 import '../../../../../core/globle/color/shared_color.dart';
 import '../../../../../core/utils/utils.dart';
+import '../../../../../generated/l10n.dart';
 import '../../../cubit/auth_cubit.dart';
 
 class RegisterButton extends StatelessWidget {
@@ -53,7 +54,7 @@ class RegisterButton extends StatelessWidget {
             var snackBar = Utils.buildSnackBar2(
                 contentType: ContentType.success,
                 context: context,
-                message: "Your request has been sent successfully");
+                message: S.of(context).yourRequestSentSuccessfully);
             ScaffoldMessenger.of(context).showSnackBar(snackBar);
             navigateToToFinish(context,const HomeLayoutScreen());
           }
@@ -61,13 +62,13 @@ class RegisterButton extends StatelessWidget {
           var snackBar = Utils.buildSnackBar2(
               contentType: ContentType.failure,
               context: context,
-              message: "error");
+              message: S.of(context).errorHappenedUnExpected);
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         } else if (state is NoInterNetConnection) {
           var snackBar = Utils.buildSnackBar2(
               contentType: ContentType.failure,
               context: context,
-              message: "Check your internet connection");
+              message: S.of(context).checkInternet);
           ScaffoldMessenger.of(context).showSnackBar(snackBar);
         }
       },
@@ -86,7 +87,7 @@ class RegisterButton extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
           ),
-          child: const Text("Apply"),
+          child: Text(S.of(context).applyBtn),
           onTap: (startLoading, stopLoading, btnState) async {
             if (formKey.currentState!.validate()) {
               if (btnState == ButtonState.idle) {
@@ -106,7 +107,7 @@ class RegisterButton extends StatelessWidget {
                     var snackBar = Utils.buildSnackBar2(
                         contentType: ContentType.failure,
                         context: context,
-                        message: "You must add one file at least");
+                        message: S.of(context).addFile);
                     ScaffoldMessenger.of(context).showSnackBar(snackBar);
                   }
                 } else {

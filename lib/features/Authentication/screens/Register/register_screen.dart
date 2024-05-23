@@ -4,6 +4,7 @@ import 'package:tricares_doctor_app/features/Authentication/screens/Register/wid
 import 'package:tricares_doctor_app/features/Authentication/screens/Register/widgets/investor_application_form.dart';
 
 import '../../../../core/globle/color/shared_color.dart';
+import '../../../../generated/l10n.dart';
 import '../Login/login_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -44,11 +45,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        'Apply Now',
+                        S.of(context).applyNow,
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
                       Text(
-                        'Enter Your Personal Information',
+                        S.of(context).personalInfo,
                         style:
                             Theme.of(context).textTheme.titleMedium!.copyWith(
                                   color: Colors.grey,
@@ -63,7 +64,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           children: [
                             Expanded(
                               child: WorkerButtonCard(
-                                title: "Doctor",
+                                title: S.of(context).doctor,
                                 icon: "doctor.svg",
                                 active: isDoctor,
                                 onTap: (){
@@ -78,7 +79,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                             ),
                             Expanded(
                               child: WorkerButtonCard(
-                                title: "Investor",
+                                title: S.of(context).investor,
                                 icon: "investor.svg",
                                 active: !isDoctor,
                                 onTap: (){
@@ -104,7 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
                       Text(
-                        'Have an account?',
+                        S.of(context).haveAnAccount,
                         style: Theme.of(context).textTheme.titleMedium!,
                       ),
                       TextButton(
@@ -112,11 +113,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           Navigator.pushReplacement(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => LoginScreen()),
+                                  builder: (context) => const LoginScreen()),
                               result: (route) => false);
                         },
                         child: Text(
-                          'Login',
+                          S.of(context).login,
                           style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                                 decoration: TextDecoration.underline,
                                 decorationColor: AppColor.primaryColor,

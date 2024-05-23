@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
 import '../../component/SVG/svg.dart';
 
 class BuildEmptyDataWidget extends StatelessWidget {
@@ -25,7 +26,7 @@ class BuildEmptyDataWidget extends StatelessWidget {
             const BuildIconSvg(name: 'empty.svg',size: 120,color: Colors.black,),
             SizedBox(height: height*0.03,),
             Text(
-             text?? 'Empty Data in This Screen',
+             text?? S.of(context).emptyData,
               style: Theme.of(context).textTheme.titleMedium,
               textAlign: TextAlign.center,
             ),

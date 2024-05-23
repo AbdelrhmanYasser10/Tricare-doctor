@@ -21,6 +21,8 @@ import 'features/home_layout/screens/splash_screen.dart';
 import 'features/profile/cubit/profile_cubit.dart';
 import 'features/profits/cubits/paginator_cubit/paginator_cubit.dart';
 import 'package:intl/date_symbol_data_local.dart';
+import 'generated/l10n.dart';
+import 'package:flutter_localizations/flutter_localizations.dart';
 
 import 'firebase_options.dart';
 
@@ -72,7 +74,18 @@ class MyApp extends StatelessWidget {
 
       child: BlocBuilder<GlobalCubit, GlobalState>(
         builder: (context, state) {
-          return MaterialApp(
+          var cubit = context.read<GlobalCubit>();
+
+          return  MaterialApp(
+            locale: Locale(cubit.local),
+            localizationsDelegates: const [
+              S.delegate,
+              GlobalMaterialLocalizations.delegate,
+              GlobalWidgetsLocalizations.delegate,
+              GlobalCupertinoLocalizations.delegate,
+            ],
+            supportedLocales: S.delegate.supportedLocales,
+
             title: 'TriCare Partners',
             debugShowCheckedModeBanner: false,
             theme: AppLightTheme.lightThemeData,

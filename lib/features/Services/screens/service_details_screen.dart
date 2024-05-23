@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/features/Services/screens/widgets/service_details_body_consumer.dart';
 
+import '../../../generated/l10n.dart';
 import '../cubits/services_cubit.dart';
 
 
@@ -18,8 +19,8 @@ class ServicesDetailsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
-            'Session Details',
+          title:  Text(
+            S.of(context).services,
           ),
         ),
         body: ServiceDetailsBodyConsumer(

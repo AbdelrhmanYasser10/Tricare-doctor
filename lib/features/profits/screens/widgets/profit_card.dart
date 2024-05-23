@@ -9,6 +9,7 @@ import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/features/profits/screens/profit_details_screen.dart';
 
 import '../../../../core/globle/color/shared_color.dart';
+import '../../../../generated/l10n.dart';
 import '../../models/profits_model.dart';
 
 class ProfitCard extends StatelessWidget {
@@ -53,7 +54,7 @@ class ProfitCard extends StatelessWidget {
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Text(
-                      "Profit Request #${profit.pARTORDID}",
+                      "${S.of(context).profitReq} #${profit.pARTORDID}",
                       style: Theme.of(context).textTheme.headlineSmall,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
@@ -92,7 +93,7 @@ class ProfitCard extends StatelessWidget {
 
 
           BuildButton(
-            text: 'Show Details',
+            text: S.of(context).showDetails,
             onPressed: () {
               navigateTo(
                 context,

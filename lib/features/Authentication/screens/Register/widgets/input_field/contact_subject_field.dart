@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/InputField/validation/input_validator.dart';
 import '../../../../../../core/component/TextField/text_form_field.dart';
+import '../../../../../../generated/l10n.dart';
 
 
 class ContactSubjectField extends StatelessWidget {
@@ -15,7 +16,7 @@ class ContactSubjectField extends StatelessWidget {
   Widget build(BuildContext context) {
     return  BuildTextFormField(
       controller: controller,
-      hintText: 'Request Subject',
+      hintText: S.of(context).requestSubject,
       prefixIcon: const Icon(FontAwesomeIcons.alignCenter),
       maxLines: 1,
       keyboardType: TextInputType.emailAddress,

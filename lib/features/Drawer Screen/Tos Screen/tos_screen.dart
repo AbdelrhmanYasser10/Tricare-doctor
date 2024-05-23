@@ -4,6 +4,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 import '../../../core/component/Network Image/network_image.dart';
 import '../../../core/functions/fucntions.dart';
+import '../../../generated/l10n.dart';
 import '../../Drawer/cubit/drawer_cubit.dart';
 import '../About Us Screen/about_us_screen.dart';
 
@@ -17,14 +18,14 @@ class TosScreen extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Terms and Conditions'),
+        title: Text(S.of(context).terms),
       ),
 
       body: BlocBuilder<DrawerCubit, DrawerState>(
         builder: (context, state) {
           var cubit = context.read<DrawerCubit>();
           return  cubit.tosModel == null? BuildShimmerAboutApplication(
-            title: 'Terms and Conditions',
+            title: S.of(context).terms,
           ):
           Padding(
             padding:  EdgeInsets.symmetric(horizontal: width*0.03),

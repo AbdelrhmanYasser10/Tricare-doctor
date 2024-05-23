@@ -7,6 +7,8 @@ import 'package:tricares_doctor_app/features/appointments/screens/widgets/schedu
 import '../../../../core/component/Loading Widget/loading_widget.dart';
 import '../../../../core/component/MessageWidget/message_widget.dart';
 import '../../../../core/utils/utils.dart';
+import '../../../../core/widgets/Empty Data Widget/empty_data_widget.dart';
+import '../../../../generated/l10n.dart';
 
 
 class ScheduleBodyConsumer extends StatelessWidget {
@@ -72,7 +74,7 @@ class ScheduleBodyConsumer extends StatelessWidget {
                     );
                   }
                   else{
-                    return const SizedBox.shrink();
+                    return BuildEmptyDataWidget();
                   }
                 },
                 separatorBuilder: (context, index) {
@@ -91,11 +93,11 @@ class ScheduleBodyConsumer extends StatelessWidget {
             heightImage: height,
             widthImage: width,
             imagePath: 'assets/images/error.png',
-            message: 'Error while get data',
+            message: S.of(context).errorHappenedUnExpected,
             clickBtn: () {
               cubit.getSchedule();
             },
-            btnText: 'Reload',
+            btnText: S.of(context).reload,
           );
         }
         else if(state is NoInternetConnection){
@@ -105,12 +107,12 @@ class ScheduleBodyConsumer extends StatelessWidget {
             heightImage: height,
             widthImage: width,
             imagePath: 'assets/images/connection_error.svg',
-            message: 'Check your internet connection',
+            message: S.of(context).checkInternet,
             clickBtn: () {
               cubit.getSchedule();
 
             },
-            btnText: 'Reload',
+            btnText: S.of(context).reload,
           );
         }
         else{

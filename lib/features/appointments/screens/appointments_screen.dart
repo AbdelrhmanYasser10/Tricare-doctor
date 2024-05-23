@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/features/appointments/cubits/appointement_cubit.dart';
 import 'package:tricares_doctor_app/features/appointments/screens/widgets/schedule_body_consumer.dart';
 
+import '../../../generated/l10n.dart';
 import '../../Drawer/screen/drawer_screen.dart';
 
 class AppointmentsScreen extends StatefulWidget {
@@ -24,8 +25,8 @@ class _AppointmentsScreenState extends State<AppointmentsScreen> {
           isFromHome: false,
         ),
         appBar: AppBar(
-          title: const Text(
-            "Your Schedule",
+          title:  Text(
+            S.of(context).mySchedule,
           ),
           centerTitle: true,
         ),

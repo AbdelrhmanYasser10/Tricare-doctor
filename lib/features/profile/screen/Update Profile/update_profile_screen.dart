@@ -5,13 +5,13 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 
 
 import '../../../../core/InputField/custom_input/email_input_filed.dart';
-import '../../../../core/InputField/custom_input/name_input_filed.dart';
 import '../../../../core/InputField/custom_input/phone_input_filed.dart';
 import '../../../../core/component/DropDownButtonField/drop_down_button_filed.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Build Password First/build_password_first.dart';
 import '../../../../core/widgets/Down Button Stack/down_button_stack.dart';
+import '../../../../generated/l10n.dart';
 import '../../cubit/profile_cubit.dart';
 
 class UpdateProfile extends StatefulWidget {
@@ -45,7 +45,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
-          title: Text('Update Profile'),
+          title: Text(S.of(context).updateProfile),
         ),
         body: SizedBox(
           height: height,
@@ -92,7 +92,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              'Email',
+                              S.of(context).email,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
@@ -106,7 +106,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               height: height * 0.02,
                             ),
                             Text(
-                              'Phone',
+                              S.of(context).phone,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
@@ -123,7 +123,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               height: height * 0.02,
                             ),
                             Text(
-                              'Whatsapp',
+                              S.of(context).wpPhone,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
@@ -137,7 +137,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              'Country',
+                              S.of(context).country,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
@@ -164,7 +164,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               height: height * 0.01,
                             ),
                             Text(
-                              'Whatsapp notifications',
+                              S.of(context).wpNotifications,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
@@ -183,7 +183,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                                 children: [
                                   Expanded(
                                     child: Text(
-                                      "Enable Whatsapp notifications",
+                                      S.of(context).enable,
                                       style: Theme.of(context).textTheme.titleMedium!.copyWith(),
                                     ),
                                   ),
@@ -221,7 +221,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                   formKey: formKey,
                   passwordController: passwordController,
 
-                  textButton: 'Update Profile',
+                  textButton: S.of(context).updateProfile,
                   futureFunction: () async {
                     await context.read<ProfileCubit>().updateProfile(
                           name: context.read<ProfileCubit>().nameController.text.trim(),

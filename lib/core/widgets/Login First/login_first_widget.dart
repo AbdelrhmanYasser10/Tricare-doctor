@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../features/Authentication/screens/Login/login_screen.dart';
+import '../../../generated/l10n.dart';
 import '../../functions/fucntions.dart';
 
 
@@ -31,7 +32,7 @@ class BuildLoginFirst extends StatelessWidget {
 
 
             Text(
-              'Login to your account first',
+              S.of(context).loginFirst,
               style: Theme.of(context).textTheme.titleMedium,
 
             ),
@@ -42,9 +43,9 @@ class BuildLoginFirst extends StatelessWidget {
               width: width,
               child: ElevatedButton(
                 onPressed: (){
-                  navigateTo(context, LoginScreen());
+                  navigateTo(context, const LoginScreen());
                 },
-                child: Text('Login'),
+                child: Text(S.of(context).login),
               ),
             ),
 

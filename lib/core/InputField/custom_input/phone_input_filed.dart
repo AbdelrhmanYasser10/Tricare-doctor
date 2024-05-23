@@ -1,6 +1,7 @@
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
 import '../../component/TextField/text_form_field.dart';
 import '../validation/input_validator.dart';
 
@@ -15,7 +16,7 @@ class PhoneFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return  BuildTextFormField(
       controller: controller,
-      hintText: 'Phone',
+      hintText: S.of(context).phone,
       prefixIcon: const Icon(FontAwesomeIcons.mobileAlt),
       suffixIcon: edit? const Icon(FontAwesomeIcons.edit):null,
       maxLines: 1,
@@ -36,7 +37,7 @@ class WhatsappPhoneField extends StatelessWidget {
   Widget build(BuildContext context) {
     return  BuildTextFormField(
       controller: controller,
-      hintText: 'Whatsapp',
+      hintText: S.of(context).whatsapp,
       prefixIcon: const Icon(FontAwesomeIcons.whatsapp),
       suffixIcon: edit? const Icon(FontAwesomeIcons.edit):null,
       maxLines: 1,

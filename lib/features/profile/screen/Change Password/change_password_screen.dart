@@ -8,6 +8,7 @@ import '../../../../core/InputField/custom_input/password_input_field.dart';
 import '../../../../core/component/Loading Button/loading_button.dart';
 import '../../../../core/globle/color/light_app_color.dart';
 import '../../../../core/utils/utils.dart';
+import '../../../../generated/l10n.dart';
 import '../../cubit/profile_cubit.dart';
 
 class ChangePasswordScreen extends StatefulWidget {
@@ -40,7 +41,7 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Change Password'),
+        title: Text(S.of(context).changePassword),
       ),
       body: SizedBox(
         width: width,
@@ -58,19 +59,19 @@ class _ChangePasswordScreenState extends State<ChangePasswordScreen> {
                     ),
                     PasswordFiled(
                         controller: currentPasswordController,
-                        hint: 'Enter Current Password'),
+                        hint: S.of(context).enterCurrentPassword),
                     SizedBox(
                       height: height * 0.02,
                     ),
                     PasswordFiled(
                         controller: newPasswordController,
-                        hint: 'Enter New Password'),
+                        hint: S.of(context).enterNewPassword),
                     SizedBox(
                       height: height * 0.02,
                     ),
                     PasswordFiled(
                         controller: confirmPasswordController,
-                        hint: 'Enter Confirm Password'),
+                        hint: S.of(context).enterNewPasswordConf),
                   ],
                 ),
               ),
@@ -203,7 +204,7 @@ class ChangePasswordButton extends StatelessWidget {
                           }
                         }
                       },
-                      text: 'Change Password'),
+                      text: S.of(context).changePassword),
                 ),
               ),
             ),

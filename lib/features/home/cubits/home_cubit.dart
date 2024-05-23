@@ -22,6 +22,8 @@ class HomeCubit extends Cubit<HomeState> {
 
   void getTabs()async{
     emit(TabsDataLoading());
+    titles = [];
+    content = [];
     if(await _connectionService.isInternetConnected()){
       DioHelper.getData(url: EndPoints.about_request).then((value) {
         if(value.statusCode == 200){

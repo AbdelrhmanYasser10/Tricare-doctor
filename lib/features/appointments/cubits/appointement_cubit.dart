@@ -23,8 +23,10 @@ class AppointementCubit extends Cubit<AppointementState> {
     if(await _connectionService.isInternetConnected()) {
       DioHelper.postData(
           data: {},
+
           url: EndPoints.schedule,
-          token: CashHelper.prefs.getString('token') ?? ""
+          token: CashHelper.prefs.getString('token') ?? "",
+
       ).then((value) {
         if (value.statusCode == 200) {
           scheduleModel = ScheduleModel.fromJson(value.data);

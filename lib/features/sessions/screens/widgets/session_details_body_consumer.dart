@@ -9,6 +9,7 @@ import '../../../../core/component/SVG/svg.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Show Rate/show_rate.dart';
+import '../../../../generated/l10n.dart';
 
 class SessionDetailsBodyConsumer extends StatelessWidget {
   final int sessionId;
@@ -67,15 +68,15 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Session #${cubit.sessionDetailsModel!.data!.session!.sESSIONID!}",
+                          "${S.of(context).sessionTxt} #${cubit.sessionDetailsModel!.data!.session!.sESSIONID!}",
                           style: Theme.of(context).textTheme.titleLarge,
                         ),
                         Text(
                           cubit.sessionDetailsModel!.data!.session!
                                       .sessionPartnerAttended! ==
                                   "0"
-                              ? "Not Attended"
-                              : "Attended",
+                              ? S.of(context).notAttended
+                              :  S.of(context).attended,
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ],
@@ -92,7 +93,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Date",
+                              S.of(context).date,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
@@ -140,7 +141,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
                             Text(
-                              "Start",
+                              S.of(context).start,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
@@ -190,7 +191,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         Text(
-                          "Duration",
+                          S.of(context).duration,
                           style: Theme.of(context).textTheme.titleMedium,
                         ),
                         SizedBox(
@@ -235,7 +236,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                     height: height * 0.02,
                   ),
                   Text(
-                    "Patient Info",
+                    S.of(context).patientInfo,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
                   SizedBox(
@@ -267,8 +268,8 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                           getIcon(session.sessionPatientAttended!, width),
                           Text(
                             session.sessionPatientAttended! == "0"
-                                ? "Not Attended"
-                                : "Attended",
+                                ? S.of(context).notAttended
+                                : S.of(context).attended,
                             style: Theme.of(context).textTheme.titleSmall,
                           ),
                         ],
@@ -285,7 +286,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Patient Notes",
+                        S.of(context).patientNotes,
                         style: Theme.of(context).textTheme.headlineMedium,
                       ),
                       Text(
@@ -310,11 +311,11 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
             heightImage: height,
             widthImage: width,
             imagePath: 'assets/images/error.png',
-            message: 'Error while get data',
+            message: S.of(context).errorHappenedUnExpected,
             clickBtn: () {
               cubit.getSessionDetails(sessionId: sessionId);
             },
-            btnText: 'Reload',
+            btnText:S.of(context).reload,
           );
         } else if (state is NoInternetConnection) {
           return MessageWidget(
@@ -323,11 +324,11 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
             heightImage: height,
             widthImage: width,
             imagePath: 'assets/images/connection_error.svg',
-            message: 'Check your internet connection',
+            message: S.of(context).checkInternet,
             clickBtn: () {
               cubit.getSessionDetails(sessionId: sessionId);
             },
-            btnText: 'Reload',
+            btnText: S.of(context).reload,
           );
         } else {
           return const SizedBox();

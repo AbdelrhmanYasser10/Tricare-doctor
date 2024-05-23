@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:tricares_doctor_app/core/InputField/validation/input_validator.dart';
 
+import '../../../../../../generated/l10n.dart';
+
 class RequestMessageField extends StatelessWidget {
   final TextEditingController controller;
 
@@ -22,7 +24,7 @@ class RequestMessageField extends StatelessWidget {
       validator: InputValidator(context).subjectMessageValidator,
       keyboardType: TextInputType.text,
       decoration: InputDecoration(
-        hintText: "Enter your message here",
+        hintText: S.of(context).enterYourMessage,
         border: InputBorder.none,
         errorBorder: InputBorder.none,
         contentPadding: EdgeInsets.symmetric(

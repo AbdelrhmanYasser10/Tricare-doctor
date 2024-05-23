@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 
+import '../../../generated/l10n.dart';
 import '../../component/TextField/text_form_field.dart';
 import '../validation/input_validator.dart';
 
@@ -13,7 +14,7 @@ class EmailFiled extends StatelessWidget {
   Widget build(BuildContext context) {
     return  BuildTextFormField(
       controller: controller,
-      hintText: 'Email',
+      hintText: S.of(context).email,
       prefixIcon: const Icon(Icons.email),
       maxLines: 1,
       keyboardType: TextInputType.emailAddress,

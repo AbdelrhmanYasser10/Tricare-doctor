@@ -5,6 +5,7 @@ import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 
 import '../../../../core/component/SVG/svg.dart';
 import '../../../../core/globle/color/shared_color.dart';
+import '../../../../generated/l10n.dart';
 
 class BalanceCardConsumer extends StatelessWidget {
   const BalanceCardConsumer({Key? key}) : super(key: key);
@@ -49,7 +50,7 @@ class BalanceCardConsumer extends StatelessWidget {
                   size: height * 0.1,
                 ),
                 Text(
-                  'Your balance ${ProfileCubit.get(context).userModel!.data!.partner!.partnerBalance!}',
+                  '${S.of(context).balance} ${ProfileCubit.get(context).userModel!.data!.partner!.partnerBalance!}',
                   style: Theme.of(context)
                       .textTheme
                       .titleMedium!

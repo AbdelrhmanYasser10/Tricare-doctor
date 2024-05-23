@@ -3,6 +3,8 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/features/sessions/cubits/session_details_cubit/session_details_cubit.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/widgets/session_details_body_consumer.dart';
 
+import '../../../generated/l10n.dart';
+
 
 class SessionDetailsScreen extends StatelessWidget {
   final int sessionId;
@@ -17,8 +19,8 @@ class SessionDetailsScreen extends StatelessWidget {
       child: Scaffold(
         appBar: AppBar(
           centerTitle: true,
-          title: const Text(
-            'Session Details',
+          title:  Text(
+            S.of(context).sessionDetails,
           ),
         ),
         body: SessionDetailsBodyConsumer(

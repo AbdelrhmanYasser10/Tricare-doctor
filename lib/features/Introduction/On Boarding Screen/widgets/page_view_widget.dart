@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:tricares_doctor_app/features/Introduction/On%20Boarding%20Screen/widgets/top_image.dart';
 
+import '../../../../generated/l10n.dart';
 import 'down_container.dart';
 
 
@@ -44,18 +45,18 @@ class OnBoardingData {
 List<OnBoardingData> data = [
   OnBoardingData(
       image: 'assets/images/board1.jpg',
-      title: 'Welcome To TriCare',
-      description: 'welcome to TriCare, your trusted companion for personalized medical care. Experience a new era of healthcare right at your fingertips'
+      title: S.current.board1Title,
+      description: S.current.introDescription
   ),
   OnBoardingData(
       image: 'assets/images/board2.jpg',
-      title: 'Your Health Your Way',
-      description: 'welcome to TriCare, your trusted companion for personalized medical care. Experience a new era of healthcare right at your fingertips'
+      title: S.current.board2Title,
+      description: S.current.introDescription
   ),
 
   OnBoardingData(
       image: 'assets/images/board3.jpg',
-      title: 'Connect With TriCare',
-      description: 'welcome to TriCare, your trusted companion for personalized medical care. Experience a new era of healthcare right at your fingertips'
+      title: S.current.board3Title,
+      description: S.current.introDescription
   ),
 ];

@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/widgets/Show Rate/show_rate.dart';
+import '../../../../generated/l10n.dart';
 
 
 class NamePositionTopWidget extends StatelessWidget {
@@ -23,7 +23,7 @@ class NamePositionTopWidget extends StatelessWidget {
           ),
 
           Text(
-            'Branch $branch',
+            '${S.of(context).branch} $branch',
             style: Theme.of(context).textTheme.titleSmall!.copyWith(
               color: Colors.grey,
             ),

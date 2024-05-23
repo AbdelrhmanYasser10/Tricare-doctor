@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/widgets/tab_button.dart';
 
-import '../../../../core/globle/color/shared_color.dart';
+import '../../../../generated/l10n.dart';
 import '../../cubits/sessions_cubit/sessions_cubit.dart';
 
 class TabShape extends StatelessWidget {
@@ -26,7 +26,7 @@ class TabShape extends StatelessWidget {
                   fn: (){
                     cubit.changeTabIdx(idx: 0);
                   },
-                  txt: "Current",
+                  txt: S.of(context).currentWord,
                   activeIdx: 0,
                 ),
               ),
@@ -39,7 +39,7 @@ class TabShape extends StatelessWidget {
                   fn: (){
                     cubit.changeTabIdx(idx: 1);
                   },
-                  txt: "Previous",
+                  txt: S.of(context).previous,
                   activeIdx: 1,
                 ),
               ),

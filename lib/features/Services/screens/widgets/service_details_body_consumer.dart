@@ -14,6 +14,7 @@ import '../../../../core/component/MessageWidget/message_widget.dart';
 import '../../../../core/functions/fucntions.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Carousel Widget/carsousel_widget_screen.dart';
+import '../../../../generated/l10n.dart';
 
 class ServiceDetailsBodyConsumer extends StatelessWidget {
   final int serviceId;
@@ -79,7 +80,7 @@ class ServiceDetailsBodyConsumer extends StatelessWidget {
                   ),
                   cubit.serviceDetailsModel!.data!.similarServices!.isNotEmpty
                       ? Text(
-                          "Similar Services",
+                          S.of(context).similarServices,
                           style: Theme.of(context).textTheme.headlineMedium!,
                         )
                       : const SizedBox(),
@@ -113,15 +114,14 @@ class ServiceDetailsBodyConsumer extends StatelessWidget {
                   ),
                   BlocBuilder<pc.ProfileCubit, pc.ProfileState>(
                     builder: (context, state) {
-                      if(CashHelper.prefs.get('login') ==null) {
+                      if (CashHelper.prefs.get('login') == null) {
                         return BuildButton(
-                          text: "Apply for partnership",
+                          text: S.of(context).apply,
                           onPressed: () {
-                            navigateTo(context,const RegisterScreen());
+                            navigateTo(context, const RegisterScreen());
                           },
                         );
-                      }
-                      else{
+                      } else {
                         return const SizedBox.shrink();
                       }
                     },

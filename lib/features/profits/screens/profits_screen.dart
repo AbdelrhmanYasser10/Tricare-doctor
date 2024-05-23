@@ -6,6 +6,7 @@ import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/bodyConsumer.dart';
 
 import '../../../core/network/Local/CashHelper.dart';
+import '../../../generated/l10n.dart';
 
 class ProfitsScreen extends StatefulWidget {
   const ProfitsScreen({Key? key}) : super(key: key);
@@ -25,7 +26,7 @@ class _ProfitsScreenState extends State<ProfitsScreen> {
       ),
       appBar: AppBar(
         title: Text(
-            "Profits requests"
+            S.of(context).myProfits
         ),
       ),
       body: CashHelper.getData(key: 'login') == null

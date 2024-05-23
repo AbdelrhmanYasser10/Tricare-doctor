@@ -14,6 +14,7 @@ import '../../../core/connection/internet_connection.dart';
 import '../../../core/network/Local/CashHelper.dart';
 import '../../../core/network/Remote/DioHelper.dart';
 import '../../../core/network/endPoind.dart';
+import '../../../generated/l10n.dart';
 import '../../Authentication/models/countries_model.dart';
 import '../../Rooms/screens/rooms_screen.dart';
 import '../../appointments/screens/appointments_screen.dart';
@@ -107,15 +108,15 @@ class ProfileCubit extends Cubit<ProfileState> {
       image = null;
       categoriesName =  [
         userModel!.data!.partner!.partnerDoctor == "1"
-            ? 'Schedule'
+            ? S.current.schedule
             : '',
         userModel!.data!.partner!.partnerDoctor == "1"
-            ? 'Sessions'
+            ? S.current.session
             : '',
         userModel!.data!.partner!.partnerInvestor == "1"
-            ? 'Rooms'
+            ? S.current.rooms
             : '',
-        'Profits',
+        S.current.profits,
       ];
       screens =  const[
         AppointmentsScreen(),

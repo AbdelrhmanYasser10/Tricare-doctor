@@ -3,6 +3,7 @@ import 'package:loading_btn/loading_btn.dart';
 
 
 import '../../../../../core/globle/color/dark_app_color.dart';
+import '../../../generated/l10n.dart';
 import '../../InputField/custom_input/password_input_field.dart';
 import '../../component/Loading Button/loading_button.dart';
 import '../../globle/color/shared_color.dart';
@@ -48,10 +49,10 @@ class BuildProfileButton extends StatelessWidget {
                   child: AlertDialog(
 
                     surfaceTintColor: DarkAppColor.foreGroundColors,
-                    title:  const Padding(
-                      padding: EdgeInsets.all(8.0),
+                    title:   Padding(
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
-                        "Your Password",
+                        S.of(context).urPassword,
                       ),
                     ),
 
@@ -60,11 +61,11 @@ class BuildProfileButton extends StatelessWidget {
                       child: Column(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          PasswordFiled(controller: passwordController, hint: 'password'),
+                          PasswordFiled(controller: passwordController, hint: S.of(context).password),
                           SizedBox(height: height*0.02,),
                           SizedBox(width: width,),
                           LoadingButton(
-                            text: 'Send',
+                            text: S.of(context).send,
                             onTap: (startLoading, stopLoading, btnState) async {
                               if (formPasswordKey.currentState!.validate()) {
                                 if (btnState == ButtonState.idle) {

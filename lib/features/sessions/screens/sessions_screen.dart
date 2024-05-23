@@ -4,6 +4,7 @@ import 'package:tricares_doctor_app/features/sessions/screens/widgets/page_view_
 import 'package:tricares_doctor_app/features/sessions/screens/widgets/tab_shape.dart';
 
 import '../../../core/network/Local/CashHelper.dart';
+import '../../../generated/l10n.dart';
 
 
 class SessionsScreen extends StatelessWidget {
@@ -16,8 +17,8 @@ class SessionsScreen extends StatelessWidget {
     var width = MediaQuery.of(context).size.width;
     return Scaffold(
       appBar: fromHome ? AppBar(
-        title: const Text(
-          "Your Sessions",
+        title:  Text(
+         S.of(context).mySessions,
         ),
         centerTitle: true,
       ):null,

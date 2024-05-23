@@ -9,6 +9,7 @@ import 'package:tricares_doctor_app/features/Rooms/models/rooms_model.dart';
 import 'package:tricares_doctor_app/features/Rooms/screens/room_details_screen.dart';
 
 import '../../../../core/globle/color/shared_color.dart';
+import '../../../../generated/l10n.dart';
 
 class RoomCard extends StatelessWidget {
   final Rooms room;
@@ -118,7 +119,7 @@ class RoomCard extends StatelessWidget {
           const Divider(),
 
           BuildButton(
-            text: 'Show Timeslot',
+            text: S.of(context).showTimeSlot,
             onPressed: () {
               navigateTo(
                   context,

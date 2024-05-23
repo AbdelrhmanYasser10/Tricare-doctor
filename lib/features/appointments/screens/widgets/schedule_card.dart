@@ -1,14 +1,12 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/component/Network%20Image/network_image.dart';
 import 'package:tricares_doctor_app/core/component/SVG/svg.dart';
-import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/features/appointments/models/schedule_model.dart';
 
 import '../../../../core/Global Cubit/global_cubit.dart';
 import '../../../../core/globle/color/shared_color.dart';
+import '../../../../generated/l10n.dart';
 
 class ScheduleCard extends StatelessWidget {
   final DayRooms daysSlots;
@@ -59,7 +57,7 @@ class ScheduleCard extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             Text(
-                              "Time Slots",
+                              S.of(context).timeSlot,
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
@@ -117,7 +115,9 @@ class ScheduleCard extends StatelessWidget {
                       color: AppColor.primaryColor.withOpacity(0.4),
                       borderRadius: BorderRadius.only(
                         topRight: context.read<GlobalCubit>().local == "en" ? Radius.circular(15.0):Radius.circular(0.0),
-                        topLeft: context.read<GlobalCubit>().local == "ar" ? Radius.circular(15.0):Radius.circular(0.0),
+                        topLeft: context.read<GlobalCubit>().local != "en" ? Radius.circular(15.0):Radius.circular(0.0),
+                        bottomLeft: context.read<GlobalCubit>().local != "en" ? Radius.circular(15.0):Radius.circular(0.0),
+                        bottomRight: context.read<GlobalCubit>().local == "en" ? Radius.circular(15.0):Radius.circular(0.0),
                       )
                     ),
                     child: Center(

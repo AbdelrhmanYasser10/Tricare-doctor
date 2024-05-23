@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../generated/l10n.dart';
 import '../network/Local/CashHelper.dart';
 
 part 'gloabl_state.dart';
@@ -44,13 +45,17 @@ class GlobalCubit extends Cubit<GlobalState> {
     if (value == 1) {
       await CashHelper.prefs.setString('local', 'en');
       local = 'en';
+      await S.load(Locale(local));
+
       selectOption = 1;
     } else {
       await CashHelper.prefs.setString('local', 'ar');
       local = 'ar';
+      local = 'en';
+      await S.load(Locale(local));
       selectOption = 2;
     }
 
-    emit(ChangeTheme());
+      emit(ChangeLocal());
   }
 }

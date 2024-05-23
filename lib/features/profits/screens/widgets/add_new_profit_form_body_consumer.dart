@@ -2,10 +2,8 @@ import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/cubits/add_profit_cubit/add_profit_cubit.dart';
-import 'package:tricares_doctor_app/features/profits/cubits/profits_cubit/profits_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/text_fields.dart';
 
 import '../../../../core/component/Loading Widget/loading_widget.dart';
@@ -13,6 +11,7 @@ import '../../../../core/functions/fucntions.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Build Password First/build_password_first.dart';
+import '../../../../generated/l10n.dart';
 import '../../../Drawer Screen/Tos Screen/tos_screen.dart';
 import '../../../Drawer/cubit/drawer_cubit.dart';
 
@@ -58,7 +57,7 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
                 var snackBar = Utils.buildSnackBar2(
                   contentType: ContentType.success,
                   context: c,
-                  message: "Profit Request added successfully",
+                  message: S.of(c).profitReqAddedSuccessfully,
                 );
                 ScaffoldMessenger.of(c).showSnackBar(snackBar);
                 Navigator.pop(c);
@@ -79,9 +78,9 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
                         controller: _amountController,
                         validation: (value) {
                           if (value == null || value.isEmpty) {
-                            return "Amount value cannot be empty";
+                            return S.of(context).amountValidation;
                           } else if (num.parse(value) < 0) {
-                            return "Amount value cannot be null";
+                            return S.of(context).amountValidationNull;
                           } else {
                             var currBalance = ProfileCubit.get(context)
                                 .userModel!
@@ -89,7 +88,7 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
                                 .partner!
                                 .partnerBalance!;
                             if (num.parse(value) > num.parse(currBalance)) {
-                              return "Request amount more than your balance";
+                              return S.of(context).requestedAmountMoreThanBalance;
                             }
                           }
                           return null;
@@ -114,7 +113,7 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
                             : BuildProfileButton(
                                 formKey: _formKey,
                                 passwordController: _passwordController,
-                                textButton: 'Request',
+                                textButton: S.of(context).requested,
                                 futureFunction: () async {
                                   cubit.addNewProfit(
                                     password: _passwordController.text.trim(),
@@ -142,10 +141,10 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
       child: Center(
           child: Text.rich(
               TextSpan(
-                  text: 'By continuing, you agree to our ', style: Theme.of(context).textTheme.titleMedium,
+                  text: '${S.of(context).byContinue} ', style: Theme.of(context).textTheme.titleMedium,
                   children: <TextSpan>[
                     TextSpan(
-                        text: 'Terms of Service', style: Theme.of(context).textTheme.titleMedium!.copyWith(
+                        text: S.of(context).tos, style: Theme.of(context).textTheme.titleMedium!.copyWith(
                         color: AppColor.primaryColor
                     ),
                         recognizer: TapGestureRecognizer()
@@ -153,21 +152,7 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
                             context.read<DrawerCubit>().getTosData();
                             navigateTo(context, const TosScreen());                          }
                     ),
-                    TextSpan(
-                        text: ' and ', style: Theme.of(context).textTheme.titleMedium,
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: 'Privacy Policy', style: Theme.of(context).textTheme.titleMedium!.copyWith(
-                              color: AppColor.primaryColor
-                          ),
-                              recognizer: TapGestureRecognizer()
-                                ..onTap = () {
-                                  context.read<DrawerCubit>().getTosData();
-                                  navigateTo(context, const TosScreen());
-                              }
-                          )
-                        ]
-                    )
+
                   ]
               )
           )

@@ -7,6 +7,7 @@ import 'package:tricares_doctor_app/features/Introduction/On%20Boarding%20Screen
 import '../../../core/functions/fucntions.dart';
 import '../../../core/globle/color/shared_color.dart';
 import '../../../core/network/Local/CashHelper.dart';
+import '../../../generated/l10n.dart';
 import '../../home_layout/screens/home_layout.dart';
 
 class OnBoardingScreen extends StatefulWidget {
@@ -22,7 +23,6 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
   @override
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
-    var width = MediaQuery.of(context).size.width;
     return Scaffold(
         body: Stack(
       children: [
@@ -58,7 +58,7 @@ class _OnBoardingScreenState extends State<OnBoardingScreen> {
                     navigateTo(context, const HomeLayoutScreen());
                   },
                   child:  Text(
-                    'Skip',
+                    S.of(context).skip,
                     style: Theme.of(context).textTheme.bodyLarge!.copyWith(
                       color: Colors.white,
                     ),
