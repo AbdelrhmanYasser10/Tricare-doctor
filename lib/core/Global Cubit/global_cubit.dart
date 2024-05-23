@@ -51,7 +51,6 @@ class GlobalCubit extends Cubit<GlobalState> {
     } else {
       await CashHelper.prefs.setString('local', 'ar');
       local = 'ar';
-      local = 'en';
       await S.load(Locale(local));
       selectOption = 2;
     }
