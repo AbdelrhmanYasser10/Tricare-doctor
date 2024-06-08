@@ -43,10 +43,6 @@ class _DoctorApplicationFormState extends State<DoctorApplicationForm> {
       key: formKey,
       child: Column(
         children: [
-          const AddAttachmentField(),
-          SizedBox(
-            height: height * 0.02,
-          ),
           NameFiled(controller: nameController),
           SizedBox(
             height: height * 0.02,

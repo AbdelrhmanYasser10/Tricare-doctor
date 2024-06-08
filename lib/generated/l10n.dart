@@ -360,6 +360,16 @@ class S {
     );
   }
 
+  /// `Time Slots`
+  String get timeSlots {
+    return Intl.message(
+      'Time Slots',
+      name: 'timeSlots',
+      desc: '',
+      args: [],
+    );
+  }
+
   /// `Time Slot`
   String get timeSlot {
     return Intl.message(
@@ -380,10 +390,10 @@ class S {
     );
   }
 
-  /// `Similar Services`
+  /// `Other Services`
   String get similarServices {
     return Intl.message(
-      'Similar Services',
+      'Other Services',
       name: 'similarServices',
       desc: '',
       args: [],

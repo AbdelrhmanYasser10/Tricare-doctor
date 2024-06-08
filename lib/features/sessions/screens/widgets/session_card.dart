@@ -1,7 +1,6 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:intl/intl.dart';
 import 'package:tricares_doctor_app/core/functions/fucntions.dart';
+import 'package:tricares_doctor_app/core/globle/color/light_app_color.dart';
 import 'package:tricares_doctor_app/features/sessions/models/sessions_model.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/session_details_screen.dart';
 
@@ -27,7 +26,7 @@ class SessionCard extends StatelessWidget {
           vertical: height *0.02,
         ),
         decoration: BoxDecoration(
-          color: AppColor.primaryColor,
+          color: LightAppColor.foreGroundColors,
           borderRadius: BorderRadius.circular(12.0),
         ),
         child: Column(
@@ -45,15 +44,11 @@ class SessionCard extends StatelessWidget {
                     children: [
                       Text(
                         session.patientFullname!,
-                        style: Theme.of(context).textTheme.titleLarge!.copyWith(
-                            color: Colors.white
-                        ),
+                        style: Theme.of(context).textTheme.titleLarge,
                       ),
                       Text(
                         session.status!,
-                        style: Theme.of(context).textTheme.bodyLarge!.copyWith(
-                            color: Colors.white
-                        ),
+                        style: Theme.of(context).textTheme.bodyLarge!
                       ),
       
                     ],
@@ -65,13 +60,13 @@ class SessionCard extends StatelessWidget {
                     vertical:  height * 0.0145,
                   ),
                   decoration: BoxDecoration(
-                    color: Colors.white,
+                    color: AppColor.primaryColor,
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: Text(
                     session.sessionPatientAttended == "0" ? S.of(context).notAttended : S.of(context).attended,
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                      color: AppColor.primaryColor,
+                      color: Colors.white,
                     ),
                   ),
                 ),
@@ -86,54 +81,51 @@ class SessionCard extends StatelessWidget {
                   vertical: height * 0.021
               ),
               decoration: BoxDecoration(
-                color: AppColor.patientCardColor,
+                color: AppColor.primaryColor,
                 borderRadius: BorderRadius.circular(12.0),
               ),
               child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  Expanded(
-                    child: Row(
-                      children: [
-                        const Icon(
-                          Icons.date_range,
+                  Row(
+                    children: [
+                      const Icon(
+                        Icons.date_range,
+                        color: Colors.white,
+                        size: 25.0,
+                      ),
+                      SizedBox(
+                        width: width * 0.03,
+                      ),
+                      Text(
+                        session.sessionDate!,
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
                           color: Colors.white,
-                          size: 25.0,
                         ),
-                        SizedBox(
-                          width: width * 0.03,
-                        ),
-                        Text(
-                          session.sessionDate!,
-                          style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                   SizedBox(
                     width: width * 0.02,
                   ),
-                  Expanded(
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        const Icon(
-                          Icons.access_time_outlined,
+                  Row(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    children: [
+                      const Icon(
+                        Icons.access_time_outlined,
+                        color: Colors.white,
+                        size: 25.0,
+                      ),
+                      SizedBox(
+                        width: width * 0.03,
+                      ),
+                      Text(
+                        session.sessionStart!,
+                        style: Theme.of(context).textTheme.labelLarge!.copyWith(
                           color: Colors.white,
-                          size: 25.0,
                         ),
-                        SizedBox(
-                          width: width * 0.03,
-                        ),
-                        Text(
-                          DateFormat.Hm().format(DateTime.fromMicrosecondsSinceEpoch(int.parse(session.sessionTimestamp!))),
-                          style: Theme.of(context).textTheme.labelLarge!.copyWith(
-                            color: Colors.white,
-                          ),
-                        )
-                      ],
-                    ),
+                      )
+                    ],
                   ),
                 ],
               ),

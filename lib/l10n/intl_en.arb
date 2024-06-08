@@ -30,9 +30,10 @@
   "schedule": "Schedule",
   "profitDetails": "Profit Request Details",
   "roomDetails": "Room Details",
+  "timeSlots": "Time Slots",
   "timeSlot": "Time Slot",
   "description": "Description",
-  "similarServices": "Similar Services",
+  "similarServices": "Other Services",
   "updateProfile": "Update Profile",
   "changePassword": "Change Password",
   "enterCurrentPassword": "Enter Current Password",
@@ -126,5 +127,6 @@
   "makeSure": "Make sure each file has a unique name",
   "removeFile": "Want to remove this file?",
   "add": "Add"
+
 
 }

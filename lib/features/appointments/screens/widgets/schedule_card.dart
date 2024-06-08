@@ -10,7 +10,7 @@ import '../../../../generated/l10n.dart';
 
 class ScheduleCard extends StatelessWidget {
   final DayRooms daysSlots;
-  const ScheduleCard({Key? key ,required this.daysSlots}) : super(key: key);
+  const ScheduleCard({Key? key, required this.daysSlots}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +20,8 @@ class ScheduleCard extends StatelessWidget {
       width: double.infinity,
       height: height * 0.25,
       decoration: BoxDecoration(
-        color: context.watch<GlobalCubit>().isLight ? Colors.white : Colors.black,
+        color:
+            context.watch<GlobalCubit>().isLight ? Colors.white : Colors.black,
         borderRadius: BorderRadius.circular(15.0),
       ),
       child: Column(
@@ -32,13 +33,16 @@ class ScheduleCard extends StatelessWidget {
                 Expanded(
                   child: Padding(
                     padding: EdgeInsets.only(
-                      left: context.read<GlobalCubit>().local == "en" ? width * 0.02 : width * 0,
-                      right: context.read<GlobalCubit>().local == "ar" ? width * 0.02 : width * 0,
+                      left: context.read<GlobalCubit>().local == "en"
+                          ? width * 0.02
+                          : width * 0,
+                      right: context.read<GlobalCubit>().local == "ar"
+                          ? width * 0.02
+                          : width * 0,
                     ),
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-
                       children: [
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -49,55 +53,7 @@ class ScheduleCard extends StatelessWidget {
                             ),
                             Text(
                               daysSlots.branchName!,
-                              style: Theme.of(context).textTheme.titleLarge,
-                            ),
-                          ],
-                        ),
-                        Column(
-                          crossAxisAlignment: CrossAxisAlignment.start,
-                          children: [
-                            Text(
-                              S.of(context).timeSlot,
                               style: Theme.of(context).textTheme.titleMedium,
-                            ),
-                            SizedBox(
-                              width: width ,
-                              height: height * 0.05,
-                              child: ListView.separated(
-                                itemCount: daysSlots.partnersSlots!.length,
-                                scrollDirection: Axis.horizontal,
-                                physics: const BouncingScrollPhysics(),
-                                separatorBuilder: (context, index) {
-                                  return SizedBox(
-                                    width: width * 0.01,
-                                  );
-                                },
-                                itemBuilder: (context, index) {
-                                  return Container(
-                                    width: width * 0.295,
-                                    height: height * 0.05,
-                                    decoration: BoxDecoration(
-                                      color: AppColor.primaryColor,
-                                      borderRadius: BorderRadius.circular(25.0),
-                                    ),
-                                    child: Row(
-                                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                                      children: [
-                                        const Icon(
-                                          Icons.access_time_sharp,
-                                          color: Colors.white,
-                                        ),
-                                        Text(
-                                          daysSlots.partnersSlots![index].roomtimeName!,
-                                          style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                                            color: Colors.white,
-                                          ),
-                                        )
-                                      ],
-                                    ),
-                                  );
-                                },
-                              ),
                             ),
                           ],
                         ),
@@ -106,24 +62,25 @@ class ScheduleCard extends StatelessWidget {
                   ),
                 ),
                 BuildImage(
-                    image: daysSlots.roomPic!,
+                  image: daysSlots.roomPic!,
                   fit: BoxFit.cover,
                   errorWidget: Container(
-                    width: width * 0.33,
+                    width: width * 0.25,
                     height: double.infinity,
                     decoration: BoxDecoration(
-                      color: AppColor.primaryColor.withOpacity(0.4),
-                      borderRadius: BorderRadius.only(
-                        topRight: context.read<GlobalCubit>().local == "en" ? Radius.circular(15.0):Radius.circular(0.0),
-                        topLeft: context.read<GlobalCubit>().local != "en" ? Radius.circular(15.0):Radius.circular(0.0),
-                        bottomLeft: context.read<GlobalCubit>().local != "en" ? Radius.circular(15.0):Radius.circular(0.0),
-                        bottomRight: context.read<GlobalCubit>().local == "en" ? Radius.circular(15.0):Radius.circular(0.0),
-                      )
-                    ),
+                        color: AppColor.primaryColor.withOpacity(0.4),
+                        borderRadius: BorderRadius.only(
+                          topRight: context.read<GlobalCubit>().local == "en"
+                              ? const Radius.circular(15.0)
+                              : const Radius.circular(0.0),
+                          topLeft: context.read<GlobalCubit>().local != "en"
+                              ? const Radius.circular(15.0)
+                              : const Radius.circular(0.0),
+                        )),
                     child: Center(
                       child: BuildIconSvg(
                         name: "room.svg",
-                        size: width * 0.33,
+                        size: width * 0.25,
                         color: AppColor.primaryColor,
                       ),
                     ),
@@ -132,10 +89,69 @@ class ScheduleCard extends StatelessWidget {
               ],
             ),
           ),
-
-
+          const Divider(),
+          Padding(
+            padding: EdgeInsets.symmetric(
+                vertical: height * 0.009, horizontal: width * 0.02),
+            child: SizedBox(
+              width: width,
+              height: height * 0.05,
+              child: ListView.separated(
+                itemCount: daysSlots.partnersSlots!.length,
+                scrollDirection: Axis.horizontal,
+                physics: const BouncingScrollPhysics(),
+                separatorBuilder: (context, index) {
+                  return SizedBox(
+                    width: width * 0.01,
+                  );
+                },
+                itemBuilder: (context, index) {
+                  return Container(
+                    width: width * 0.295,
+                    height: height * 0.05,
+                    decoration: BoxDecoration(
+                      color: getTimeSlotStatus(
+                          daysSlots.partnersSlots![index].pARTSLOTSTATUS!),
+                      borderRadius: BorderRadius.circular(25.0),
+                    ),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                      children: [
+                        const Icon(
+                          Icons.access_time_sharp,
+                          color: Colors.black,
+                        ),
+                        Text(
+                          daysSlots.partnersSlots![index].roomtimeName!,
+                          style:
+                              Theme.of(context).textTheme.titleSmall!.copyWith(
+                                    color: Colors.black,
+                                  ),
+                        )
+                      ],
+                    ),
+                  );
+                },
+              ),
+            ),
+          ),
         ],
       ),
     );
+  }
+
+  Color getTimeSlotStatus(String status) {
+    switch (status) {
+      case "0":
+        return const Color(0xfff8d7da);
+      case "1":
+        return const Color(0xffffffff);
+      case "2":
+        return const Color(0xffd1e7dd);
+      case "3":
+        return const Color(0xfffff3cd);
+      default:
+        return const Color(0xffffffff);
+    }
   }
 }

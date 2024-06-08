@@ -125,6 +125,7 @@ class DayRooms {
 class PartnersSlots {
   String? pARTSLOTID;
   String? pARTNERID;
+  String? pARTSLOTSTATUS;
   String? rOOMID;
   String? rOOMSLOTID;
   String? dAYID;
@@ -199,6 +200,7 @@ class PartnersSlots {
     pARTNERID = json['PARTNERID'];
     rOOMID = json['ROOMID'];
     rOOMSLOTID = json['ROOMSLOTID'];
+    pARTSLOTSTATUS = json['partslot_status'];
     dAYID = json['DAYID'];
     rOOMTIMEID = json['ROOMTIMEID'];
     roomtimeName = json['roomtime_name'];

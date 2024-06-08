@@ -15,7 +15,7 @@ class AppointementCubit extends Cubit<AppointementState> {
 
   static AppointementCubit get(context)=>BlocProvider.of(context);
   ScheduleModel? scheduleModel;
-  ConnectionService _connectionService = ConnectionService();
+  final ConnectionService _connectionService = ConnectionService();
 
 
   void getSchedule()async{
@@ -30,6 +30,7 @@ class AppointementCubit extends Cubit<AppointementState> {
       ).then((value) {
         if (value.statusCode == 200) {
           scheduleModel = ScheduleModel.fromJson(value.data);
+
           if (!scheduleModel!.hasError!) {
             emit(AppointementSuccess());
           }

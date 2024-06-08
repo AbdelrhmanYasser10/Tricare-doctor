@@ -29,6 +29,7 @@ class BuildDropDownButtonField extends StatelessWidget {
   Widget build(BuildContext context) {
     return DropdownButtonFormField2(
       autovalidateMode: AutovalidateMode.onUserInteraction,
+
       decoration: InputDecoration(
         isDense: true,
         contentPadding: EdgeInsets.zero,

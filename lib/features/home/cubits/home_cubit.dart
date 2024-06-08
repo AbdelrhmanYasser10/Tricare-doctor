@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 import 'package:tricares_doctor_app/core/connection/internet_connection.dart';
+import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/core/network/Remote/DioHelper.dart';
 import 'package:tricares_doctor_app/core/network/endPoind.dart';
 import 'package:tricares_doctor_app/features/home/models/tabs_model.dart';
@@ -44,6 +45,10 @@ class HomeCubit extends Cubit<HomeState> {
                 TabContent(htmlContent: tab.staticDescription!),
               );
             });
+            if(CashHelper.prefs.getString('local') == "ar"){
+              titles = titles.reversed.toList();
+              content = content.reversed.toList();
+            }
             emit(TabsLoaded());
           }
         }

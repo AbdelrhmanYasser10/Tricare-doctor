@@ -13,7 +13,7 @@ class CarouselSliderWidget extends StatefulWidget {
   final double height;
   //final CarouselController carouselController;
   final List<String> images;
-
+  final List<Widget>? children;
 
 
   const CarouselSliderWidget({
@@ -21,7 +21,7 @@ class CarouselSliderWidget extends StatefulWidget {
     required this.width,
     required this.height,
     required this.images,
-
+    this.children,
 
   }) : super(key: key);
 
@@ -42,21 +42,21 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
           height: widget.height * 0.2,
           child: CarouselSlider.builder(
           //  carouselController: widget.carouselController,
-            itemCount: widget.images.length,
+            itemCount: widget.children == null ? widget.images.length : widget.children!.length,
             itemBuilder: (context, index, realIndex) {
-              return Container(
+              return widget.children == null ? Container(
                 width: widget.width,
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(10),
                 ),
-                child: BuildImage(
+                child:  BuildImage(
                   image: widget.images[index],
                   radius: 10,
                   placeHolder: Image.asset('assets/images/logo.png',),
                   fit: BoxFit.cover,
 
                 ),
-              );
+              ):widget.children![index];
             },
             options: CarouselOptions(
               onPageChanged: (index, reason) {
@@ -83,7 +83,7 @@ class _CarouselSliderWidgetState extends State<CarouselSliderWidget> {
         Center(
           child: AnimatedSmoothIndicator(
             activeIndex: currentIndex,
-            count: widget.images.length,
+            count: widget.children == null ? widget.images.length : widget.children!.length,
             effect: const ExpandingDotsEffect(
               spacing: 5.0,
               radius: 2.0,

@@ -1,7 +1,9 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/component/ElevatedButton%20Widget/build_elevated_button.dart';
+import 'package:tricares_doctor_app/core/component/Network%20Image/network_image.dart';
 import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/features/Authentication/screens/Register/register_screen.dart';
 import 'package:tricares_doctor_app/features/Services/cubits/services_cubit.dart';
@@ -15,6 +17,7 @@ import '../../../../core/functions/fucntions.dart';
 import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Carousel Widget/carsousel_widget_screen.dart';
 import '../../../../generated/l10n.dart';
+import '../service_details_screen.dart';
 
 class ServiceDetailsBodyConsumer extends StatelessWidget {
   final int serviceId;
@@ -60,6 +63,7 @@ class ServiceDetailsBodyConsumer extends StatelessWidget {
                     images: cubit.serviceDetailsModel!.data!.servicesPosts!
                         .map((e) => e.serpostFilename!)
                         .toList(),
+                    children: null,
                   ),
                   SizedBox(
                     height: height * 0.02,
@@ -74,6 +78,7 @@ class ServiceDetailsBodyConsumer extends StatelessWidget {
                   Text(
                     cleanHtmlToPlainText(service.serviceDescription!),
                     style: Theme.of(context).textTheme.titleSmall!,
+                    maxLines: 15,
                   ),
                   SizedBox(
                     height: height * 0.02,
@@ -91,23 +96,31 @@ class ServiceDetailsBodyConsumer extends StatelessWidget {
                         : 0,
                   ),
                   cubit.serviceDetailsModel!.data!.similarServices!.isNotEmpty
-                      ? ListView.separated(
-                          shrinkWrap: true,
-                          physics: const NeverScrollableScrollPhysics(),
-                          itemBuilder: (context, index) {
-                            return ServiceCard(
-                              service: cubit.serviceDetailsModel!.data!
-                                  .similarServices![index],
-                            );
-                          },
-                          separatorBuilder: (context, index) {
-                            return SizedBox(
-                              height: height * 0.01,
-                            );
-                          },
-                          itemCount: cubit.serviceDetailsModel!.data!
-                              .similarServices!.length,
-                        )
+                      ? CarouselSliderWidget(
+                    width: double.infinity,
+                    height: height,
+                    images: cubit.serviceDetailsModel!.data!.servicesPosts!
+                        .map((e) => e.serpostFilename!)
+                        .toList(),
+                    children:cubit.serviceDetailsModel!.data!.similarServices!.map((e) => GestureDetector(
+                      onTap: (){
+                        navigateTo(context, ServicesDetailsScreen(serviceId: int.parse(e.sERVICEID!)));
+
+                      },
+                      child: Column(
+                        children: [
+                          SizedBox(height: height * 0.15,child: BuildImage(image: e.serpostFilename! , radius: 16)),
+                          SizedBox(
+                            height: height * 0.009,
+                          ),
+                          Text(
+                            e.serviceName!,
+                            style: Theme.of(context).textTheme.titleMedium,
+                          )
+                        ],
+                      ),
+                    )).toList(),
+                  )
                       : const SizedBox(),
                   SizedBox(
                     height: height * 0.025,

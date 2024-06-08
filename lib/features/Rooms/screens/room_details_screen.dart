@@ -75,40 +75,49 @@ class RoomDetailsScreen extends StatelessWidget {
                               SizedBox(
                                 height: width * 0.06,
                               ),
+                              cubit.roomsDetailsModel!
+                                  .data!.room!.roomDescription! != "" ? Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                children: [
+                                  Text(
+                                    S.of(context).description,
+                                    style: Theme
+                                        .of(context)
+                                        .textTheme
+                                        .titleLarge,
+                                  ),
+                                  SizedBox(
+                                    height: width * 0.02,
+                                  ),
+                                  Text(
+                                    cleanHtmlToPlainText(
+                                        cubit.roomsDetailsModel!
+                                            .data!.room!.roomDescription!,
+                                        maxLength: 200),
+                                    style:
+                                    Theme
+                                        .of(context)
+                                        .textTheme
+                                        .bodyLarge!
+                                        .copyWith(
+                                      color: Colors.grey.shade800,
+                                    ),
+                                    maxLines: 5,
+                                  ),
+                                ],
+                              ) : const SizedBox.shrink(),
+                              SizedBox(
+                                height: width * 0.02,
+                              ),
                               Text(
-                                S.of(context).description,
+                                S.of(context).timeSlots,
                                 style: Theme
                                     .of(context)
                                     .textTheme
                                     .titleLarge,
                               ),
                               SizedBox(
-                                height: width * 0.02,
-                              ),
-                              Text(
-                                cleanHtmlToPlainText(
-                                    cubit.roomsDetailsModel!
-                                        .data!.room!.roomDescription!,
-                                    maxLength: 200),
-                                style:
-                                Theme
-                                    .of(context)
-                                    .textTheme
-                                    .bodyLarge!
-                                    .copyWith(
-                                  color: Colors.grey.shade800,
-                                ),
-                                maxLines: 5,
-                              ),
-                              SizedBox(
-                                height: width * 0.02,
-                              ),
-                              Text(
-                                S.of(context).timeSlot,
-                                style: Theme
-                                    .of(context)
-                                    .textTheme
-                                    .titleLarge,
+                                height: height * 0.02,
                               ),
                               ListView.separated(
                                 shrinkWrap: true,
@@ -256,7 +265,7 @@ class RoomDetailsScreen extends StatelessWidget {
           radius: width * 0.2,
           child: BuildImage(
             image: image,
-            radius: width * 0.02,
+            radius: width ,
             fit: BoxFit.cover,
             errorWidget: BuildIconSvg(
               color: AppColor.primaryColor,

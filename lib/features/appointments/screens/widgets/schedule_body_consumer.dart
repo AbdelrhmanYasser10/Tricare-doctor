@@ -37,22 +37,28 @@ class ScheduleBodyConsumer extends StatelessWidget {
           );
         }
         else if(state is AppointementSuccess) {
-          return Padding(
-            padding:  EdgeInsets.symmetric(
-                horizontal: width * 0.02 ,
+          if(cubit.scheduleModel!.data!.partnersDaysRoomsSlots!.isNotEmpty) {
+            return Padding(
+              padding: EdgeInsets.symmetric(
+                horizontal: width * 0.02,
                 vertical: height * 0.01,
-            ),
-            child: ListView.separated(
-              physics: const BouncingScrollPhysics(),
-                itemBuilder:(context, index) {
-                  if(cubit.scheduleModel!.data!.partnersDaysRoomsSlots![index].dayRooms!.isNotEmpty){
-                    var daySlot = cubit.scheduleModel!.data!.partnersDaysRoomsSlots![index];
+              ),
+              child: ListView.separated(
+                physics: const BouncingScrollPhysics(),
+                itemBuilder: (context, index) {
+                  if (cubit.scheduleModel!.data!.partnersDaysRoomsSlots![index]
+                      .dayRooms!.isNotEmpty) {
+                    var daySlot = cubit.scheduleModel!.data!
+                        .partnersDaysRoomsSlots![index];
                     return Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
                           daySlot.dayName!,
-                          style: Theme.of(context).textTheme.headlineMedium,
+                          style: Theme
+                              .of(context)
+                              .textTheme
+                              .headlineMedium,
                         ),
                         SizedBox(
                           height: height * 0.01,
@@ -60,39 +66,56 @@ class ScheduleBodyConsumer extends StatelessWidget {
                         ListView.separated(
                           physics: const NeverScrollableScrollPhysics(),
                           shrinkWrap: true,
-                            itemBuilder: (context, index) {
-                              return ScheduleCard(daysSlots: daySlot.dayRooms![index]);
-                            },
-                            separatorBuilder: (context, index) {
-                              return SizedBox(
-                                height: height * 0.01,
-                              );
-                            },
-                            itemCount: daySlot.dayRooms!.length,
+                          itemBuilder: (context, index) {
+                            return ScheduleCard(
+                                daysSlots: daySlot.dayRooms![index]);
+                          },
+                          separatorBuilder: (context, index) {
+                            return SizedBox(
+                              height: height * 0.01,
+                            );
+                          },
+                          itemCount: daySlot.dayRooms!.length,
                         ),
                       ],
                     );
                   }
-                  else{
+                  else {
                     return BuildEmptyDataWidget();
                   }
                 },
                 separatorBuilder: (context, index) {
                   return SizedBox(
-                    height: height * 0.01,
+                    height: height * 0.02,
                   );
                 },
-                itemCount: cubit.scheduleModel!.data!.partnersDaysRoomsSlots!.length,
-            ),
-          );
+                itemCount: cubit.scheduleModel!.data!.partnersDaysRoomsSlots!
+                    .length,
+              ),
+            );
+          }
+          else{
+            return MessageWidget(
+              width: width / 3,
+              height: height / 3,
+              heightImage: height / 3,
+              widthImage: width / 3,
+              imagePath: 'assets/images/empty.svg',
+              message: S.of(context).emptyData,
+              clickBtn: () {
+                cubit.getSchedule();
+              },
+              btnText: S.of(context).reload,
+            );
+          }
         }
         else if(state is AppointementError){
           return MessageWidget(
-            width: width,
-            height: height,
-            heightImage: height,
-            widthImage: width,
-            imagePath: 'assets/images/error.png',
+            width: width / 3,
+            height: height / 3,
+            heightImage: height / 3,
+            widthImage: width / 3,
+            imagePath: 'assets/images/error.svg',
             message: S.of(context).errorHappenedUnExpected,
             clickBtn: () {
               cubit.getSchedule();
@@ -102,10 +125,10 @@ class ScheduleBodyConsumer extends StatelessWidget {
         }
         else if(state is NoInternetConnection){
           return MessageWidget(
-            width: width,
-            height: height,
-            heightImage: height,
-            widthImage: width,
+            width: width / 3,
+            height: height / 3,
+            heightImage: height / 3,
+            widthImage: width / 3,
             imagePath: 'assets/images/connection_error.svg',
             message: S.of(context).checkInternet,
             clickBtn: () {

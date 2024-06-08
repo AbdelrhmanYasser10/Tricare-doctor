@@ -51,61 +51,34 @@ class _InvestorApplicationFormState extends State<InvestorApplicationForm> {
       key: formKey,
       child: Column(
         children: [
-          Row(
-            children: [
-              BlocConsumer<AuthCubit, AuthState>(
-                listener: (context, state) {
-                  if(state is NoInterNetConnection){
+          BlocConsumer<AuthCubit, AuthState>(
+            listener: (context, state) {
+              if(state is NoInterNetConnection){
 
-                  }
+              }
+            },
+            builder: (context, state) {
+              if(state is AllCountriesLoading){
+                return const BuildLoadingWidget();
+              }
+              return BuildDropDownButtonField(
+                width: width * 0.5,
+                height: height,
+                valid: (p0) {
+                  return null;
                 },
-                builder: (context, state) {
-                  if(state is AllCountriesLoading){
-                    return const BuildLoadingWidget();
-                  }
-                  return Expanded(
-                    child: BuildDropDownButtonField(
-                      width: width * 0.5,
-                      height: height,
-                      valid: (p0) {
-                        return null;
-                      },
-                      onChanged: (p0) {
-                        country = p0!;
-                        setState(() {});
-                      },
-                      hint: S.of(context).country,
-                      item: AuthCubit.get(context).allCounties.map((e) {
-                        return e.label;
-                      }).toList(),
-                      num: 1,
-                      cubit: AuthCubit.get(context),
-                    ),
-                  );
+                onChanged: (p0) {
+                  country = p0!;
+                  setState(() {});
                 },
-              ),
-              SizedBox(
-                width: width * 0.02,
-              ),
-              Expanded(
-                child: BuildDropDownButtonField(
-                  width: width * 0.5,
-                  height: height,
-                  valid: (p0) {},
-                  onChanged: (p0) {
-                    gender = p0!;
-                    setState(() {});
-                  },
-                  hint: S.of(context).gender,
-                  item:  [
-                    S.of(context).male,
-                    S.of(context).female,
-                  ],
-                  num: 2,
-                  cubit: AuthCubit.get(context),
-                ),
-              ),
-            ],
+                hint: S.of(context).country,
+                item: AuthCubit.get(context).allCounties.map((e) {
+                  return e.label;
+                }).toList(),
+                num: 1,
+                cubit: AuthCubit.get(context),
+              );
+            },
           ),
           SizedBox(
             height: height * 0.02,

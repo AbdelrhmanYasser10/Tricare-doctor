@@ -53,13 +53,13 @@ class RoomCard extends StatelessWidget {
                   children: [
                     Text(
                       room.roomName!,
-                      style: Theme.of(context).textTheme.headlineSmall,
+                      style: Theme.of(context).textTheme.titleLarge,
                       maxLines: 1,
                       overflow: TextOverflow.ellipsis,
                     ),
                     Text(
                       room.branchName!,
-                      style: Theme.of(context).textTheme.titleLarge,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
                 ),
@@ -119,7 +119,7 @@ class RoomCard extends StatelessWidget {
           const Divider(),
 
           BuildButton(
-            text: S.of(context).showTimeSlot,
+            text: S.of(context).showDetails,
             onPressed: () {
               navigateTo(
                   context,

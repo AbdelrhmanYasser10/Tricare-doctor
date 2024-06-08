@@ -173,7 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "showDetails": MessageLookupByLibrary.simpleMessage("Show Details"),
         "showTimeSlot": MessageLookupByLibrary.simpleMessage("Show Timeslot"),
         "similarServices":
-            MessageLookupByLibrary.simpleMessage("Similar Services"),
+            MessageLookupByLibrary.simpleMessage("Other Services"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
@@ -182,6 +182,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "taxes": MessageLookupByLibrary.simpleMessage("Taxes"),
         "terms": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "timeSlot": MessageLookupByLibrary.simpleMessage("Time Slot"),
+        "timeSlots": MessageLookupByLibrary.simpleMessage("Time Slots"),
         "tos": MessageLookupByLibrary.simpleMessage("Terms of Service"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "totalTaxes": MessageLookupByLibrary.simpleMessage("Total Taxes"),
