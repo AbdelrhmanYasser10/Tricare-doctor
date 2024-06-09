@@ -2,11 +2,12 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/component/Network%20Image/network_image.dart';
 import 'package:tricares_doctor_app/core/component/SVG/svg.dart';
+import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/features/appointments/models/schedule_model.dart';
+import 'package:tricares_doctor_app/features/appointments/screens/appointments_details_screen.dart';
 
 import '../../../../core/Global Cubit/global_cubit.dart';
 import '../../../../core/globle/color/shared_color.dart';
-import '../../../../generated/l10n.dart';
 
 class ScheduleCard extends StatelessWidget {
   final DayRooms daysSlots;
@@ -106,29 +107,39 @@ class ScheduleCard extends StatelessWidget {
                   );
                 },
                 itemBuilder: (context, index) {
-                  return Container(
-                    width: width * 0.295,
-                    height: height * 0.05,
-                    decoration: BoxDecoration(
-                      color: getTimeSlotStatus(
-                          daysSlots.partnersSlots![index].pARTSLOTSTATUS!),
-                      borderRadius: BorderRadius.circular(25.0),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                      children: [
-                        const Icon(
-                          Icons.access_time_sharp,
-                          color: Colors.black,
+                  return GestureDetector(
+                    onTap: (){
+                      navigateTo(
+                        context,
+                        AppointmentDetailsScreen(
+                            appointmentId: int.parse(daysSlots.partnersSlots![index].pARTSLOTID!),
                         ),
-                        Text(
-                          daysSlots.partnersSlots![index].roomtimeName!,
-                          style:
-                              Theme.of(context).textTheme.titleSmall!.copyWith(
-                                    color: Colors.black,
-                                  ),
-                        )
-                      ],
+                      );
+                    },
+                    child: Container(
+                      width: width * 0.295,
+                      height: height * 0.05,
+                      decoration: BoxDecoration(
+                        color: getTimeSlotStatus(
+                            daysSlots.partnersSlots![index].pARTSLOTSTATUS!),
+                        borderRadius: BorderRadius.circular(25.0),
+                      ),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                        children: [
+                          const Icon(
+                            Icons.access_time_sharp,
+                            color: Colors.black,
+                          ),
+                          Text(
+                            daysSlots.partnersSlots![index].roomtimeName!,
+                            style:
+                                Theme.of(context).textTheme.titleSmall!.copyWith(
+                                      color: Colors.black,
+                                    ),
+                          )
+                        ],
+                      ),
                     ),
                   );
                 },

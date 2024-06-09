@@ -7,6 +7,7 @@ import 'package:tricares_doctor_app/features/appointments/screens/appointments_s
 import 'package:tricares_doctor_app/features/home/cubits/home_cubit.dart';
 import 'package:tricares_doctor_app/features/profile/screen/Profile/profile_screen.dart';
 import 'package:tricares_doctor_app/features/profits/screens/profits_screen.dart';
+import 'package:tricares_doctor_app/features/sessions/screens/sessions_screen.dart';
 import '../../../../core/Global Cubit/global_cubit.dart';
 import '../../../../core/functions/fucntions.dart';
 import '../../../../core/utils/utils.dart';
@@ -72,6 +73,14 @@ class _DrawerLoginWidgetState extends State<DrawerLoginWidget> {
           function: () {
             //context.read<AppointementCubit>().getSchedule();
             navigateTo(context, const AppointmentsScreen());
+          },
+        ):const SizedBox.shrink(),
+        ProfileCubit.get(context).userModel!.data!.partner!.partnerDoctor == "1" ?BuildListTitle(
+          text: S.of(context).mySessions,
+          iconName: 'schedule.svg',
+          function: () {
+            //context.read<AppointementCubit>().getSchedule();
+            navigateTo(context, const SessionsScreen(fromHome: true));
           },
         ):const SizedBox.shrink(),
 

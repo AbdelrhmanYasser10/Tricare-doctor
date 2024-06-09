@@ -16,6 +16,7 @@ import 'core/globle/theme/light_theme.dart';
 import 'core/network/Firebase/notification.dart';
 import 'core/network/Local/CashHelper.dart';
 import 'features/Authentication/cubit/auth_cubit.dart';
+import 'features/appointments/cubits/appointment_details_cubit/appointment_details_cubit.dart';
 import 'features/home_layout/cubits/app_cubit/app_cubit.dart';
 import 'features/home_layout/screens/splash_screen.dart';
 import 'features/profile/cubit/profile_cubit.dart';
@@ -28,8 +29,7 @@ import 'firebase_options.dart';
 
 final navigationKey = GlobalKey<NavigatorState>();
 
-Future<void> main() async{
-
+Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
   initializeDateFormatting();
   await CashHelper.initialize();
@@ -37,9 +37,7 @@ Future<void> main() async{
     options: DefaultFirebaseOptions.currentPlatform,
   );
   if (kDebugMode) {
-    print(
-      CashHelper.prefs.get("token")
-  );
+    print(CashHelper.prefs.get("token"));
   }
   DioHelper.initialize(EndPoints.baseUrl);
   await FirebaseNotification().init();
@@ -54,12 +52,11 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiBlocProvider(
       providers: [
-        BlocProvider(create: (context)=>GlobalCubit()),
-        BlocProvider(create: (context)=>AppCubit()..getHomeData()),
-        BlocProvider(create: (context)=>SessionsCubit()),
-        BlocProvider(create: (context)=>AppointementCubit()),
-        BlocProvider(
-            create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => GlobalCubit()),
+        BlocProvider(create: (context) => AppCubit()..getHomeData()),
+        BlocProvider(create: (context) => SessionsCubit()),
+        BlocProvider(create: (context) => AppointementCubit()),
+        BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => GlobalCubit()),
         BlocProvider(create: (context) => ProfileCubit()..postUserData()),
         BlocProvider(create: (context) => PaginatorCubit()),
@@ -68,15 +65,15 @@ class MyApp extends StatelessWidget {
         BlocProvider(
           create: (context) => NotificationCubit()..getNotification(),
         ),
-        BlocProvider(
-            create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => AuthCubit()),
+        BlocProvider(create: (context) => AppointmentDetailsCubit()),
+        BlocProvider(create: (context) => AppointementCubit()),
       ],
-
       child: BlocBuilder<GlobalCubit, GlobalState>(
         builder: (context, state) {
           var cubit = context.read<GlobalCubit>();
 
-          return  MaterialApp(
+          return MaterialApp(
             locale: Locale(cubit.local),
             localizationsDelegates: const [
               S.delegate,
@@ -85,16 +82,17 @@ class MyApp extends StatelessWidget {
               GlobalCupertinoLocalizations.delegate,
             ],
             supportedLocales: S.delegate.supportedLocales,
-
             title: 'TriCare Partners',
             debugShowCheckedModeBanner: false,
             theme: AppLightTheme.lightThemeData,
             darkTheme: AppDarkTheme.darkThemeData,
-            themeMode: context.read<GlobalCubit>().isLight? ThemeMode.light: ThemeMode.dark,
+            themeMode: context.read<GlobalCubit>().isLight
+                ? ThemeMode.light
+                : ThemeMode.dark,
             home: const SplashScreen(),
             navigatorKey: navigationKey,
             routes: {
-              '/notification':(context)=>const NotificationScreen(),
+              '/notification': (context) => const NotificationScreen(),
             },
           );
         },
@@ -102,4 +100,3 @@ class MyApp extends StatelessWidget {
     );
   }
 }
-

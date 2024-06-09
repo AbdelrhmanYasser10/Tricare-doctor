@@ -1,9 +1,8 @@
+/*
 import 'package:awesome_dialog/awesome_dialog.dart';
 import 'package:awesome_icons/awesome_icons.dart';
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:image_picker/image_picker.dart';
 import 'package:tricares_doctor_app/core/component/Loading%20Widget/loading_widget.dart';
@@ -229,3 +228,4 @@ class AddAttachmentField extends StatelessWidget {
     }
   }
 }
+*/

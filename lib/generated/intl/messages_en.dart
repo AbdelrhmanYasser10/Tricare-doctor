@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addFile": MessageLookupByLibrary.simpleMessage(
             "You must add one file at least"),
         "addNewOrder": MessageLookupByLibrary.simpleMessage("Add new order"),
+        "all": MessageLookupByLibrary.simpleMessage("All"),
         "allowedExtensions": MessageLookupByLibrary.simpleMessage(
             "Allowed Extensions[pdf,jpg,jpeg,png] max 5MB"),
         "amount": MessageLookupByLibrary.simpleMessage("Amount"),
@@ -38,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "apply": MessageLookupByLibrary.simpleMessage("Apply for partnership"),
         "applyBtn": MessageLookupByLibrary.simpleMessage("Apply"),
         "applyNow": MessageLookupByLibrary.simpleMessage("Apply Now"),
+        "appointmentDetails":
+            MessageLookupByLibrary.simpleMessage("Appointment Details"),
         "attachment": MessageLookupByLibrary.simpleMessage("Attachment"),
         "attended": MessageLookupByLibrary.simpleMessage("Attended"),
         "balance": MessageLookupByLibrary.simpleMessage("Your balance"),
@@ -134,6 +137,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("Password"),
         "passwordValidation":
             MessageLookupByLibrary.simpleMessage("Please Enter Your Password"),
+        "past": MessageLookupByLibrary.simpleMessage("Previous"),
         "patientInfo": MessageLookupByLibrary.simpleMessage("Patient Info"),
         "patientNotes": MessageLookupByLibrary.simpleMessage("Patient Notes"),
         "payments": MessageLookupByLibrary.simpleMessage("Payments"),
@@ -182,10 +186,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "taxes": MessageLookupByLibrary.simpleMessage("Taxes"),
         "terms": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "timeSlot": MessageLookupByLibrary.simpleMessage("Time Slot"),
+        "timeSlotEnabled":
+            MessageLookupByLibrary.simpleMessage("Enable the timeslot"),
         "timeSlots": MessageLookupByLibrary.simpleMessage("Time Slots"),
+        "today": MessageLookupByLibrary.simpleMessage("Today"),
         "tos": MessageLookupByLibrary.simpleMessage("Terms of Service"),
         "total": MessageLookupByLibrary.simpleMessage("Total"),
         "totalTaxes": MessageLookupByLibrary.simpleMessage("Total Taxes"),
+        "upcoming": MessageLookupByLibrary.simpleMessage("Upcoming"),
         "updateProfile": MessageLookupByLibrary.simpleMessage("Update Profile"),
         "urPassword": MessageLookupByLibrary.simpleMessage("Your Password"),
         "weakPassword":

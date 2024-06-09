@@ -1,7 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:tricares_doctor_app/core/InputField/custom_input/name_input_filed.dart';
 
 
 import '../../../../core/InputField/custom_input/email_input_filed.dart';
@@ -40,12 +40,13 @@ class _UpdateProfileState extends State<UpdateProfile> {
       canPop: true,
       onPopInvoked: (didPop)async{
         FocusScope.of(context).unfocus();
-        await Future.delayed(Duration(seconds: 1));
+        await Future.delayed(const Duration(seconds: 1));
       },
       child: Scaffold(
         resizeToAvoidBottomInset: false,
         appBar: AppBar(
           title: Text(S.of(context).updateProfile),
+          centerTitle: true,
         ),
         body: SizedBox(
           height: height,
@@ -91,6 +92,23 @@ class _UpdateProfileState extends State<UpdateProfile> {
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
+                            Text(
+                              S.of(context).name,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            NameFiled(
+                              controller: cubit.nameController,
+                              edit: true,
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
+                            ),
                             Text(
                               S.of(context).email,
                               style: Theme.of(context).textTheme.titleMedium,
@@ -105,6 +123,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                             SizedBox(
                               height: height * 0.02,
                             ),
+
                             Text(
                               S.of(context).phone,
                               style: Theme.of(context).textTheme.titleMedium,
@@ -134,7 +153,45 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               edit: true,
                             ),
                             SizedBox(
+                              height: height * 0.02,
+                            ),
+                            Text(
+                              S.of(context).gender,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            SizedBox(
                               height: height * 0.01,
+                            ),
+                            StatefulBuilder(
+                                builder:
+                                    (BuildContext context, StateSetter setState) {
+                                  return Row(
+                                    children: [
+                                      buildGenderType(
+                                        height: height,
+                                        setState: setState,
+                                        context: context,
+                                        cubit: cubit,
+                                        text: 'Male',
+                                        id: 1,
+                                      ),
+                                      SizedBox(
+                                        width: width * 0.02,
+                                      ),
+                                      buildGenderType(
+                                        height: height,
+                                        context: context,
+                                        setState: setState,
+                                        cubit: cubit,
+                                        text: 'Female',
+                                        id: 2,
+                                      ),
+                                    ],
+                                  );
+                                }
+                            ),
+                            SizedBox(
+                              height: height * 0.02,
                             ),
                             Text(
                               S.of(context).country,
@@ -161,7 +218,7 @@ class _UpdateProfileState extends State<UpdateProfile> {
                               cubit: ProfileCubit.get(context),
                             ),
                             SizedBox(
-                              height: height * 0.01,
+                              height: height * 0.02,
                             ),
                             Text(
                               S.of(context).wpNotifications,
@@ -236,6 +293,41 @@ class _UpdateProfileState extends State<UpdateProfile> {
                 ),
               ),
             ],
+          ),
+        ),
+      ),
+    );
+  }
+  Widget buildGenderType({
+    required double height,
+    required ProfileCubit cubit,
+    required BuildContext context,
+    required String text,
+    required var setState,
+    required int id,
+  }) {
+    return Expanded(
+      child: GestureDetector(
+        onTap: () {
+          setState(() {
+            cubit.typeGender = id;
+          });
+        },
+        child: Container(
+          height: height * 0.06,
+          decoration: BoxDecoration(
+            color:
+            cubit.typeGender == id ? AppColor.primaryColor : Colors.white,
+            borderRadius: BorderRadius.circular(12),
+          ),
+          alignment: Alignment.center,
+          child: Text(
+            text,
+            style: Theme.of(context).textTheme.titleMedium!.copyWith(
+              color: !(cubit.typeGender == id)
+                  ? AppColor.primaryColor
+                  : Colors.white,
+            ),
           ),
         ),
       ),

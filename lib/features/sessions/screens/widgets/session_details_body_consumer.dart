@@ -239,9 +239,8 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                     S.of(context).patientInfo,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-                  SizedBox(
-                    height: height * 0.02,
-                  ),
+
+
                   Row(
                     children: [
                       Expanded(
@@ -256,9 +255,6 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                             ),
                             SizedBox(
                               height: height * 0.004,
-                            ),
-                            ShowRateStar(
-                              rate: session.sessionPatientRating!,
                             ),
                           ],
                         ),

@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:tricares_doctor_app/core/Global%20Cubit/global_cubit.dart';
 import 'package:tricares_doctor_app/features/Services/screens/widgets/service_card.dart';
 
 import '../../../core/component/Loading Widget/loading_widget.dart';
@@ -71,7 +73,14 @@ class _ServiceScreenState extends State<ServiceScreen> {
           left: width * 0.02,
           top: height *0.02
       ),
-      child: PagedListView<int, Services>(
+      child: BlocConsumer<GlobalCubit, GlobalState>(
+  listener: (context, state) {
+    if(state is ChangeLocal){
+      _pagingController.refresh();
+    }
+  },
+  builder: (context, state) {
+    return PagedListView<int, Services>(
 
         pagingController: _pagingController,
         physics: const BouncingScrollPhysics(),
@@ -93,7 +102,9 @@ class _ServiceScreenState extends State<ServiceScreen> {
             return const BuildLoadingWidget();
           },
         ),
-      ),
+      );
+  },
+),
     );
   }
 }

@@ -94,22 +94,14 @@ class RegisterButton extends StatelessWidget {
                 startLoading();
                 // call your network api
                 if (isDoctor) {
-                  if (AuthCubit.get(context).xFiles.isNotEmpty) {
-                    await context.read<AuthCubit>().postRegister(
-                          email: emailController.text.trim(),
-                          subTitle: messageController!.text.trim(),
-                          isDoctor: isDoctor,
-                          title: subjectController!.text.trim(),
-                          name: nameController.text.trim(),
-                          phone: phoneController.text.trim(),
-                        );
-                  } else {
-                    var snackBar = Utils.buildSnackBar2(
-                        contentType: ContentType.failure,
-                        context: context,
-                        message: S.of(context).addFile);
-                    ScaffoldMessenger.of(context).showSnackBar(snackBar);
-                  }
+                  await context.read<AuthCubit>().postRegister(
+                    email: emailController.text.trim(),
+                    subTitle: messageController!.text.trim(),
+                    isDoctor: isDoctor,
+                    title: subjectController!.text.trim(),
+                    name: nameController.text.trim(),
+                    phone: phoneController.text.trim(),
+                  );
                 } else {
                   await context.read<AuthCubit>().postRegister(
                         email: emailController.text.trim(),

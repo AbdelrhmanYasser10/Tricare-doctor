@@ -27,6 +27,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "addFile": MessageLookupByLibrary.simpleMessage(
             "يجب عليك إضافة ملف واحد على الأقل"),
         "addNewOrder": MessageLookupByLibrary.simpleMessage("إضافة طلب جديد"),
+        "all": MessageLookupByLibrary.simpleMessage("الكل"),
         "allowedExtensions": MessageLookupByLibrary.simpleMessage(
             "الامتدادات المسموح بها [pdf، jpg، jpeg، png] بحد أقصى 5 ميجابايت"),
         "amount": MessageLookupByLibrary.simpleMessage("المبلغ"),
@@ -38,6 +39,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "apply": MessageLookupByLibrary.simpleMessage("تقديم لشراكة"),
         "applyBtn": MessageLookupByLibrary.simpleMessage("أنضم الى شركائنا"),
         "applyNow": MessageLookupByLibrary.simpleMessage("قدم الآن"),
+        "appointmentDetails":
+            MessageLookupByLibrary.simpleMessage("تفاصيل الموعد"),
         "attachment": MessageLookupByLibrary.simpleMessage("المرفقات"),
         "attended": MessageLookupByLibrary.simpleMessage("حضر"),
         "balance": MessageLookupByLibrary.simpleMessage("رصيدك"),
@@ -131,6 +134,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "password": MessageLookupByLibrary.simpleMessage("كلمة المرور"),
         "passwordValidation": MessageLookupByLibrary.simpleMessage(
             "الرجاء إدخال كلمة المرور الخاصة بك"),
+        "past": MessageLookupByLibrary.simpleMessage("السابقة"),
         "patientInfo": MessageLookupByLibrary.simpleMessage("معلومات المريض"),
         "patientNotes": MessageLookupByLibrary.simpleMessage("ملاحظات المريض"),
         "payments": MessageLookupByLibrary.simpleMessage("المدفوعات"),
@@ -177,10 +181,14 @@ class MessageLookup extends MessageLookupByLibrary {
         "taxes": MessageLookupByLibrary.simpleMessage("الضرائب"),
         "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "timeSlot": MessageLookupByLibrary.simpleMessage("فترة زمنية"),
+        "timeSlotEnabled":
+            MessageLookupByLibrary.simpleMessage("تفعيل الفترة الزمنية"),
         "timeSlots": MessageLookupByLibrary.simpleMessage("الفترات الزمنية"),
+        "today": MessageLookupByLibrary.simpleMessage("اليوم"),
         "tos": MessageLookupByLibrary.simpleMessage("شروط الخدمة"),
         "total": MessageLookupByLibrary.simpleMessage("الإجمالي"),
         "totalTaxes": MessageLookupByLibrary.simpleMessage("إجمالي الضرائب"),
+        "upcoming": MessageLookupByLibrary.simpleMessage("القادمة"),
         "updateProfile":
             MessageLookupByLibrary.simpleMessage("تحديث الملف الشخصي"),
         "urPassword": MessageLookupByLibrary.simpleMessage("كلمة مرورك"),

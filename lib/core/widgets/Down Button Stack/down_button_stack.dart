@@ -9,7 +9,7 @@ class DownButtonStack extends StatelessWidget {
 
   final Widget button;
 
-   DownButtonStack({
+   const DownButtonStack({
     super.key,
     required this.width,
     required this.height,

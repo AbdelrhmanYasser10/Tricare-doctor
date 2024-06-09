@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/widgets/Login%20First/login_first_widget.dart';
 import 'package:tricares_doctor_app/features/Drawer/screen/drawer_screen.dart';
-import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/bodyConsumer.dart';
 
 import '../../../core/network/Local/CashHelper.dart';

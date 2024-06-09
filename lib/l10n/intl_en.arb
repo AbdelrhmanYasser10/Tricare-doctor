@@ -126,7 +126,12 @@
   "allowedExtensions": "Allowed Extensions[pdf,jpg,jpeg,png] max 5MB",
   "makeSure": "Make sure each file has a unique name",
   "removeFile": "Want to remove this file?",
-  "add": "Add"
-
+  "add": "Add",
+  "upcoming": "Upcoming",
+  "all": "All",
+  "today": "Today",
+  "past" : "Previous",
+  "appointmentDetails": "Appointment Details",
+  "timeSlotEnabled": "Enable the timeslot"
 
 }

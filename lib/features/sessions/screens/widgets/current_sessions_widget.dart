@@ -6,23 +6,27 @@ import 'package:tricares_doctor_app/features/sessions/models/sessions_model.dart
 import 'package:tricares_doctor_app/features/sessions/screens/widgets/session_card.dart';
 
 import '../../../../core/component/Loading Widget/loading_widget.dart';
+import '../../../../core/component/MessageWidget/message_widget.dart';
 import '../../../../core/component/SVG/svg.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/network/endPoind.dart';
+import '../../../../generated/l10n.dart';
 
-class CurrentSessionsWidget extends StatefulWidget {
-  const CurrentSessionsWidget({Key? key}) : super(key: key);
+class SessionsBodyWidget extends StatefulWidget {
+  final String filterString;
+  const SessionsBodyWidget({Key? key , required this.filterString}) : super(key: key);
 
   @override
-  State<CurrentSessionsWidget> createState() => _CurrentSessionsWidgetState();
+  State<SessionsBodyWidget> createState() => _SessionsBodyWidgetState();
 }
 
-class _CurrentSessionsWidgetState extends State<CurrentSessionsWidget> {
+class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
 
   final PagingController<int, Sessions> _pagingController =
   PagingController(firstPageKey: 0);
   int pageNumber = 1;
-
+  bool hasError = false;
+  String message = '';
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
@@ -36,6 +40,7 @@ class _CurrentSessionsWidgetState extends State<CurrentSessionsWidget> {
       final newItems = await DioHelper.postData(
         data: {
           'page':pageNumber,
+          'section' : widget.filterString,
         },
         url: EndPoints.sessions,
         token: CashHelper.prefs.getString('token')??""
@@ -52,7 +57,10 @@ class _CurrentSessionsWidgetState extends State<CurrentSessionsWidget> {
         }
       }
       else{
-
+        setState(() {
+          hasError = true;
+          message = sessionsModel.errors!.join(' ');
+        });
       }
     } catch (error) {
       print(error.toString());
@@ -70,7 +78,7 @@ class _CurrentSessionsWidgetState extends State<CurrentSessionsWidget> {
           left: width * 0.02,
           top: height *0.02
       ),
-      child: PagedListView<int, Sessions>(
+      child: !hasError ? PagedListView<int, Sessions>(
         pagingController: _pagingController,
         physics: const BouncingScrollPhysics(),
         builderDelegate: PagedChildBuilderDelegate<Sessions>(
@@ -91,6 +99,17 @@ class _CurrentSessionsWidgetState extends State<CurrentSessionsWidget> {
             return const BuildLoadingWidget();
           },
         ),
+      ) : MessageWidget(
+        width: width,
+        height: height / 3,
+        heightImage: height / 3,
+        widthImage: width / 3,
+        imagePath: 'assets/icons/error.svg',
+        message: message,
+        clickBtn: () {
+          _pagingController.refresh();
+        },
+        btnText: S.of(context).reload,
       ),
     );
   }

@@ -16,7 +16,7 @@ class ProfitsDetailsCubit extends Cubit<ProfitsDetailsState> {
   static ProfitsDetailsCubit get(context)=>BlocProvider.of(context);
 
   ProfitDetailsModel? profitDetails;
-  ConnectionService _connectionService = ConnectionService();
+  final ConnectionService _connectionService = ConnectionService();
   void getDetails({required int profitId , required int fromPayment})async{
     emit(GetDetailsLoading());
     if(await _connectionService.isInternetConnected()) {

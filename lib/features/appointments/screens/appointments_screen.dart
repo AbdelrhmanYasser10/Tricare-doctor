@@ -16,30 +16,32 @@ class AppointmentsScreen extends StatefulWidget {
 
 class _AppointmentsScreenState extends State<AppointmentsScreen> {
   @override
+  void initState() {
+    super.initState();
+    context.read<AppointementCubit>().getSchedule();
+  }
+  @override
   Widget build(BuildContext context) {
-    return BlocProvider(
-      create: (context) => AppointementCubit()..getSchedule(),
-      child: BlocConsumer<GlobalCubit, GlobalState>(
-        listener: (context, state) {
-          if (state is ChangeLocal) {
-            AppointementCubit.get(context).getSchedule();
-          }
-        },
-        builder: (context, state) {
-          return Scaffold(
-            drawer: const DrawerScreen(
-              isFromHome: false,
+    return BlocConsumer<GlobalCubit, GlobalState>(
+      listener: (context, state) {
+        if (state is ChangeLocal) {
+          context.read<AppointementCubit>().getSchedule();
+        }
+      },
+      builder: (context, state) {
+        return Scaffold(
+          drawer: const DrawerScreen(
+            isFromHome: false,
+          ),
+          appBar: AppBar(
+            title: Text(
+              S.of(context).mySchedule,
             ),
-            appBar: AppBar(
-              title: Text(
-                S.of(context).mySchedule,
-              ),
-              centerTitle: true,
-            ),
-            body: const ScheduleBodyConsumer(),
-          );
-        },
-      ),
+            centerTitle: true,
+          ),
+          body: const ScheduleBodyConsumer(),
+        );
+      },
     );
   }
 

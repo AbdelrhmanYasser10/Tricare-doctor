@@ -36,7 +36,7 @@ class ProfileCubit extends Cubit<ProfileState> {
   ChangePasswordModel? changePasswordModel;
   DeleteModel? deleteModel;
   final ConnectionService _connectivity = ConnectionService();
-
+  int typeGender = 0;
   List<CountriesModel> allCounties = [
     CountriesModel(label: "N/A", value: "N/A"),
   ];
@@ -98,6 +98,7 @@ class ProfileCubit extends Cubit<ProfileState> {
         phoneController.text = userModel!.data!.partner!.partnerPhone!;
         whatsappPhoneController.text = userModel!.data!.partner!.partnerWhatsappNumber!;
         whatsappEnabled = userModel!.data!.partner!.partnerWhatsappEnabled!;
+        typeGender = int.parse(userModel!.data!.partner!.partnerGender!);
         await getAllCountries();
         country = userModel!.data!.partner!.partnerCountry!;
 
@@ -204,7 +205,8 @@ class ProfileCubit extends Cubit<ProfileState> {
 
       await DioHelper.postData(
         data: {
-          'partner_name': name,
+          'partner_username': name,
+          'partner_gender':typeGender,
           'partner_email': email,
           'partner_phone': phone,
           'password': password,

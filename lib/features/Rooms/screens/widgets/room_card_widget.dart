@@ -75,44 +75,24 @@ class RoomCard extends StatelessWidget {
           Row(
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.location_on,
-                    ),
-                    SizedBox(
-                      width: width * 0.0019,
-                    ),
-                    Text(
-                      room.branchLocation!,
-                      style: Theme.of(context).textTheme.titleSmall,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  ],
-                ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  const Icon(
+                    Icons.location_on,
+                  ),
+                  SizedBox(
+                    width: width * 0.0019,
+                  ),
+                  Text(
+                    room.branchLocation!,
+                    style: Theme.of(context).textTheme.titleSmall,
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                  )
+                ],
               ),
-              Expanded(
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Icon(
-                      Icons.call,
-                    ),
-                    SizedBox(
-                      width: width * 0.0019,
-                    ),
-                    Text(
-                      room.branchPhone!,
-                      style: Theme.of(context).textTheme.titleSmall,
-                      maxLines: 1,
-                      overflow: TextOverflow.ellipsis,
-                    )
-                  ],
-                ),
-              ),
+
             ],
           ),
 

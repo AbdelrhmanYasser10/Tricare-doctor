@@ -102,23 +102,8 @@ class ServiceDetailsBodyConsumer extends StatelessWidget {
                     images: cubit.serviceDetailsModel!.data!.servicesPosts!
                         .map((e) => e.serpostFilename!)
                         .toList(),
-                    children:cubit.serviceDetailsModel!.data!.similarServices!.map((e) => GestureDetector(
-                      onTap: (){
-                        navigateTo(context, ServicesDetailsScreen(serviceId: int.parse(e.sERVICEID!)));
-
-                      },
-                      child: Column(
-                        children: [
-                          SizedBox(height: height * 0.15,child: BuildImage(image: e.serpostFilename! , radius: 16)),
-                          SizedBox(
-                            height: height * 0.009,
-                          ),
-                          Text(
-                            e.serviceName!,
-                            style: Theme.of(context).textTheme.titleMedium,
-                          )
-                        ],
-                      ),
+                    children:cubit.serviceDetailsModel!.data!.similarServices!.map((e) => ServiceCard(
+                      service: e,
                     )).toList(),
                   )
                       : const SizedBox(),

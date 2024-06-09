@@ -45,7 +45,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        S.of(context).applyNow,
+                        S.of(context).applyBtn,
                         style: Theme.of(context).textTheme.headlineLarge,
                       ),
                       Text(

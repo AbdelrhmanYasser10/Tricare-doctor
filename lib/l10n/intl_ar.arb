@@ -126,6 +126,14 @@
   "allowedExtensions": "الامتدادات المسموح بها [pdf، jpg، jpeg، png] بحد أقصى 5 ميجابايت",
   "makeSure": "تأكد من أن لكل ملف اسمًا فريدًا",
   "removeFile": "ترغب في حذف هذا الملف؟",
-  "add": "أضف"
+  "add": "أضف",
+  "upcoming": "القادمة",
+  "all": "الكل",
+  "today": "اليوم",
+  "past" : "السابقة",
+  "appointmentDetails": "تفاصيل الموعد",
+  "timeSlotEnabled": "تفعيل الفترة الزمنية"
+
+
 
 }

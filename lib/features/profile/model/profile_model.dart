@@ -60,6 +60,7 @@ class Partner {
   String? partnerPassword;
   String? partnerLoginTime;
   String? partnerLip;
+  String? partnerGender;
   String? partnerRememberMeKey;
   String? partnerRememberMeTime;
   String? partnerReviewsTotal;
@@ -104,6 +105,7 @@ class Partner {
         this.partnerLoginTime,
         this.partnerLip,
         this.partnerRememberMeKey,
+        this.partnerGender,
         this.partnerRememberMeTime,
         this.partnerReviewsTotal,
         this.partnerReviewsAvg,
@@ -135,6 +137,7 @@ class Partner {
     partnerDoctor = json['partner_doctor'];
     partnerInvestor = json['partner_investor'];
     partnerFeatured = json['partner_featured'];
+    partnerGender = json['partner_gender'];
     partnerPriority = json['partner_priority'];
     partnerEmail = json['partner_email'];
     partnerWebsite = json['partner_website'];

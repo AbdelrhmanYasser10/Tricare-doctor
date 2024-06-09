@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:tricares_doctor_app/features/sessions/cubits/sessions_cubit/sessions_cubit.dart';
 
 import '../../../../core/globle/color/shared_color.dart';
@@ -12,9 +13,15 @@ class TabButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    var width = MediaQuery.of(context).size.width;
+    var height = MediaQuery.of(context).size.height;
     return InkWell(
       onTap:fn,
       child: Container(
+        padding: EdgeInsets.symmetric(
+          horizontal: width * 0.07,
+          vertical: height * 0.012,
+        ),
         decoration: BoxDecoration(
           color: cubit.tabIdx == activeIdx
               ? AppColor.primaryColor

@@ -30,7 +30,7 @@ class AuthCubit extends Cubit<AuthState> {
   ];
 
 
-  Future<void> attachFile() async{
+/*  Future<void> attachFile() async{
     emit(PickFilesLoading());
     result = await FilePicker.platform.pickFiles(allowMultiple: true);
     if (result != null) {
@@ -58,7 +58,7 @@ class AuthCubit extends Cubit<AuthState> {
   void removeFile({required int index}){
     xFiles.removeAt(index);
     emit(RemoveFile());
-  }
+  }*/
 
   Future<void> postLogin({required String email, required String password}) async {
     if (await _connectivity.isInternetConnected()) {
@@ -118,19 +118,7 @@ class AuthCubit extends Cubit<AuthState> {
     if(await _connectivity.isInternetConnected()){
       emit(RegisterLoading());
       if(isDoctor) {
-        List<MultipartFile> allFiles = [];
-        if (xFiles.isNotEmpty) {
-          for (var element in xFiles) {
-            allFiles.add(
-              await MultipartFile.fromFile(
-                element.path,
-                filename: element.path
-                    .split("/")
-                    .last,
-              ),
-            );
-          }
-        }
+
         FormData data = FormData.fromMap(
             {
               'contact_fullname': name,
@@ -138,7 +126,6 @@ class AuthCubit extends Cubit<AuthState> {
               'contact_phone': phone,
               'contact_subject': title,
               'contact_message': subTitle,
-              'attachment': allFiles,
             }
         );
         await DioHelper.postDataFile(
