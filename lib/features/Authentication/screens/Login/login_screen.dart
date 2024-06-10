@@ -82,7 +82,7 @@ class _LoginScreenState extends State<LoginScreen> {
                           ),
                     ),
                     SizedBox(
-                      height: height * 0.05,
+                      height: height * 0.03,
                     ),
                     NameFiled(controller: usernameController),
                     SizedBox(
