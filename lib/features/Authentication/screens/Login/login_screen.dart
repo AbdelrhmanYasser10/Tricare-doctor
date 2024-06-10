@@ -30,7 +30,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void initState() {
-    // TODO: implement initState
 
     usernameController = TextEditingController();
     passwordController = TextEditingController();
@@ -40,7 +39,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   void dispose() {
-    // TODO: implement dispose
     super.dispose();
     usernameController.dispose();
     passwordController.dispose();
@@ -113,7 +111,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ],
                     ),
                     SizedBox(
-                      height: height * 0.02,
+                      height: height * 0.01,
                     ),
                     LoginButton(
                         formKey: formKey,
