@@ -19,7 +19,7 @@ class TabButton extends StatelessWidget {
       onTap:fn,
       child: Container(
         padding: EdgeInsets.symmetric(
-          horizontal: width * 0.07,
+          horizontal: width * 0.05,
           vertical: height * 0.012,
         ),
         decoration: BoxDecoration(

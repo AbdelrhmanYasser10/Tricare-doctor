@@ -1,5 +1,7 @@
 import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/widgets.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/component/MessageWidget/message_widget.dart';
 import 'package:tricares_doctor_app/features/appointments/cubits/appointment_details_cubit/appointment_details_cubit.dart';
@@ -186,7 +188,7 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                                         children: [
                                           Expanded(
                                             child: Text(
-                                              S.of(context).timeSlot,
+                                              S.of(context).currentTimeSlotStatus,
                                               style: Theme.of(context).textTheme.titleLarge,
                                             ),
                                           ),
@@ -200,36 +202,80 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                                       SizedBox(
                                         height: height * 0.02,
                                       ),
-                                      Container(
-                                        width: width * 0.295,
-                                        height: height * 0.05,
-                                        decoration: BoxDecoration(
-                                          color: getTimeSlotStatus(
-                                            context
-                                                .read<AppointmentDetailsCubit>()
-                                                .timeSlotEnabled,
-                                          ),
-                                          borderRadius: BorderRadius.circular(25.0),
-                                        ),
-                                        child: Row(
-                                          mainAxisAlignment:
-                                              MainAxisAlignment.spaceEvenly,
-                                          children: [
-                                            const Icon(
-                                              Icons.access_time_sharp,
-                                              color: Colors.black,
-                                            ),
-                                            Text(
-                                              cubit.details!.data!.partnersSlot!
-                                                  .roomtimeName!,
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              S.of(context).startDate,
                                               style: Theme.of(context)
                                                   .textTheme
-                                                  .titleSmall!
-                                                  .copyWith(
-                                                    color: Colors.black,
-                                                  ),
-                                            )
-                                          ],
+                                                  .titleLarge,
+                                            ),
+                                          ),
+                                          Text(
+                                            cubit.details!.data!.partnersSlot!.partslotDateStart!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.02,
+                                      ),
+                                      Row(
+                                        children: [
+                                          Expanded(
+                                            child: Text(
+                                              S.of(context).endDate,
+                                              style: Theme.of(context)
+                                                  .textTheme
+                                                  .titleLarge,
+                                            ),
+                                          ),
+                                          Text(
+                                            cubit.details!.data!.partnersSlot!.partslotDateEnd!,
+                                            style: Theme.of(context)
+                                                .textTheme
+                                                .titleSmall,
+                                          ),
+                                        ],
+                                      ),
+                                      SizedBox(
+                                        height: height * 0.02,
+                                      ),
+                                      Center(
+                                        child: Container(
+                                          width: width * 0.295,
+                                          height: height * 0.05,
+                                          decoration: BoxDecoration(
+                                            color: getTimeSlotStatus(
+                                              context
+                                                  .read<AppointmentDetailsCubit>()
+                                                  .timeSlotEnabled,
+                                            ),
+                                            borderRadius: BorderRadius.circular(25.0),
+                                          ),
+                                          child: Row(
+                                            mainAxisAlignment:
+                                                MainAxisAlignment.spaceEvenly,
+                                            children: [
+                                              const Icon(
+                                                Icons.access_time_sharp,
+                                                color: Colors.black,
+                                              ),
+                                              Text(
+                                                cubit.details!.data!.partnersSlot!
+                                                    .roomtimeName!,
+                                                style: Theme.of(context)
+                                                    .textTheme
+                                                    .titleSmall!
+                                                    .copyWith(
+                                                      color: Colors.black,
+                                                    ),
+                                              )
+                                            ],
+                                          ),
                                         ),
                                       ),
                                       SizedBox(

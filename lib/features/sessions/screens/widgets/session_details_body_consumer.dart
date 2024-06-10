@@ -8,7 +8,6 @@ import '../../../../core/component/MessageWidget/message_widget.dart';
 import '../../../../core/component/SVG/svg.dart';
 import '../../../../core/globle/color/shared_color.dart';
 import '../../../../core/utils/utils.dart';
-import '../../../../core/widgets/Show Rate/show_rate.dart';
 import '../../../../generated/l10n.dart';
 
 class SessionDetailsBodyConsumer extends StatelessWidget {
@@ -73,10 +72,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                         ),
                         Text(
                           cubit.sessionDetailsModel!.data!.session!
-                                      .sessionPartnerAttended! ==
-                                  "0"
-                              ? S.of(context).notAttended
-                              :  S.of(context).attended,
+                                      .status!,
                           style: Theme.of(context).textTheme.titleSmall,
                         ),
                       ],
@@ -97,12 +93,12 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
-                              height: height * 0.002,
+                              height: height * 0.01,
                             ),
                             Container(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.03,
-                                  vertical: height * 0.021),
+                                  horizontal: width * 0.02,
+                                  vertical: height * 0.019),
                               decoration: BoxDecoration(
                                 color: AppColor.patientCardColor,
                                 borderRadius: BorderRadius.circular(12.0),
@@ -113,7 +109,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                                   const Icon(
                                     Icons.date_range,
                                     color: Colors.white,
-                                    size: 25.0,
+                                    size: 19.0,
                                   ),
                                   SizedBox(
                                     width: width * 0.03,
@@ -145,12 +141,12 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                               style: Theme.of(context).textTheme.titleMedium,
                             ),
                             SizedBox(
-                              height: height * 0.002,
+                              height: height * 0.01,
                             ),
                             Container(
                               padding: EdgeInsets.symmetric(
-                                  horizontal: width * 0.03,
-                                  vertical: height * 0.021),
+                                  horizontal: width * 0.02,
+                                  vertical: height * 0.019),
                               decoration: BoxDecoration(
                                 color: AppColor.patientCardColor,
                                 borderRadius: BorderRadius.circular(12.0),
@@ -161,7 +157,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                                   const Icon(
                                     Icons.access_time_sharp,
                                     color: Colors.white,
-                                    size: 25.0,
+                                    size: 19.0,
                                   ),
                                   SizedBox(
                                     width: width * 0.03,
@@ -181,56 +177,53 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                           ],
                         ),
                       ),
-                    ],
-                  ),
-                  SizedBox(
-                    height: height * 0.01,
-                  ),
-                  Center(
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.center,
-                      children: [
-                        Text(
-                          S.of(context).duration,
-                          style: Theme.of(context).textTheme.titleMedium,
-                        ),
-                        SizedBox(
-                          height: height * 0.002,
-                        ),
-                        Container(
-                          padding: EdgeInsets.symmetric(
-                              horizontal: width * 0.09,
-                              vertical: height * 0.021),
-                          decoration: BoxDecoration(
-                            color: AppColor.patientCardColor,
-                            borderRadius: BorderRadius.circular(12.0),
-                          ),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            mainAxisSize: MainAxisSize.min,
-                            children: [
-                              const Icon(
-                                Icons.timer,
-                                color: Colors.white,
-                                size: 25.0,
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          children: [
+                            Text(
+                              S.of(context).duration,
+                              style: Theme.of(context).textTheme.titleMedium,
+                            ),
+                            SizedBox(
+                              height: height * 0.01,
+                            ),
+                            Container(
+                              padding: EdgeInsets.symmetric(
+                                  horizontal: width * 0.045,
+                                  vertical: height * 0.02),
+                              decoration: BoxDecoration(
+                                color: AppColor.patientCardColor,
+                                borderRadius: BorderRadius.circular(12.0),
                               ),
-                              SizedBox(
-                                width: width * 0.03,
-                              ),
-                              Text(
-                                session.sessionDuration!,
-                                style: Theme.of(context)
-                                    .textTheme
-                                    .labelLarge!
-                                    .copyWith(
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                mainAxisSize: MainAxisSize.min,
+                                children: [
+                                  const Icon(
+                                    Icons.timer,
+                                    color: Colors.white,
+                                    size: 19.0,
+                                  ),
+                                  SizedBox(
+                                    width: width * 0.03,
+                                  ),
+                                  Text(
+                                    session.sessionDuration!,
+                                    style: Theme.of(context)
+                                        .textTheme
+                                        .labelLarge!
+                                        .copyWith(
                                       color: Colors.white,
                                     ),
-                              )
-                            ],
-                          ),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                      ],
-                    ),
+                      ),
+                    ],
                   ),
                   SizedBox(
                     height: height * 0.02,
@@ -239,7 +232,9 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                     S.of(context).patientInfo,
                     style: Theme.of(context).textTheme.headlineMedium,
                   ),
-
+                  SizedBox(
+                    height: height * 0.02,
+                  ),
 
                   Row(
                     children: [

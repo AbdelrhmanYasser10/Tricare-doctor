@@ -1,4 +1,3 @@
-import 'package:awesome_snackbar_content/awesome_snackbar_content.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/features/Authentication/screens/Login/login_screen.dart';
@@ -7,7 +6,6 @@ import 'package:tricares_doctor_app/features/Authentication/screens/Register/reg
 import '../../../../core/Global Cubit/global_cubit.dart';
 import '../../../../core/functions/fucntions.dart';
 import '../../../../core/globle/color/light_app_color.dart';
-import '../../../../core/utils/utils.dart';
 import '../../../../core/widgets/Carousel Widget/build_list_title.dart';
 import '../../../../generated/l10n.dart';
 import '../../../Drawer Screen/About Us Screen/about_us_screen.dart';
@@ -48,7 +46,7 @@ class NotSignInWidget extends StatelessWidget {
           },
         ),
         BuildListTitle(
-          text: S.of(context).apply,
+          text: S.of(context).joinOurPartners,
           iconName: 'person.svg',
           function: () {
             Navigator.push(
@@ -71,7 +69,7 @@ class NotSignInWidget extends StatelessWidget {
 
                     surfaceTintColor: LightAppColor.foreGroundColors,
                     title:  Padding(
-                      padding: EdgeInsets.all(8.0),
+                      padding: const EdgeInsets.all(8.0),
                       child: Text(
                         S.of(context).changeLanguage,
                       ),
@@ -86,7 +84,7 @@ class NotSignInWidget extends StatelessWidget {
 
 
                             RadioListTile(
-                              title:  Text('English'),
+                              title:  const Text('English'),
                               value: 1,
                               groupValue: selectOption,
                               onChanged: (value) {
@@ -97,7 +95,7 @@ class NotSignInWidget extends StatelessWidget {
 
                             ),
                             RadioListTile(
-                              title:  Text("العربية"),
+                              title:  const Text("العربية"),
 
                               value: 2,
                               groupValue: selectOption,
@@ -121,10 +119,10 @@ class NotSignInWidget extends StatelessWidget {
                                 context.read<ProfileCubit>().postUserData();
                                 Navigator.pop(ctx);
                               },
-                              child: Text(S.of(context).save),
                               style: ElevatedButton.styleFrom(
                                 minimumSize: Size(width, height*0.06),
                               ),
+                              child: Text(S.of(context).save),
                             ),
                           ],
                         );

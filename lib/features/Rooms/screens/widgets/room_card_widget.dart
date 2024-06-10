@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/Global%20Cubit/global_cubit.dart';
 import 'package:tricares_doctor_app/core/component/ElevatedButton%20Widget/build_elevated_button.dart';
+import 'package:tricares_doctor_app/core/component/Network%20Image/network_image.dart';
 import 'package:tricares_doctor_app/core/component/SVG/svg.dart';
 import 'package:tricares_doctor_app/core/functions/fucntions.dart';
 import 'package:tricares_doctor_app/features/Rooms/models/rooms_model.dart';
@@ -38,14 +39,21 @@ class RoomCard extends StatelessWidget {
               CircleAvatar(
                 radius: width * 0.08,
                 backgroundColor: AppColor.primaryColor.withOpacity(0.6),
-                child: BuildIconSvg(
-                  name: 'star.svg',
-                  color: AppColor.primaryColor,
-                  size: width * 0.08,
+                child: Padding(
+                  padding: const EdgeInsets.all(1.0),
+                  child: BuildImage(
+                    image: room.roomPic!,
+                    radius: width * 0.08,
+                    errorWidget: BuildIconSvg(
+                      name: 'star.svg',
+                      color: AppColor.primaryColor,
+                      size: width * 0.08,
+                    ),
+                  ),
                 ),
               ),
               SizedBox(
-                width: width * 0.02,
+                width: width * 0.03,
               ),
               Expanded(
                 child: Column(

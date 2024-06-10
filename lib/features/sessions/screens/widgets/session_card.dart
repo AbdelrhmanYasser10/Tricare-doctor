@@ -46,11 +46,6 @@ class SessionCard extends StatelessWidget {
                         session.patientFullname!,
                         style: Theme.of(context).textTheme.titleLarge,
                       ),
-                      Text(
-                        session.status!,
-                        style: Theme.of(context).textTheme.bodyLarge!
-                      ),
-      
                     ],
                   ),
                 ),
@@ -64,7 +59,7 @@ class SessionCard extends StatelessWidget {
                     borderRadius: BorderRadius.circular(15.0),
                   ),
                   child: Text(
-                    session.sessionPatientAttended == "0" ? S.of(context).notAttended : S.of(context).attended,
+                    session.status!,
                     style: Theme.of(context).textTheme.titleSmall!.copyWith(
                       color: Colors.white,
                     ),

@@ -98,6 +98,7 @@ class Rooms {
   String? branchPhone;
   String? branchLocation;
   String? branchActive;
+  String? roomPic;
   String? branchManagerName;
   String? branchManagerPhone;
   String? branchManagerEmail;
@@ -118,6 +119,7 @@ class Rooms {
         this.branchName,
         this.branchPhone,
         this.branchLocation,
+        this.roomPic,
         this.branchActive,
         this.branchManagerName,
         this.branchManagerPhone,
@@ -132,6 +134,7 @@ class Rooms {
     rOOMSLOTID = json['ROOMSLOTID'];
     bRANCHID = json['BRANCHID'];
     roomName = json['room_name'];
+    roomPic = json['room_pic'];
     roomStatus = json['room_status'];
     roomDescription = json['room_description'];
     roomOccupied = json['room_occupied'];

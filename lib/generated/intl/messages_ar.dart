@@ -61,6 +61,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "country": MessageLookupByLibrary.simpleMessage("الدولة"),
+        "currentTimeSlotStatus":
+            MessageLookupByLibrary.simpleMessage("الحالة الحالية"),
         "currentWord": MessageLookupByLibrary.simpleMessage("الحالي"),
         "date": MessageLookupByLibrary.simpleMessage("التاريخ"),
         "description": MessageLookupByLibrary.simpleMessage("الوصف"),
@@ -77,6 +79,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("بيانات فارغة في هذه الشاشة"),
         "enable":
             MessageLookupByLibrary.simpleMessage("تمكين إشعارات الواتساب"),
+        "endDate": MessageLookupByLibrary.simpleMessage("تاريخ الانتهاء"),
         "enterCurrentPassword":
             MessageLookupByLibrary.simpleMessage("أدخل كلمة المرور الحالية"),
         "enterNewPassword":
@@ -102,6 +105,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "introDescription": MessageLookupByLibrary.simpleMessage(
             "مرحبًا بك في تري كاير ، رفيقك الموثوق للرعاية الطبية المخصصة. اكتشف عصرًا جديدًا للرعاية الصحية في متناول يدك"),
         "investor": MessageLookupByLibrary.simpleMessage("مستثمر"),
+        "joinOurPartners":
+            MessageLookupByLibrary.simpleMessage("أنضم الى شركائنا"),
         "login": MessageLookupByLibrary.simpleMessage("تسجيل الدخول"),
         "loginFirst": MessageLookupByLibrary.simpleMessage("سجل دخولك أولاً"),
         "loginMessage": MessageLookupByLibrary.simpleMessage(
@@ -175,9 +180,12 @@ class MessageLookup extends MessageLookupByLibrary {
         "similarServices": MessageLookupByLibrary.simpleMessage("خدمات أخرى"),
         "skip": MessageLookupByLibrary.simpleMessage("تخطي"),
         "start": MessageLookupByLibrary.simpleMessage("البداية"),
+        "startDate": MessageLookupByLibrary.simpleMessage("تاريخ البداية"),
         "status": MessageLookupByLibrary.simpleMessage("الحالة"),
         "subjectValidation":
             MessageLookupByLibrary.simpleMessage("الرجاء إدخال موضوع طلبك"),
+        "submitYourApplication":
+            MessageLookupByLibrary.simpleMessage("ارسل طلب الانضمام"),
         "taxes": MessageLookupByLibrary.simpleMessage("الضرائب"),
         "terms": MessageLookupByLibrary.simpleMessage("الشروط والأحكام"),
         "timeSlot": MessageLookupByLibrary.simpleMessage("فترة زمنية"),

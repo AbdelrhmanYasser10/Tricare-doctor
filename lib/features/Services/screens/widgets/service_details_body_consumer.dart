@@ -114,7 +114,7 @@ class ServiceDetailsBodyConsumer extends StatelessWidget {
                     builder: (context, state) {
                       if (CashHelper.prefs.get('login') == null) {
                         return BuildButton(
-                          text: S.of(context).apply,
+                          text: S.of(context).joinOurPartners,
                           onPressed: () {
                             navigateTo(context, const RegisterScreen());
                           },

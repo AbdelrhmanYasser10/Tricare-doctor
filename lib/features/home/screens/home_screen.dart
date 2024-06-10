@@ -78,7 +78,7 @@ class _HomeScreenState extends State<HomeScreen> {
                                     return Column(
                                       children: [
                                         BuildButton(
-                                          text: S.of(context).apply,
+                                          text: S.of(context).joinOurPartners,
                                           onPressed: () {
                                             navigateTo(context,const RegisterScreen());
                                           },

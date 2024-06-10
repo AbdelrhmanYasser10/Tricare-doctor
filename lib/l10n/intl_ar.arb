@@ -132,8 +132,12 @@
   "today": "اليوم",
   "past" : "السابقة",
   "appointmentDetails": "تفاصيل الموعد",
-  "timeSlotEnabled": "تفعيل الفترة الزمنية"
-
+  "timeSlotEnabled": "تفعيل الفترة الزمنية",
+  "submitYourApplication": "ارسل طلب الانضمام",
+  "startDate": "تاريخ البداية",
+  "endDate": "تاريخ الانتهاء",
+  "joinOurPartners" :  "أنضم الى شركائنا",
+  "currentTimeSlotStatus": "الحالة الحالية"
 
 
 }

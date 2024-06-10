@@ -87,7 +87,7 @@ class RegisterButton extends StatelessWidget {
               valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
             ),
           ),
-          child: Text(S.of(context).applyBtn),
+          child: Text(S.of(context).submitYourApplication),
           onTap: (startLoading, stopLoading, btnState) async {
             if (formKey.currentState!.validate()) {
               if (btnState == ButtonState.idle) {

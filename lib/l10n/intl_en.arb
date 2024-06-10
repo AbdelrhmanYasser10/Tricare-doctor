@@ -132,6 +132,11 @@
   "today": "Today",
   "past" : "Previous",
   "appointmentDetails": "Appointment Details",
-  "timeSlotEnabled": "Enable the timeslot"
+  "timeSlotEnabled": "Enable the timeslot",
+  "joinOurPartners" :  "Join our partners",
+  "submitYourApplication": "Submit your application",
+  "startDate": "Start Date",
+  "endDate": "End Date",
+  "currentTimeSlotStatus": "Current Status"
 
 }

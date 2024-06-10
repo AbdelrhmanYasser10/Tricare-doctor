@@ -124,8 +124,8 @@ class AuthCubit extends Cubit<AuthState> {
               'contact_fullname': name,
               'contact_email': email,
               'contact_phone': phone,
-              'contact_subject': title,
-              'contact_message': subTitle,
+              'contact_subject': " ",
+              'contact_message': " ",
             }
         );
         await DioHelper.postDataFile(

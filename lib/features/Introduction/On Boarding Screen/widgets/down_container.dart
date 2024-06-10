@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:tricares_doctor_app/features/Authentication/screens/Login/login_screen.dart';
 import 'package:tricares_doctor_app/features/Authentication/screens/Register/register_screen.dart';
 
 import '../../../../core/component/ElevatedButton Widget/build_elevated_button.dart';
@@ -52,7 +51,7 @@ class BuildDownContainer extends StatelessWidget {
               height: height * 0.04,
             ),
             BuildButton(
-              text: S.of(context).apply,
+              text: S.of(context).joinOurPartners,
               onPressed: () {
                 CashHelper.prefs.setBool('passOnBoarding', true);
                 navigateTo(context, const RegisterScreen());

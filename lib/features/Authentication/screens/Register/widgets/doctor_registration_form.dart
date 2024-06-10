@@ -55,15 +55,7 @@ class _DoctorApplicationFormState extends State<DoctorApplicationForm> {
           SizedBox(
             height: height * 0.02,
           ),
-          ContactSubjectField(
-            controller: subjectController,
-          ),
-          SizedBox(
-            height: height * 0.02,
-          ),
-          RequestMessageField(
-            controller:requestMessageController ,
-          ),
+
           SizedBox(
             height: height * 0.04,
           ),

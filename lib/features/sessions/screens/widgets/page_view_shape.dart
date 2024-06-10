@@ -11,12 +11,11 @@ class PageViewShape extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return BlocConsumer<SessionsCubit, SessionsState>(
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = SessionsCubit.get(context);
-        List<String> filters = ['all', 'upcoming', 'current', 'past'];
+        List<String> filters = ['current', 'upcoming', 'past', 'all'];
         return PageView.builder(
           controller: context.read<SessionsCubit>().pageController,
           itemBuilder: (context, index) {
@@ -26,8 +25,7 @@ class PageViewShape extends StatelessWidget {
           },
           physics: const NeverScrollableScrollPhysics(),
           itemCount: filters.length,
-          onPageChanged: (value) {
-          },
+          onPageChanged: (value) {},
         );
       },
     );

@@ -1389,6 +1389,56 @@ class S {
       args: [],
     );
   }
+
+  /// `Join our partners`
+  String get joinOurPartners {
+    return Intl.message(
+      'Join our partners',
+      name: 'joinOurPartners',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Submit your application`
+  String get submitYourApplication {
+    return Intl.message(
+      'Submit your application',
+      name: 'submitYourApplication',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Start Date`
+  String get startDate {
+    return Intl.message(
+      'Start Date',
+      name: 'startDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `End Date`
+  String get endDate {
+    return Intl.message(
+      'End Date',
+      name: 'endDate',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Status`
+  String get currentTimeSlotStatus {
+    return Intl.message(
+      'Current Status',
+      name: 'currentTimeSlotStatus',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

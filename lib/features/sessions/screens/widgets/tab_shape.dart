@@ -16,10 +16,11 @@ class _TabShapeState extends State<TabShape> {
   @override
   Widget build(BuildContext context) {
     List<String> tabs = [
-      S.of(context).all,
-      S.of(context).upcoming,
       S.of(context).currentWord,
+      S.of(context).upcoming,
       S.of(context).past,
+      S.of(context).all,
+
     ];
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;

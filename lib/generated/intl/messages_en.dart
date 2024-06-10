@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confPassword":
             MessageLookupByLibrary.simpleMessage("Password Confirmation"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
+        "currentTimeSlotStatus":
+            MessageLookupByLibrary.simpleMessage("Current Status"),
         "currentWord": MessageLookupByLibrary.simpleMessage("Current"),
         "date": MessageLookupByLibrary.simpleMessage("Date"),
         "description": MessageLookupByLibrary.simpleMessage("Description"),
@@ -79,6 +81,7 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Empty Data in This Screen"),
         "enable": MessageLookupByLibrary.simpleMessage(
             "Enable Whatsapp notifications"),
+        "endDate": MessageLookupByLibrary.simpleMessage("End Date"),
         "enterCurrentPassword":
             MessageLookupByLibrary.simpleMessage("Enter Current Password"),
         "enterNewPassword":
@@ -106,6 +109,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "introDescription": MessageLookupByLibrary.simpleMessage(
             "welcome to TriCare, your trusted companion for personalized medical care. Experience a new era of healthcare right at your fingertips"),
         "investor": MessageLookupByLibrary.simpleMessage("Investor"),
+        "joinOurPartners":
+            MessageLookupByLibrary.simpleMessage("Join our partners"),
         "login": MessageLookupByLibrary.simpleMessage("Login"),
         "loginFirst":
             MessageLookupByLibrary.simpleMessage("Login to your account first"),
@@ -180,9 +185,12 @@ class MessageLookup extends MessageLookupByLibrary {
             MessageLookupByLibrary.simpleMessage("Other Services"),
         "skip": MessageLookupByLibrary.simpleMessage("Skip"),
         "start": MessageLookupByLibrary.simpleMessage("Start"),
+        "startDate": MessageLookupByLibrary.simpleMessage("Start Date"),
         "status": MessageLookupByLibrary.simpleMessage("Status"),
         "subjectValidation": MessageLookupByLibrary.simpleMessage(
             "Please Enter Your Request Subject"),
+        "submitYourApplication":
+            MessageLookupByLibrary.simpleMessage("Submit your application"),
         "taxes": MessageLookupByLibrary.simpleMessage("Taxes"),
         "terms": MessageLookupByLibrary.simpleMessage("Terms & Conditions"),
         "timeSlot": MessageLookupByLibrary.simpleMessage("Time Slot"),
