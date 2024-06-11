@@ -51,7 +51,7 @@ class DefaultFirebaseOptions {
 
   static const FirebaseOptions android = FirebaseOptions(
     apiKey: 'AIzaSyCu_Jcgt6jOxYXJoIFjTB62gTQngcpxbOs',
-    appId: '1:370300836470:android:0002437c74bebebc19dd57',
+    appId: '1:370300836470:android:cb37d3e44981e5d119dd57',
     messagingSenderId: '370300836470',
     projectId: 'tricare-partners',
     storageBucket: 'tricare-partners.appspot.com',
@@ -65,4 +65,5 @@ class DefaultFirebaseOptions {
     storageBucket: 'tricare-partners.appspot.com',
     iosBundleId: 'com.shoman.tricarePartners',
   );
+
 }

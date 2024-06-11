@@ -7,9 +7,9 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:370300836470:android:0002437c74bebebc19dd57",
+        "mobilesdk_app_id": "1:370300836470:android:cb37d3e44981e5d119dd57",
         "android_client_info": {
-          "package_name": "com.shoman.tricare_partners"
+          "package_name": "com.shoman.tricarePartners"
         }
       },
       "oauth_client": [],
