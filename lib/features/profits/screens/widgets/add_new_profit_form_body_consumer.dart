@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/cubits/add_profit_cubit/add_profit_cubit.dart';
+import 'package:tricares_doctor_app/features/profits/cubits/profits_cubit/profits_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/text_fields.dart';
 
 import '../../../../core/component/Loading Widget/loading_widget.dart';
@@ -38,7 +39,8 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
     var width = MediaQuery.of(context).size.width;
     var height = MediaQuery.of(context).size.height;
     return BlocConsumer<ProfileCubit, ProfileState>(
-      listener: (context, state) {},
+      listener: (context, state) {
+      },
       builder: (context, state) {
         if (state is GetUserDataLoading) {
           return const SizedBox();

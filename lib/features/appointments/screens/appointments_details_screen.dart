@@ -246,7 +246,7 @@ class _AppointmentDetailsScreenState extends State<AppointmentDetailsScreen> {
                                       ),
                                       Center(
                                         child: Container(
-                                          width: width * 0.295,
+                                          width: width * 0.5,
                                           height: height * 0.05,
                                           decoration: BoxDecoration(
                                             color: getTimeSlotStatus(

@@ -2,10 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:intl/intl.dart';
 import 'package:tricares_doctor_app/core/globle/color/shared_color.dart';
-import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
 import 'package:tricares_doctor_app/features/Rooms/screens/room_details_screen.dart';
 import 'package:tricares_doctor_app/features/Rooms/screens/rooms_screen.dart';
-import 'package:tricares_doctor_app/features/profits/cubits/profits_cubit/profits_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/screens/profit_details_screen.dart';
 import 'package:tricares_doctor_app/features/profits/screens/profits_screen.dart';
 import 'package:tricares_doctor_app/features/sessions/screens/session_details_screen.dart';
@@ -57,7 +55,7 @@ class BuildNotificationWidget extends StatelessWidget {
               navigateTo(context,  ProfitsDetailsScreen(profitId: int.parse(actionId)));
             }
             else{
-              context.read<ProfitsCubit>().getProfitsTable(token: CashHelper.prefs.getString('token')!);
+
               navigateTo(context, const ProfitsScreen());
             }
             break;
@@ -181,7 +179,7 @@ class BuildNotificationWidget extends StatelessWidget {
       case "exclamation":
         return CircleAvatar(
           backgroundColor: Colors.blue.shade50,
-          child: Icon(
+          child: const Icon(
             Icons.warning_amber_rounded,
             color: Colors.blue,
           ),
@@ -189,7 +187,7 @@ class BuildNotificationWidget extends StatelessWidget {
       case "success":
         return CircleAvatar(
           backgroundColor: Colors.green.shade50,
-          child: Icon(
+          child: const Icon(
             Icons.check_circle_outline,
             color: Colors.green,
           ),
@@ -197,13 +195,13 @@ class BuildNotificationWidget extends StatelessWidget {
       case "times":
         return CircleAvatar(
           backgroundColor: Colors.red.shade50,
-          child: Icon(
+          child: const Icon(
             Icons.close,
             color: Colors.red,
           ),
         );
       default:
-        return SizedBox();
+        return const SizedBox.shrink();
     }
   }
 }

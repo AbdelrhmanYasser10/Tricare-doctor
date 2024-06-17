@@ -61,6 +61,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "confPassword":
             MessageLookupByLibrary.simpleMessage("تأكيد كلمة المرور"),
         "country": MessageLookupByLibrary.simpleMessage("الدولة"),
+        "currentBalance": MessageLookupByLibrary.simpleMessage("رصيدك الحالي"),
         "currentTimeSlotStatus":
             MessageLookupByLibrary.simpleMessage("الحالة الحالية"),
         "currentWord": MessageLookupByLibrary.simpleMessage("الحالي"),
@@ -149,6 +150,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneValidation": MessageLookupByLibrary.simpleMessage(
             "يجب أن يكون الرقم هاتفي مكون من 11 رقم"),
         "previous": MessageLookupByLibrary.simpleMessage("السابق"),
+        "previousOrders":
+            MessageLookupByLibrary.simpleMessage("طلبات الارباح السابقة"),
         "profile": MessageLookupByLibrary.simpleMessage("الملف الشخصي"),
         "profitDetails":
             MessageLookupByLibrary.simpleMessage("تفاصيل طلب الربح"),

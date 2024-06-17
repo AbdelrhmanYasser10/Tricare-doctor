@@ -15,7 +15,7 @@ class PageViewShape extends StatelessWidget {
       listener: (context, state) {},
       builder: (context, state) {
         var cubit = SessionsCubit.get(context);
-        List<String> filters = ['current', 'upcoming', 'past', 'all'];
+        List<String> filters = ['today', 'upcoming', 'past', 'all'];
         return PageView.builder(
           controller: context.read<SessionsCubit>().pageController,
           itemBuilder: (context, index) {

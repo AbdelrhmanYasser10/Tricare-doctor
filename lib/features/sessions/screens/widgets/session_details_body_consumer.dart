@@ -115,7 +115,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                                     width: width * 0.03,
                                   ),
                                   Text(
-                                    session.sessionDate!,
+                                    session.sessionDateDisplay!,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge!
@@ -163,7 +163,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
                                     width: width * 0.03,
                                   ),
                                   Text(
-                                    session.sessionStart!,
+                                    session.sessionStartDisplay!,
                                     style: Theme.of(context)
                                         .textTheme
                                         .labelLarge!
@@ -333,7 +333,7 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
       case "1":
         return CircleAvatar(
           backgroundColor: Colors.green.shade50,
-          child: Icon(
+          child: const Icon(
             Icons.check_circle_outline,
             color: Colors.green,
           ),
@@ -341,13 +341,13 @@ class SessionDetailsBodyConsumer extends StatelessWidget {
       case "0":
         return CircleAvatar(
           backgroundColor: Colors.red.shade50,
-          child: Icon(
+          child: const Icon(
             Icons.close,
             color: Colors.red,
           ),
         );
       default:
-        return SizedBox();
+        return const SizedBox.shrink();
     }
   }
 }

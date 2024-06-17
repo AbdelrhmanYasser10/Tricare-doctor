@@ -1,12 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
+import 'package:tricares_doctor_app/core/Global%20Cubit/global_cubit.dart';
 import 'package:tricares_doctor_app/core/component/Loading%20Widget/loading_widget.dart';
+import 'package:tricares_doctor_app/features/profile/cubit/profile_cubit.dart';
+import 'package:tricares_doctor_app/features/profits/cubits/add_profit_cubit/add_profit_cubit.dart';
 import 'package:tricares_doctor_app/features/profits/screens/widgets/profit_card.dart';
+import '../../../../core/component/MessageWidget/message_widget.dart';
 import '../../../../core/network/Local/CashHelper.dart';
 import '../../../../core/network/Remote/DioHelper.dart';
 import '../../../../core/network/endPoind.dart';
+import '../../../../generated/l10n.dart';
 import '../../models/profits_model.dart';
-
 
 class ProfitsBodyConsumer extends StatefulWidget {
   const ProfitsBodyConsumer({Key? key}) : super(key: key);
@@ -17,8 +22,10 @@ class ProfitsBodyConsumer extends StatefulWidget {
 
 class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
   final PagingController<int, PartnersOrders> _pagingController =
-  PagingController(firstPageKey: 0);
+      PagingController(firstPageKey: 0);
   int pageNumber = 1;
+  bool isEmpty = false;
+  bool hasError = false;
 
   @override
   void initState() {
@@ -32,27 +39,38 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
     try {
       final newItems = await DioHelper.postData(
           data: {
-            'page':pageNumber,
+            'page': pageNumber,
           },
           url: EndPoints.profitsTable,
-          token: CashHelper.prefs.getString('token')??""
-      );
+          token: CashHelper.prefs.getString('token') ?? "");
       final ProfitsModel proftiModel = ProfitsModel.fromJson(newItems.data);
-      if(!proftiModel.hasError!) {
-        final isLastPage = proftiModel.data!.pageCurrent ==  proftiModel.data!.pageMax;
-        if (isLastPage) {
-          _pagingController.appendLastPage(proftiModel.data!.partnersOrders!);
+      if (pageNumber == 1 && proftiModel.data == null) {
+        setState(() {
+          isEmpty = true;
+        });
+      } else {
+        if (!proftiModel.hasError!) {
+          final isLastPage =
+              proftiModel.data!.pageCurrent == proftiModel.data!.pageMax;
+          if (isLastPage) {
+            _pagingController.appendLastPage(proftiModel.data!.partnersOrders!);
+          } else {
+            final nextPageKey =
+                pageKey + proftiModel.data!.partnersOrders!.length;
+            pageNumber++;
+            _pagingController.appendPage(
+                proftiModel.data!.partnersOrders!, nextPageKey);
+          }
         } else {
-          final nextPageKey = pageKey + proftiModel.data!.partnersOrders!.length;
-          pageNumber++;
-          _pagingController.appendPage(proftiModel.data!.partnersOrders!, nextPageKey);
+          setState(() {
+            hasError = true;
+          });
         }
       }
-      else{
-
-      }
     } catch (error) {
-      print(error.toString());
+      setState(() {
+        hasError = true;
+      });
       _pagingController.error = error;
     }
   }
@@ -61,34 +79,139 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.only(
-          right: width * 0.02,
-          left: width * 0.02,
-          top: height *0.02
-      ),
-      child: PagedListView<int, PartnersOrders>(
-        pagingController: _pagingController,
-        physics: const BouncingScrollPhysics(),
-        builderDelegate: PagedChildBuilderDelegate<PartnersOrders>(
-          itemBuilder: (context, item, index) => Padding(
-            padding:  EdgeInsets.symmetric(
-                vertical: height * 0.009
-            ),
-            child: ProfitCard(
-              profit: item,
-            ),
-          ),
-          transitionDuration: const Duration(milliseconds: 900),
-          animateTransitions: true,
-          firstPageProgressIndicatorBuilder: (context) {
-            return const BuildLoadingWidget();
+    return BlocConsumer<AddProfitCubit, AddProfitState>(
+      listener: (context, state) {
+        if (state is AddProfitSuccess) {
+          setState(() {
+            pageNumber = 1;
+            _pagingController.refresh();
+            context.read<ProfileCubit>().postUserData();
+          });
+        }
+      },
+      builder: (context, state) {
+        return BlocConsumer<GlobalCubit, GlobalState>(
+          listener: (context, state) {
+            if (state is ChangeLocal) {
+              setState(() {
+                pageNumber = 1;
+                _pagingController.refresh();
+              });
+            }
           },
-          newPageProgressIndicatorBuilder: (context) {
-            return const BuildLoadingWidget();
+          builder: (context, state) {
+            return Padding(
+              padding: EdgeInsets.only(
+                  right: width * 0.02, left: width * 0.02, top: height * 0.00),
+              child: isEmpty
+                  ? MessageWidget(
+                      width: width / 3,
+                      height: height / 3,
+                      heightImage: height / 3,
+                      widthImage: width / 3,
+                      imagePath: 'assets/icons/empty.svg',
+                      message: S.of(context).emptyData,
+                      clickBtn: () {
+                        setState(() {
+                          pageNumber = 1;
+                          isEmpty = false;
+                          hasError = false;
+                          _pagingController.refresh();
+                        });
+                      },
+                      btnText: S.of(context).reload,
+                    )
+                  : hasError
+                      ? MessageWidget(
+                          width: width / 3,
+                          height: height / 3,
+                          heightImage: height / 3,
+                          widthImage: width / 3,
+                          imagePath: 'assets/icons/error.svg',
+                          message: S.of(context).errorHappenedUnExpected,
+                          clickBtn: () {
+                            setState(() {
+                              pageNumber = 1;
+                              hasError = false;
+                              isEmpty = false;
+                              _pagingController.refresh();
+                            });
+                          },
+                          btnText: S.of(context).reload,
+                        )
+                      : RefreshIndicator(
+                          onRefresh: () => Future(() {
+                            pageNumber = 1;
+                            _pagingController.refresh();
+                          }),
+                          child: PagedListView<int, PartnersOrders>(
+                            pagingController: _pagingController,
+                            physics: const BouncingScrollPhysics(),
+                            builderDelegate:
+                                PagedChildBuilderDelegate<PartnersOrders>(
+                              itemBuilder: (context, item, index) => Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: height * 0.009),
+                                child: ProfitCard(
+                                  profit: item,
+                                ),
+                              ),
+                              transitionDuration:
+                                  const Duration(milliseconds: 900),
+                              animateTransitions: true,
+                              newPageErrorIndicatorBuilder: (context) {
+                                return MessageWidget(
+                                  width: width / 3,
+                                  height: height / 3,
+                                  heightImage: height / 3,
+                                  widthImage: width / 3,
+                                  imagePath: 'assets/icons/error.svg',
+                                  message:
+                                      S.of(context).errorHappenedUnExpected,
+                                  clickBtn: () {
+                                    setState(() {
+                                      pageNumber = 1;
+                                      hasError = false;
+                                      isEmpty = false;
+                                      _pagingController.refresh();
+                                    });
+                                  },
+                                  btnText: S.of(context).reload,
+                                );
+                              },
+                              firstPageErrorIndicatorBuilder: (context) {
+                                return MessageWidget(
+                                  width: width / 3,
+                                  height: height / 3,
+                                  heightImage: height / 3,
+                                  widthImage: width / 3,
+                                  imagePath: 'assets/icons/error.svg',
+                                  message:
+                                      S.of(context).errorHappenedUnExpected,
+                                  clickBtn: () {
+                                    setState(() {
+                                      pageNumber = 1;
+                                      hasError = false;
+                                      isEmpty = false;
+                                      _pagingController.refresh();
+                                    });
+                                  },
+                                  btnText: S.of(context).reload,
+                                );
+                              },
+                              firstPageProgressIndicatorBuilder: (context) {
+                                return const BuildLoadingWidget();
+                              },
+                              newPageProgressIndicatorBuilder: (context) {
+                                return const BuildLoadingWidget();
+                              },
+                            ),
+                          ),
+                        ),
+            );
           },
-        ),
-      ),
+        );
+      },
     );
   }
 }

@@ -5,9 +5,12 @@ import 'package:tricares_doctor_app/core/Global%20Cubit/global_cubit.dart';
 import 'package:tricares_doctor_app/features/Rooms/models/rooms_model.dart';
 import 'package:tricares_doctor_app/features/Rooms/screens/widgets/room_card_widget.dart';
 
+import '../../../../core/component/Loading Widget/loading_widget.dart';
+import '../../../../core/component/MessageWidget/message_widget.dart';
 import '../../../../core/network/Local/CashHelper.dart';
 import '../../../../core/network/Remote/DioHelper.dart';
 import '../../../../core/network/endPoind.dart';
+import '../../../../generated/l10n.dart';
 
 class RoomScreensPaginationConsumer extends StatefulWidget {
   const RoomScreensPaginationConsumer({Key? key}) : super(key: key);
@@ -22,7 +25,9 @@ class _RoomScreensPaginationConsumerState
   final PagingController<int, Rooms> _pagingController =
       PagingController(firstPageKey: 0);
   int pageNumber = 1;
-
+  bool hasError = false;
+  bool isEmpty = false;
+  String message = '';
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
@@ -40,19 +45,34 @@ class _RoomScreensPaginationConsumerState
           url: EndPoints.rooms,
           token: CashHelper.prefs.getString('token') ?? "");
       final RoomsModel roomsModel = RoomsModel.fromJson(newItems.data);
-      if (!roomsModel.hasError!) {
-        final isLastPage =
-            roomsModel.data!.pageCurrent == roomsModel.data!.pageMax;
-        if (isLastPage) {
-          _pagingController.appendLastPage(roomsModel.data!.rooms!);
+      if(pageNumber ==  1 && roomsModel.data == null){
+        setState(() {
+          isEmpty = true;
+        });
+      }
+      else {
+        if (!roomsModel.hasError!) {
+          final isLastPage =
+              roomsModel.data!.pageCurrent == roomsModel.data!.pageMax;
+          if (isLastPage) {
+            _pagingController.appendLastPage(roomsModel.data!.rooms!);
+          } else {
+            final nextPageKey = pageKey + roomsModel.data!.rooms!.length;
+            pageNumber++;
+            _pagingController.appendPage(roomsModel.data!.rooms!, nextPageKey);
+          }
         } else {
-          final nextPageKey = pageKey + roomsModel.data!.rooms!.length;
-          pageNumber++;
-          _pagingController.appendPage(roomsModel.data!.rooms!, nextPageKey);
+          setState(() {
+            hasError = true;
+            message = roomsModel.errors!.join(' ');
+          });
         }
-      } else {}
+      }
     } catch (error) {
-      print(error.toString());
+      setState(() {
+        hasError = true;
+        message = "";
+      });
       _pagingController.error = error;
     }
   }
@@ -66,10 +86,47 @@ class _RoomScreensPaginationConsumerState
           right: width * 0.02, left: width * 0.02, top: height * 0.02),
       child: BlocConsumer<GlobalCubit, GlobalState>(
         listener: (context, state) {
+         setState(() {
+           pageNumber = 1;
           _pagingController.refresh();
+         });
         },
         builder: (context, state) {
-          return PagedListView<int, Rooms>(
+          return isEmpty ?MessageWidget(
+            width: width,
+            height: height / 3,
+            heightImage: height / 3,
+            widthImage: width / 3,
+            imagePath: 'assets/icons/empty.svg',
+            message: S.of(context).emptyData,
+            clickBtn: () {
+              setState(() {
+                pageNumber = 1;
+                hasError = false;
+                isEmpty = false;
+                _pagingController.refresh();
+
+              });
+            },
+            btnText: S.of(context).reload,
+          ) : hasError ? MessageWidget(
+            width: width,
+            height: height / 3,
+            heightImage: height / 3,
+            widthImage: width / 3,
+            imagePath: 'assets/icons/error.svg',
+            message: message == "" ? S.of(context).errorHappenedUnExpected:message,
+            clickBtn: () {
+              setState(() {
+                pageNumber = 1;
+                hasError = false;
+                isEmpty = false;
+                _pagingController.refresh();
+
+              });
+            },
+            btnText: S.of(context).reload,
+          ):PagedListView<int, Rooms>(
             pagingController: _pagingController,
             physics: const BouncingScrollPhysics(),
             builderDelegate: PagedChildBuilderDelegate<Rooms>(
@@ -81,6 +138,52 @@ class _RoomScreensPaginationConsumerState
               ),
               transitionDuration: const Duration(milliseconds: 900),
               animateTransitions: true,
+              newPageErrorIndicatorBuilder: (context) {
+                return MessageWidget(
+                  width: width / 3,
+                  height: height / 3,
+                  heightImage: height / 3,
+                  widthImage: width / 3,
+                  imagePath: 'assets/icons/error.svg',
+                  message: S.of(context).errorHappenedUnExpected,
+                  clickBtn: () {
+                    setState(() {
+                      pageNumber = 1;
+                      hasError = false;
+                      isEmpty = false;
+                      _pagingController.refresh();
+
+                    });
+                  },
+                  btnText: S.of(context).reload,
+                );
+              },
+              firstPageErrorIndicatorBuilder: (context) {
+                return MessageWidget(
+                  width: width / 3,
+                  height: height / 3,
+                  heightImage: height / 3,
+                  widthImage: width / 3,
+                  imagePath: 'assets/icons/error.svg',
+                  message: S.of(context).errorHappenedUnExpected,
+                  clickBtn: () {
+                    setState(() {
+                      pageNumber = 1;
+                      hasError = false;
+                      isEmpty = false;
+                      _pagingController.refresh();
+
+                    });
+                  },
+                  btnText: S.of(context).reload,
+                );
+              },
+              firstPageProgressIndicatorBuilder: (context) {
+                return const BuildLoadingWidget();
+              },
+              newPageProgressIndicatorBuilder: (context) {
+                return const BuildLoadingWidget();
+              },
             ),
           );
         },

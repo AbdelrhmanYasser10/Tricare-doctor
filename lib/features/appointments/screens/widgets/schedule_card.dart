@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:tricares_doctor_app/core/component/Network%20Image/network_image.dart';
@@ -62,27 +63,38 @@ class ScheduleCard extends StatelessWidget {
                     ),
                   ),
                 ),
-                BuildImage(
-                  image: daysSlots.roomPic!,
-                  fit: BoxFit.cover,
-                  errorWidget: Container(
-                    width: width * 0.25,
-                    height: double.infinity,
-                    decoration: BoxDecoration(
-                        color: AppColor.primaryColor.withOpacity(0.4),
-                        borderRadius: BorderRadius.only(
-                          topRight: context.read<GlobalCubit>().local == "en"
-                              ? const Radius.circular(15.0)
-                              : const Radius.circular(0.0),
-                          topLeft: context.read<GlobalCubit>().local != "en"
-                              ? const Radius.circular(15.0)
-                              : const Radius.circular(0.0),
-                        )),
-                    child: Center(
-                      child: BuildIconSvg(
-                        name: "room.svg",
-                        size: width * 0.25,
-                        color: AppColor.primaryColor,
+                ClipRRect(
+                  borderRadius:  BorderRadius.only(
+                    topRight: context.read<GlobalCubit>().local == "en"
+                        ? const Radius.circular(15.0)
+                        : const Radius.circular(0.0),
+                    topLeft: context.read<GlobalCubit>().local != "en"
+                        ? const Radius.circular(15.0)
+                        : const Radius.circular(0.0),
+                  ),
+                  child: BuildImage(
+                    image: daysSlots.roomPic!,
+                    fit: BoxFit.cover,
+                    errorWidget: Container(
+                      width: width * 0.25,
+                      height: double.infinity,
+                      decoration: BoxDecoration(
+                          color: AppColor.primaryColor.withOpacity(0.4),
+                          borderRadius: BorderRadius.only(
+                            topRight: context.read<GlobalCubit>().local == "en"
+                                ? const Radius.circular(15.0)
+                                : const Radius.circular(0.0),
+                            topLeft: context.read<GlobalCubit>().local != "en"
+                                ? const Radius.circular(15.0)
+                                : const Radius.circular(0.0),
+                          ),
+                      ),
+                      child: Center(
+                        child: BuildIconSvg(
+                          name: "room.svg",
+                          size: width * 0.25,
+                          color: AppColor.primaryColor,
+                        ),
                       ),
                     ),
                   ),
@@ -117,8 +129,10 @@ class ScheduleCard extends StatelessWidget {
                       );
                     },
                     child: Container(
-                      width: width * 0.295,
-                      height: height * 0.05,
+                      padding: EdgeInsets.symmetric(
+                        horizontal: width * 0.025,
+                        vertical: height * 0.01,
+                      ),
                       decoration: BoxDecoration(
                         color: getTimeSlotStatus(
                             daysSlots.partnersSlots![index].pARTSLOTSTATUS!),
@@ -130,6 +144,9 @@ class ScheduleCard extends StatelessWidget {
                           const Icon(
                             Icons.access_time_sharp,
                             color: Colors.black,
+                          ),
+                          SizedBox(
+                            width: width * 0.02,
                           ),
                           Text(
                             daysSlots.partnersSlots![index].roomtimeName!,

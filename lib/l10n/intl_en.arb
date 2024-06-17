@@ -137,6 +137,8 @@
   "submitYourApplication": "Submit your application",
   "startDate": "Start Date",
   "endDate": "End Date",
-  "currentTimeSlotStatus": "Current Status"
+  "currentTimeSlotStatus": "Current Status",
+  "previousOrders": "Previous Profit Orders",
+  "currentBalance": "Current Balance"
 
 }

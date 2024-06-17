@@ -93,7 +93,7 @@ class SessionCard extends StatelessWidget {
                         width: width * 0.03,
                       ),
                       Text(
-                        session.sessionDate!,
+                        session.sessionDateDisplay!,
                         style: Theme.of(context).textTheme.labelLarge!.copyWith(
                           color: Colors.white,
                         ),
@@ -115,7 +115,7 @@ class SessionCard extends StatelessWidget {
                         width: width * 0.03,
                       ),
                       Text(
-                        session.sessionStart!,
+                        session.sessionStartDisplay!,
                         style: Theme.of(context).textTheme.labelLarge!.copyWith(
                           color: Colors.white,
                         ),

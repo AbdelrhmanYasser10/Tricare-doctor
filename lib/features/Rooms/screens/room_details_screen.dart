@@ -263,14 +263,17 @@ class RoomDetailsScreen extends StatelessWidget {
         child: CircleAvatar(
           backgroundColor: AppColor.primaryColor.withOpacity(0.6),
           radius: width * 0.2,
-          child: BuildImage(
-            image: image,
-            radius: width ,
-            fit: BoxFit.cover,
-            errorWidget: BuildIconSvg(
-              color: AppColor.primaryColor,
-              name: "room.svg",
-              size: width * 0.3,
+          child: Padding(
+            padding: const EdgeInsets.all(1.0),
+            child: BuildImage(
+              image: image,
+              radius: width ,
+              fit: BoxFit.cover,
+              errorWidget: BuildIconSvg(
+                color: AppColor.primaryColor,
+                name: "room.svg",
+                size: width * 0.3,
+              ),
             ),
           ),
         ),

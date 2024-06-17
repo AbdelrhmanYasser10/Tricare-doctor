@@ -1439,6 +1439,26 @@ class S {
       args: [],
     );
   }
+
+  /// `Previous Profit Orders`
+  String get previousOrders {
+    return Intl.message(
+      'Previous Profit Orders',
+      name: 'previousOrders',
+      desc: '',
+      args: [],
+    );
+  }
+
+  /// `Current Balance`
+  String get currentBalance {
+    return Intl.message(
+      'Current Balance',
+      name: 'currentBalance',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

@@ -21,9 +21,7 @@ class InputValidator{
 
   String?  subjectValidator(String? value){
 
-    if(value == null || value.isEmpty) {
-      return S.current.subjectValidation;
-    }
+
 
     return null;
 

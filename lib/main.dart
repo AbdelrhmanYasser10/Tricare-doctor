@@ -7,6 +7,8 @@ import 'package:tricares_doctor_app/core/network/endPoind.dart';
 import 'package:tricares_doctor_app/features/Drawer/cubit/drawer_cubit.dart';
 import 'package:tricares_doctor_app/features/appointments/cubits/appointement_cubit.dart';
 import 'package:tricares_doctor_app/features/home/cubits/home_cubit.dart';
+import 'package:tricares_doctor_app/features/profits/cubits/add_profit_cubit/add_profit_cubit.dart';
+import 'package:tricares_doctor_app/features/profits/cubits/profits_cubit/profits_cubit.dart';
 import 'package:tricares_doctor_app/features/sessions/cubits/sessions_cubit/sessions_cubit.dart';
 import 'core/Global Cubit/global_cubit.dart';
 import 'core/Notification/cubit/notification_cubit.dart';
@@ -59,7 +61,6 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => GlobalCubit()),
         BlocProvider(create: (context) => ProfileCubit()..postUserData()),
-        BlocProvider(create: (context) => PaginatorCubit()),
         BlocProvider(create: (context) => DrawerCubit()),
         BlocProvider(create: (context) => HomeCubit()..getTabs()),
         BlocProvider(
@@ -68,6 +69,8 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (context) => AuthCubit()),
         BlocProvider(create: (context) => AppointmentDetailsCubit()),
         BlocProvider(create: (context) => AppointementCubit()),
+        BlocProvider(create: (context) => ProfitsCubit()),
+        BlocProvider(create: (context) => AddProfitCubit()),
       ],
       child: BlocBuilder<GlobalCubit, GlobalState>(
         builder: (context, state) {

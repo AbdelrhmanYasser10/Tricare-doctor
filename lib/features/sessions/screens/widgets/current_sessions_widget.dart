@@ -1,3 +1,4 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:infinite_scroll_pagination/infinite_scroll_pagination.dart';
 import 'package:tricares_doctor_app/core/network/Local/CashHelper.dart';
@@ -7,8 +8,7 @@ import 'package:tricares_doctor_app/features/sessions/screens/widgets/session_ca
 
 import '../../../../core/component/Loading Widget/loading_widget.dart';
 import '../../../../core/component/MessageWidget/message_widget.dart';
-import '../../../../core/component/SVG/svg.dart';
-import '../../../../core/globle/color/shared_color.dart';
+
 import '../../../../core/network/endPoind.dart';
 import '../../../../generated/l10n.dart';
 
@@ -27,6 +27,8 @@ class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
   int pageNumber = 1;
   bool hasError = false;
   String message = '';
+  bool isEmpty = false;
+
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
@@ -36,6 +38,9 @@ class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
   }
 
   Future<void> _fetchPage(int pageKey) async {
+    if(kDebugMode){
+      print(widget.filterString);
+    }
     try {
       final newItems = await DioHelper.postData(
         data: {
@@ -46,24 +51,41 @@ class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
         token: CashHelper.prefs.getString('token')??""
       );
       final SessionsModel sessionsModel = SessionsModel.fromJson(newItems.data);
-      if(!sessionsModel.hasError!) {
-        final isLastPage = sessionsModel.data!.pageCurrent ==  sessionsModel.data!.pageMax;
-        if (isLastPage) {
-          _pagingController.appendLastPage(sessionsModel.data!.sessions!);
-        } else {
-          final nextPageKey = pageKey + sessionsModel.data!.sessions!.length;
-          pageNumber++;
-          _pagingController.appendPage(sessionsModel.data!.sessions!, nextPageKey);
-        }
-      }
-      else{
+      if(pageNumber == 1 && sessionsModel.data == null){
         setState(() {
-          hasError = true;
-          message = sessionsModel.errors!.join(' ');
+          isEmpty = true;
         });
       }
+      else {
+        if (!sessionsModel.hasError!) {
+          final isLastPage = sessionsModel.data!.pageCurrent ==
+              sessionsModel.data!.pageMax;
+          if (isLastPage) {
+            _pagingController.appendLastPage(sessionsModel.data!.sessions!);
+          } else {
+            final nextPageKey = pageKey + sessionsModel.data!.sessions!.length;
+            pageNumber++;
+            _pagingController.appendPage(
+                sessionsModel.data!.sessions!, nextPageKey);
+          }
+        }
+        else {
+          setState(() {
+            hasError = true;
+            message = sessionsModel.errors!.join(' ');
+            if(kDebugMode){
+              print(message);
+            }
+          });
+        }
+      }
     } catch (error) {
-      print(error.toString());
+      setState(() {
+        hasError = true;
+      });
+      if(kDebugMode){
+        print(error);
+      }
       _pagingController.error = error;
     }
   }
@@ -72,44 +94,113 @@ class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
   Widget build(BuildContext context) {
     var height = MediaQuery.of(context).size.height;
     var width = MediaQuery.of(context).size.width;
-    return Padding(
-      padding: EdgeInsets.only(
-          right: width * 0.02,
-          left: width * 0.02,
-          top: height *0.02
-      ),
-      child: !hasError ? PagedListView<int, Sessions>(
-        pagingController: _pagingController,
-        physics: const BouncingScrollPhysics(),
-        builderDelegate: PagedChildBuilderDelegate<Sessions>(
-          itemBuilder: (context, item, index) => Padding(
-            padding:  EdgeInsets.symmetric(
-                vertical: height * 0.011
-            ),
-            child: SessionCard(
-              session: item,
-            ),
-          ),
-          transitionDuration: const Duration(milliseconds: 900),
-          animateTransitions: true,
-          firstPageProgressIndicatorBuilder: (context) {
-            return const BuildLoadingWidget();
-          },
-          newPageProgressIndicatorBuilder: (context) {
-            return const BuildLoadingWidget();
-          },
+    return RefreshIndicator(
+      onRefresh: () => Future(() {
+        pageNumber = 1;
+        _pagingController.refresh();
+      }),
+      child: Padding(
+        padding: EdgeInsets.only(
+            right: width * 0.02,
+            left: width * 0.02,
+            top: height *0.02
         ),
-      ) : MessageWidget(
-        width: width,
-        height: height / 3,
-        heightImage: height / 3,
-        widthImage: width / 3,
-        imagePath: 'assets/icons/error.svg',
-        message: message,
-        clickBtn: () {
-          _pagingController.refresh();
-        },
-        btnText: S.of(context).reload,
+        child: hasError ? MessageWidget(
+          width: width,
+          height: height / 3,
+          heightImage: height / 3,
+          widthImage: width / 3,
+          imagePath: 'assets/icons/error.svg',
+          message: message == "" ? S.of(context).errorHappenedUnExpected:message,
+          clickBtn: () {
+            setState(() {
+              pageNumber = 1;
+              hasError = false;
+              isEmpty = false;
+              _pagingController.refresh();
+
+            });
+          },
+          btnText: S.of(context).reload,
+        ):isEmpty ? MessageWidget(
+          width: width,
+          height: height / 3,
+          heightImage: height / 3,
+          widthImage: width / 3,
+          imagePath: 'assets/icons/empty.svg',
+          message: S.of(context).emptyData,
+          clickBtn: () {
+            setState(() {
+              pageNumber = 1;
+              hasError = false;
+              isEmpty = false;
+              _pagingController.refresh();
+
+            });
+          },
+          btnText: S.of(context).reload,
+        ): PagedListView<int, Sessions>(
+          pagingController: _pagingController,
+          physics: const BouncingScrollPhysics(),
+          builderDelegate: PagedChildBuilderDelegate<Sessions>(
+            itemBuilder: (context, item, index) => Padding(
+              padding:  EdgeInsets.symmetric(
+                  vertical: height * 0.011
+              ),
+              child: SessionCard(
+                session: item,
+              ),
+            ),
+            newPageErrorIndicatorBuilder: (context) {
+              return MessageWidget(
+                width: width / 3,
+                height: height / 3,
+                heightImage: height / 3,
+                widthImage: width / 3,
+                imagePath: 'assets/icons/error.svg',
+                message: S.of(context).errorHappenedUnExpected,
+                clickBtn: () {
+                  setState(() {
+                    pageNumber = 1;
+                    hasError = false;
+                    isEmpty = false;
+                    _pagingController.refresh();
+
+                  });
+                },
+                btnText: S.of(context).reload,
+              );
+            },
+            firstPageErrorIndicatorBuilder: (context) {
+              return MessageWidget(
+                width: width / 3,
+                height: height / 3,
+                heightImage: height / 3,
+                widthImage: width / 3,
+                imagePath: 'assets/icons/error.svg',
+                message: S.of(context).errorHappenedUnExpected,
+                clickBtn: () {
+                  setState(() {
+                    pageNumber = 1;
+                    hasError = false;
+                    isEmpty = false;
+                    _pagingController.refresh();
+
+                  });
+                },
+                btnText: S.of(context).reload,
+              );
+            },
+            transitionDuration: const Duration(milliseconds: 900),
+            animateTransitions: true,
+            firstPageProgressIndicatorBuilder: (context) {
+              return const BuildLoadingWidget();
+            },
+            newPageProgressIndicatorBuilder: (context) {
+              return const BuildLoadingWidget();
+            },
+          ),
+        ) ,
       ),
     );
   }

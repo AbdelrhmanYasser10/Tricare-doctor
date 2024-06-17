@@ -63,6 +63,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "confPassword":
             MessageLookupByLibrary.simpleMessage("Password Confirmation"),
         "country": MessageLookupByLibrary.simpleMessage("Country"),
+        "currentBalance":
+            MessageLookupByLibrary.simpleMessage("Current Balance"),
         "currentTimeSlotStatus":
             MessageLookupByLibrary.simpleMessage("Current Status"),
         "currentWord": MessageLookupByLibrary.simpleMessage("Current"),
@@ -152,6 +154,8 @@ class MessageLookup extends MessageLookupByLibrary {
         "phoneValidation":
             MessageLookupByLibrary.simpleMessage("Phone Must Be 11 Number"),
         "previous": MessageLookupByLibrary.simpleMessage("Previous"),
+        "previousOrders":
+            MessageLookupByLibrary.simpleMessage("Previous Profit Orders"),
         "profile": MessageLookupByLibrary.simpleMessage("Profile"),
         "profitDetails":
             MessageLookupByLibrary.simpleMessage("Profit Request Details"),

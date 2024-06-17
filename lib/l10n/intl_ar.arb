@@ -137,7 +137,9 @@
   "startDate": "تاريخ البداية",
   "endDate": "تاريخ الانتهاء",
   "joinOurPartners" :  "أنضم الى شركائنا",
-  "currentTimeSlotStatus": "الحالة الحالية"
+  "currentTimeSlotStatus": "الحالة الحالية",
 
+  "previousOrders": "طلبات الارباح السابقة",
+  "currentBalance": "رصيدك الحالي"
 
 }
