@@ -48,6 +48,7 @@ class _RoomScreensPaginationConsumerState
       if(pageNumber ==  1 && roomsModel.data == null){
         setState(() {
           isEmpty = true;
+          message = roomsModel.errors!.join(' ');
         });
       }
       else {
@@ -98,7 +99,7 @@ class _RoomScreensPaginationConsumerState
             heightImage: height / 3,
             widthImage: width / 3,
             imagePath: 'assets/icons/empty.svg',
-            message: S.of(context).emptyData,
+            message:message,
             clickBtn: () {
               setState(() {
                 pageNumber = 1;

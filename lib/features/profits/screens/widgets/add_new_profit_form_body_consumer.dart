@@ -115,7 +115,7 @@ class _AddNewProfitFormBodyConsumerState extends State<AddNewProfitFormBodyConsu
                             : BuildProfileButton(
                                 formKey: _formKey,
                                 passwordController: _passwordController,
-                                textButton: S.of(context).requested,
+                                textButton: S.of(context).sendRequest,
                                 futureFunction: () async {
                                   cubit.addNewProfit(
                                     password: _passwordController.text.trim(),

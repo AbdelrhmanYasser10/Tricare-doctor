@@ -173,6 +173,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("حفظ"),
         "schedule": MessageLookupByLibrary.simpleMessage("الجدول"),
         "send": MessageLookupByLibrary.simpleMessage("إرسال"),
+        "sendRequest": MessageLookupByLibrary.simpleMessage("إرسال الطلب"),
         "services": MessageLookupByLibrary.simpleMessage("الخدمات"),
         "session": MessageLookupByLibrary.simpleMessage("الكشوفات"),
         "sessionDetails": MessageLookupByLibrary.simpleMessage("تفاصيل الكشف"),

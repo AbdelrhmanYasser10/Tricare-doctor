@@ -26,7 +26,7 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
   int pageNumber = 1;
   bool isEmpty = false;
   bool hasError = false;
-
+String message = '';
   @override
   void initState() {
     _pagingController.addPageRequestListener((pageKey) {
@@ -43,9 +43,13 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
           },
           url: EndPoints.profitsTable,
           token: CashHelper.prefs.getString('token') ?? "");
+      print(newItems.data);
       final ProfitsModel proftiModel = ProfitsModel.fromJson(newItems.data);
-      if (pageNumber == 1 && proftiModel.data == null) {
+
+;      if (pageNumber == 1 && proftiModel.data == null) {
+
         setState(() {
+          message = proftiModel.errors!.join(' ');
           isEmpty = true;
         });
       } else {
@@ -105,12 +109,12 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
                   right: width * 0.02, left: width * 0.02, top: height * 0.00),
               child: isEmpty
                   ? MessageWidget(
-                      width: width / 3,
+                      width: width,
                       height: height / 3,
                       heightImage: height / 3,
                       widthImage: width / 3,
                       imagePath: 'assets/icons/empty.svg',
-                      message: S.of(context).emptyData,
+                      message: message,
                       clickBtn: () {
                         setState(() {
                           pageNumber = 1;
@@ -123,7 +127,7 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
                     )
                   : hasError
                       ? MessageWidget(
-                          width: width / 3,
+                          width: width ,
                           height: height / 3,
                           heightImage: height / 3,
                           widthImage: width / 3,
@@ -161,7 +165,7 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
                               animateTransitions: true,
                               newPageErrorIndicatorBuilder: (context) {
                                 return MessageWidget(
-                                  width: width / 3,
+                                  width: width,
                                   height: height / 3,
                                   heightImage: height / 3,
                                   widthImage: width / 3,
@@ -181,7 +185,7 @@ class _ProfitsBodyConsumerState extends State<ProfitsBodyConsumer> {
                               },
                               firstPageErrorIndicatorBuilder: (context) {
                                 return MessageWidget(
-                                  width: width / 3,
+                                  width: width,
                                   height: height / 3,
                                   heightImage: height / 3,
                                   widthImage: width / 3,

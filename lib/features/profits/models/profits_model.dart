@@ -20,7 +20,14 @@ class ProfitsModel {
         messages!.add(v);
       });
     }
-    data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+    if(json['data']!= null) {
+      if(json['data'].isNotEmpty) {
+        data = json['data'] != null ? new Data.fromJson(json['data']) : null;
+      }
+      else{
+        data = null;
+      }
+    }
   }
 
   Map<String, dynamic> toJson() {

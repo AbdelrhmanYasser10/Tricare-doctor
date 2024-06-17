@@ -178,6 +178,7 @@ class MessageLookup extends MessageLookupByLibrary {
         "save": MessageLookupByLibrary.simpleMessage("Save"),
         "schedule": MessageLookupByLibrary.simpleMessage("Schedule"),
         "send": MessageLookupByLibrary.simpleMessage("Send"),
+        "sendRequest": MessageLookupByLibrary.simpleMessage("Send Request"),
         "services": MessageLookupByLibrary.simpleMessage("Services"),
         "session": MessageLookupByLibrary.simpleMessage("Sessions"),
         "sessionDetails":

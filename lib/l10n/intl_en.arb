@@ -139,6 +139,6 @@
   "endDate": "End Date",
   "currentTimeSlotStatus": "Current Status",
   "previousOrders": "Previous Profit Orders",
-  "currentBalance": "Current Balance"
-
+  "currentBalance": "Current Balance",
+"sendRequest": "Send Request"
 }

@@ -54,6 +54,7 @@ class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
       if(pageNumber == 1 && sessionsModel.data == null){
         setState(() {
           isEmpty = true;
+          message = sessionsModel.errors!.join(' ');
         });
       }
       else {
@@ -128,7 +129,7 @@ class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
           heightImage: height / 3,
           widthImage: width / 3,
           imagePath: 'assets/icons/empty.svg',
-          message: S.of(context).emptyData,
+          message:message,
           clickBtn: () {
             setState(() {
               pageNumber = 1;
@@ -153,7 +154,7 @@ class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
             ),
             newPageErrorIndicatorBuilder: (context) {
               return MessageWidget(
-                width: width / 3,
+                width: width,
                 height: height / 3,
                 heightImage: height / 3,
                 widthImage: width / 3,
@@ -173,7 +174,7 @@ class _SessionsBodyWidgetState extends State<SessionsBodyWidget> {
             },
             firstPageErrorIndicatorBuilder: (context) {
               return MessageWidget(
-                width: width / 3,
+                width: width ,
                 height: height / 3,
                 heightImage: height / 3,
                 widthImage: width / 3,

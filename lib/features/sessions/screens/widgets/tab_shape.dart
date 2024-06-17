@@ -16,7 +16,7 @@ class _TabShapeState extends State<TabShape> {
   @override
   Widget build(BuildContext context) {
     List<String> tabs = [
-      S.of(context).currentWord,
+      S.of(context).today,
       S.of(context).upcoming,
       S.of(context).past,
       S.of(context).all,
@@ -38,8 +38,7 @@ class _TabShapeState extends State<TabShape> {
               return TabButton(
                 cubit: cubit,
                 fn: (){
-                  print("Iam from tab fn");
-                  print(index);
+
                   cubit.changeTabIdx(idx: index);
                 },
                 txt: tabs[index],

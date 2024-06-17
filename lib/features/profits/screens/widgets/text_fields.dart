@@ -34,7 +34,7 @@ class RequestedCreditFields extends StatelessWidget {
   Widget build(BuildContext context) {
     return  BuildTextFormField(
       controller: controller,
-      hintText: 'Amount',
+      hintText: S.of(context).amount,
       prefixIcon: const Icon(FontAwesomeIcons.moneyBill),
       maxLines: 1,
       keyboardType: TextInputType.number,
